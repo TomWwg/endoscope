@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+  <display-name>endoscope</display-name>
+
+  <context-param> <!-- 全局范围内环境参数初始化 -->
+    <param-name>contextConfigLocation</param-name> <!-- 参数名称 -->
+    <param-value>classpath:spring-mybatis.xml</param-value> <!-- 参数取值 -->
+  </context-param>
+
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>classpath:log4j.properties</param-value>
+  </context-param>
+
+  <!-- 过滤器配置 -->
+  <!-- 编码过滤器 -->
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <async-supported>true</async-supported> <!-- 设置是否启用异步支持 -->
+    <init-param> <!-- 用来定义参数，若在Servlet可以使用下列方法来获得：String param_name=getServletContext().getInitParameter("param-name里面的值")； -->
+      <param-name>encoding</param-name> <!-- 参数名称 -->
+      <param-value>UTF-8</param-value>  <!-- 参数值 -->
+    </init-param>
+  </filter>
+  <filter-mapping> <!-- 用来定义filter所对应的URL -->
+    <filter-name>encodingFilter</filter-name> <!-- 制定对应filter的名字 -->
+    <url-pattern>/*</url-pattern>             <!-- 制定filter所对应的URL -->
+  </filter-mapping>
+
+  <!-- 监听器配置 -->
+  <!-- spring监听器 -->
+  <listener>    <!-- 用来设定Listener接口 -->
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>   <!-- 定义Listener的类名称 -->
+  </listener>
+  <!-- 防止spring内存溢出监听器，比如quartz -->
+  <listener>
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  </listener>
+
+  <!-- servlet配置 -->
+  <!-- spring mvc servlet-->
+  <servlet>   <!-- 用来声明一个servlet的数据 -->
+    <servlet-name>SpringMVC</servlet-name>   <!-- 指定servlet的名称 -->
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>   <!-- 指定servlet的类名称，这里配置了前端控制器 -->
+    <init-param>   <!-- 用来定义参数，可有多个init-param。在servlet类中通过getInitParameter(String name)方法访问初始化参数 -->
+      <param-name>contextConfigLocation</param-name>   <!-- 参数名称 -->
+      <param-value>classpath:spring-mvc.xml</param-value>   <!-- 参数值 -->
+    </init-param>
+    <load-on-startup>1</load-on-startup>   <!-- 当值为正数或零时：Servlet容器先加载数值小的servlet，再依次加载其他数值大的servlet。 -->
+    <async-supported>true</async-supported>   <!-- 设置是否启用异步支持 -->
+  </servlet>
+  <servlet-mapping>   <!-- 用来定义servlet所对应的URL -->
+    <servlet-name>SpringMVC</servlet-name>   <!-- 指定servlet的名称 -->
+    <!-- 此处也可以配置成 *.do 形式 -->
+    <url-pattern>/</url-pattern>   <!-- 指定servlet所对应的URL -->
+  </servlet-mapping>
+
+  <!-- 欢迎页面配置 -->
+  <welcome-file-list>   <!-- 定义首页列单. -->
+    <welcome-file>/index.jsp</welcome-file>   <!-- 用来指定首页文件名称 -->
+  </welcome-file-list>
+
+  <!-- 会话超时配置（单位为分钟） -->
+  <!-- session配置 -->
+  <session-config>
+    <session-timeout>15</session-timeout>
+  </session-config>
+
+</web-app>

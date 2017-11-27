@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iel.endoscope.dao.EndoscopeDAO">
+    <resultMap id="BaseResultMap" type="com.iel.endoscope.entity.Endoscope">
+        <id column="endoscope_id" property="endoscopeId" jdbcType="BIGINT"/>
+        <result column="endoscope_number" property="endoscopeNumber" jdbcType="VARCHAR"/>
+        <result column="endoscope_type" property="endoscopeType" jdbcType="VARCHAR"/>
+        <result column="endoscope_name" property="endoscopeName" jdbcType="VARCHAR"/>
+        <result column="rfid" property="rfid" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+    </resultMap>
+    <sql id="SELECT_All_Column">
+        SELECT endoscope_id, endoscope_number, endoscope_type, endoscope_name, rfid, 
+        remark, create_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.iel.endoscope.entity.Endoscope">
+        SELECT *
+        FROM endoscope
+        WHERE endoscope_id = #{endoscopeId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.iel.endoscope.entity.Endoscope">
+        DELETE FROM endoscope
+        WHERE endoscope_id = #{endoscopeId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.iel.endoscope.entity.Endoscope">
+        INSERT INTO endoscope ( endoscope_number, 
+          endoscope_type, endoscope_name, rfid, 
+          remark, create_time )
+        VALUES ( #{endoscopeNumber,jdbcType=VARCHAR}, 
+          #{endoscopeType,jdbcType=VARCHAR}, #{endoscopeName,jdbcType=VARCHAR}, #{rfid,jdbcType=VARCHAR}, 
+          #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE} )
+        <selectKey keyProperty="endoscopeId" resultType="long">
+            SELECT LAST_INSERT_ID() AS endoscopeId
+        </selectKey>
+    </insert>
+    <insert id="insertSelective" parameterType="com.iel.endoscope.entity.Endoscope">
+        INSERT INTO endoscope
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="endoscopeNumber != null">
+                endoscope_number,
+            </if>
+            <if test="endoscopeType != null">
+                endoscope_type,
+            </if>
+            <if test="endoscopeName != null">
+                endoscope_name,
+            </if>
+            <if test="rfid != null">
+                rfid,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="endoscopeNumber != null">
+                #{endoscopeNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="endoscopeType != null">
+                #{endoscopeType,jdbcType=VARCHAR},
+            </if>
+            <if test="endoscopeName != null">
+                #{endoscopeName,jdbcType=VARCHAR},
+            </if>
+            <if test="rfid != null">
+                #{rfid,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=DATE},
+            </if>
+        </trim>
+        <selectKey keyProperty="endoscopeId" resultType="long">
+            SELECT LAST_INSERT_ID() AS endoscopeId
+        </selectKey>
+    </insert>
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO endoscope ( endoscope_number, 
+          endoscope_type, endoscope_name, rfid, 
+          remark, create_time )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+            #{item.endoscopeNumber,jdbcType=VARCHAR}, 
+            #{item.endoscopeType,jdbcType=VARCHAR}, #{item.endoscopeName,jdbcType=VARCHAR}, #{item.rfid,jdbcType=VARCHAR}, 
+            #{item.remark,jdbcType=VARCHAR}, #{item.createTime,jdbcType=DATE}
+            )
+        </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.iel.endoscope.entity.Endoscope">
+        UPDATE endoscope
+        <set>
+            <if test="endoscopeNumber != null">
+                endoscope_number = #{endoscopeNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="endoscopeType != null">
+                endoscope_type = #{endoscopeType,jdbcType=VARCHAR},
+            </if>
+            <if test="endoscopeName != null">
+                endoscope_name = #{endoscopeName,jdbcType=VARCHAR},
+            </if>
+            <if test="rfid != null">
+                rfid = #{rfid,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=DATE},
+            </if>
+        </set>
+        WHERE endoscope_id = #{endoscopeId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.iel.endoscope.entity.Endoscope">
+        UPDATE endoscope
+        SET endoscope_number = #{endoscopeNumber,jdbcType=VARCHAR},
+            endoscope_type = #{endoscopeType,jdbcType=VARCHAR},
+            endoscope_name = #{endoscopeName,jdbcType=VARCHAR},
+            rfid = #{rfid,jdbcType=VARCHAR},
+            remark = #{remark,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=DATE}
+        WHERE endoscope_id = #{endoscopeId,jdbcType=BIGINT}
+    </update>
+</mapper>

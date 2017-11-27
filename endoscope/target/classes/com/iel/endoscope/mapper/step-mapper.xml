@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iel.endoscope.dao.StepDAO">
+    <resultMap id="BaseResultMap" type="com.iel.endoscope.entity.Step">
+        <id column="step_id" property="stepId" jdbcType="BIGINT"/>
+        <result column="decontamination_id" property="decontaminationId" jdbcType="BIGINT"/>
+        <result column="step_type" property="stepType" jdbcType="VARCHAR"/>
+        <result column="start_time" property="startTime" jdbcType="DATE"/>
+        <result column="end_time" property="endTime" jdbcType="DATE"/>
+    </resultMap>
+    <sql id="SELECT_All_Column">
+        SELECT step_id, decontamination_id, step_type, start_time, end_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.iel.endoscope.entity.Step">
+        SELECT *
+        FROM step
+        WHERE step_id = #{stepId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.iel.endoscope.entity.Step">
+        DELETE FROM step
+        WHERE step_id = #{stepId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.iel.endoscope.entity.Step">
+        INSERT INTO step ( decontamination_id, 
+          step_type, start_time, end_time )
+        VALUES ( #{decontaminationId,jdbcType=BIGINT}, 
+          #{stepType,jdbcType=VARCHAR}, #{startTime,jdbcType=DATE}, #{endTime,jdbcType=DATE} )
+        <selectKey keyProperty="stepId" resultType="long">
+            SELECT LAST_INSERT_ID() AS stepId
+        </selectKey>
+    </insert>
+    <insert id="insertSelective" parameterType="com.iel.endoscope.entity.Step">
+        INSERT INTO step
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="decontaminationId != null">
+                decontamination_id,
+            </if>
+            <if test="stepType != null">
+                step_type,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="decontaminationId != null">
+                #{decontaminationId,jdbcType=BIGINT},
+            </if>
+            <if test="stepType != null">
+                #{stepType,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=DATE},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=DATE},
+            </if>
+        </trim>
+        <selectKey keyProperty="stepId" resultType="long">
+            SELECT LAST_INSERT_ID() AS stepId
+        </selectKey>
+    </insert>
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO step ( decontamination_id, 
+          step_type, start_time, end_time )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+            #{item.decontaminationId,jdbcType=BIGINT}, 
+            #{item.stepType,jdbcType=VARCHAR}, #{item.startTime,jdbcType=DATE}, #{item.endTime,jdbcType=DATE}
+            )
+        </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.iel.endoscope.entity.Step">
+        UPDATE step
+        <set>
+            <if test="decontaminationId != null">
+                decontamination_id = #{decontaminationId,jdbcType=BIGINT},
+            </if>
+            <if test="stepType != null">
+                step_type = #{stepType,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=DATE},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=DATE},
+            </if>
+        </set>
+        WHERE step_id = #{stepId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.iel.endoscope.entity.Step">
+        UPDATE step
+        SET decontamination_id = #{decontaminationId,jdbcType=BIGINT},
+            step_type = #{stepType,jdbcType=VARCHAR},
+            start_time = #{startTime,jdbcType=DATE},
+            end_time = #{endTime,jdbcType=DATE}
+        WHERE step_id = #{stepId,jdbcType=BIGINT}
+    </update>
+</mapper>

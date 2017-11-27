@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="web-endoscope:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="endoscope.war">
+      <element id="artifact" artifact-name="web-endoscope:war exploded" />
+    </root>
+  </artifact>
+</component>

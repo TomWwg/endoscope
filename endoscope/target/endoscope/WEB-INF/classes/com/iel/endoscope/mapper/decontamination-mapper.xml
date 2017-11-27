@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iel.endoscope.dao.DecontaminationDAO">
+    <resultMap id="BaseResultMap" type="com.iel.endoscope.entity.Decontamination">
+        <id column="decontamination_id" property="decontaminationId" jdbcType="BIGINT"/>
+        <result column="hospital_id" property="hospitalId" jdbcType="BIGINT"/>
+        <result column="station_id" property="stationId" jdbcType="BIGINT"/>
+        <result column="employee_id" property="employeeId" jdbcType="BIGINT"/>
+        <result column="endoscope_id" property="endoscopeId" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="update_time" property="updateTime" jdbcType="DATE"/>
+        <result column="consume_time" property="consumeTime" jdbcType="VARCHAR"/>
+        <result column="audit_result" property="auditResult" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="SELECT_All_Column">
+        SELECT decontamination_id, hospital_id, station_id, employee_id, endoscope_id, 
+        create_time, update_time, consume_time, audit_result
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.iel.endoscope.entity.Decontamination">
+        SELECT *
+        FROM decontamination
+        WHERE decontamination_id = #{decontaminationId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.iel.endoscope.entity.Decontamination">
+        DELETE FROM decontamination
+        WHERE decontamination_id = #{decontaminationId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.iel.endoscope.entity.Decontamination">
+        INSERT INTO decontamination ( hospital_id, 
+          station_id, employee_id, endoscope_id, 
+          create_time, update_time, consume_time, 
+          audit_result )
+        VALUES ( #{hospitalId,jdbcType=BIGINT}, 
+          #{stationId,jdbcType=BIGINT}, #{employeeId,jdbcType=BIGINT}, #{endoscopeId,jdbcType=BIGINT}, 
+          #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{consumeTime,jdbcType=VARCHAR}, 
+          #{auditResult,jdbcType=VARCHAR} )
+        <selectKey keyProperty="decontaminationId" resultType="long">
+            SELECT LAST_INSERT_ID() AS decontaminationId
+        </selectKey>
+    </insert>
+    <insert id="insertSelective" parameterType="com.iel.endoscope.entity.Decontamination">
+        INSERT INTO decontamination
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="hospitalId != null">
+                hospital_id,
+            </if>
+            <if test="stationId != null">
+                station_id,
+            </if>
+            <if test="employeeId != null">
+                employee_id,
+            </if>
+            <if test="endoscopeId != null">
+                endoscope_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="consumeTime != null">
+                consume_time,
+            </if>
+            <if test="auditResult != null">
+                audit_result,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="hospitalId != null">
+                #{hospitalId,jdbcType=BIGINT},
+            </if>
+            <if test="stationId != null">
+                #{stationId,jdbcType=BIGINT},
+            </if>
+            <if test="employeeId != null">
+                #{employeeId,jdbcType=BIGINT},
+            </if>
+            <if test="endoscopeId != null">
+                #{endoscopeId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=DATE},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=DATE},
+            </if>
+            <if test="consumeTime != null">
+                #{consumeTime,jdbcType=VARCHAR},
+            </if>
+            <if test="auditResult != null">
+                #{auditResult,jdbcType=VARCHAR},
+            </if>
+        </trim>
+        <selectKey keyProperty="decontaminationId" resultType="long">
+            SELECT LAST_INSERT_ID() AS decontaminationId
+        </selectKey>
+    </insert>
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO decontamination ( hospital_id, 
+          station_id, employee_id, endoscope_id, 
+          create_time, update_time, consume_time, 
+          audit_result )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+            #{item.hospitalId,jdbcType=BIGINT}, 
+            #{item.stationId,jdbcType=BIGINT}, #{item.employeeId,jdbcType=BIGINT}, #{item.endoscopeId,jdbcType=BIGINT}, 
+            #{item.createTime,jdbcType=DATE}, #{item.updateTime,jdbcType=DATE}, #{item.consumeTime,jdbcType=VARCHAR}, 
+            #{item.auditResult,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.iel.endoscope.entity.Decontamination">
+        UPDATE decontamination
+        <set>
+            <if test="hospitalId != null">
+                hospital_id = #{hospitalId,jdbcType=BIGINT},
+            </if>
+            <if test="stationId != null">
+                station_id = #{stationId,jdbcType=BIGINT},
+            </if>
+            <if test="employeeId != null">
+                employee_id = #{employeeId,jdbcType=BIGINT},
+            </if>
+            <if test="endoscopeId != null">
+                endoscope_id = #{endoscopeId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=DATE},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=DATE},
+            </if>
+            <if test="consumeTime != null">
+                consume_time = #{consumeTime,jdbcType=VARCHAR},
+            </if>
+            <if test="auditResult != null">
+                audit_result = #{auditResult,jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE decontamination_id = #{decontaminationId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.iel.endoscope.entity.Decontamination">
+        UPDATE decontamination
+        SET hospital_id = #{hospitalId,jdbcType=BIGINT},
+            station_id = #{stationId,jdbcType=BIGINT},
+            employee_id = #{employeeId,jdbcType=BIGINT},
+            endoscope_id = #{endoscopeId,jdbcType=BIGINT},
+            create_time = #{createTime,jdbcType=DATE},
+            update_time = #{updateTime,jdbcType=DATE},
+            consume_time = #{consumeTime,jdbcType=VARCHAR},
+            audit_result = #{auditResult,jdbcType=VARCHAR}
+        WHERE decontamination_id = #{decontaminationId,jdbcType=BIGINT}
+    </update>
+</mapper>

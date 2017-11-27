@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iel.endoscope.dao.UsingLogDAO">
+    <resultMap id="BaseResultMap" type="com.iel.endoscope.entity.UsingLog">
+        <id column="using_log_id" property="usingLogId" jdbcType="BIGINT"/>
+        <result column="endoscope_id" property="endoscopeId" jdbcType="BIGINT"/>
+        <result column="employee_id" property="employeeId" jdbcType="BIGINT"/>
+        <result column="patient_id" property="patientId" jdbcType="BIGINT"/>
+        <result column="using_time" property="usingTime" jdbcType="DATE"/>
+        <result column="doctor" property="doctor" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+    </resultMap>
+    <sql id="SELECT_All_Column">
+        SELECT using_log_id, endoscope_id, employee_id, patient_id, using_time, 
+        doctor, create_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.iel.endoscope.entity.UsingLog">
+        SELECT *
+        FROM using_log
+        WHERE using_log_id = #{usingLogId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.iel.endoscope.entity.UsingLog">
+        DELETE FROM using_log
+        WHERE using_log_id = #{usingLogId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.iel.endoscope.entity.UsingLog">
+        INSERT INTO using_log ( endoscope_id, 
+          employee_id, patient_id, using_time, 
+          doctor, create_time )
+        VALUES ( #{endoscopeId,jdbcType=BIGINT}, 
+          #{employeeId,jdbcType=BIGINT}, #{patientId,jdbcType=BIGINT}, #{usingTime,jdbcType=DATE}, 
+          #{doctor,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE} )
+        <selectKey keyProperty="usingLogId" resultType="long">
+            SELECT LAST_INSERT_ID() AS usingLogId
+        </selectKey>
+    </insert>
+    <insert id="insertSelective" parameterType="com.iel.endoscope.entity.UsingLog">
+        INSERT INTO using_log
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="endoscopeId != null">
+                endoscope_id,
+            </if>
+            <if test="employeeId != null">
+                employee_id,
+            </if>
+            <if test="patientId != null">
+                patient_id,
+            </if>
+            <if test="usingTime != null">
+                using_time,
+            </if>
+            <if test="doctor != null">
+                doctor,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="endoscopeId != null">
+                #{endoscopeId,jdbcType=BIGINT},
+            </if>
+            <if test="employeeId != null">
+                #{employeeId,jdbcType=BIGINT},
+            </if>
+            <if test="patientId != null">
+                #{patientId,jdbcType=BIGINT},
+            </if>
+            <if test="usingTime != null">
+                #{usingTime,jdbcType=DATE},
+            </if>
+            <if test="doctor != null">
+                #{doctor,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=DATE},
+            </if>
+        </trim>
+        <selectKey keyProperty="usingLogId" resultType="long">
+            SELECT LAST_INSERT_ID() AS usingLogId
+        </selectKey>
+    </insert>
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO using_log ( endoscope_id, 
+          employee_id, patient_id, using_time, 
+          doctor, create_time )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+            #{item.endoscopeId,jdbcType=BIGINT}, 
+            #{item.employeeId,jdbcType=BIGINT}, #{item.patientId,jdbcType=BIGINT}, #{item.usingTime,jdbcType=DATE}, 
+            #{item.doctor,jdbcType=VARCHAR}, #{item.createTime,jdbcType=DATE}
+            )
+        </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.iel.endoscope.entity.UsingLog">
+        UPDATE using_log
+        <set>
+            <if test="endoscopeId != null">
+                endoscope_id = #{endoscopeId,jdbcType=BIGINT},
+            </if>
+            <if test="employeeId != null">
+                employee_id = #{employeeId,jdbcType=BIGINT},
+            </if>
+            <if test="patientId != null">
+                patient_id = #{patientId,jdbcType=BIGINT},
+            </if>
+            <if test="usingTime != null">
+                using_time = #{usingTime,jdbcType=DATE},
+            </if>
+            <if test="doctor != null">
+                doctor = #{doctor,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=DATE},
+            </if>
+        </set>
+        WHERE using_log_id = #{usingLogId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.iel.endoscope.entity.UsingLog">
+        UPDATE using_log
+        SET endoscope_id = #{endoscopeId,jdbcType=BIGINT},
+            employee_id = #{employeeId,jdbcType=BIGINT},
+            patient_id = #{patientId,jdbcType=BIGINT},
+            using_time = #{usingTime,jdbcType=DATE},
+            doctor = #{doctor,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=DATE}
+        WHERE using_log_id = #{usingLogId,jdbcType=BIGINT}
+    </update>
+</mapper>

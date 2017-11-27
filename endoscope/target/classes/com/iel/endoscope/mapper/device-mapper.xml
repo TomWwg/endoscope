@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iel.endoscope.dao.DeviceDAO">
+    <resultMap id="BaseResultMap" type="com.iel.endoscope.entity.Device">
+        <id column="device_id" property="deviceId" jdbcType="BIGINT"/>
+        <result column="hospital_id" property="hospitalId" jdbcType="BIGINT"/>
+        <result column="station_id" property="stationId" jdbcType="BIGINT"/>
+        <result column="device_address" property="deviceAddress" jdbcType="VARCHAR"/>
+        <result column="device_type" property="deviceType" jdbcType="VARCHAR"/>
+        <result column="device_number" property="deviceNumber" jdbcType="VARCHAR"/>
+        <result column="device_name" property="deviceName" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="update_time" property="updateTime" jdbcType="DATE"/>
+    </resultMap>
+    <sql id="SELECT_All_Column">
+        SELECT device_id, hospital_id, station_id, device_address, device_type, 
+        device_number, device_name, remark, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.iel.endoscope.entity.Device">
+        SELECT *
+        FROM device
+        WHERE device_id = #{deviceId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.iel.endoscope.entity.Device">
+        DELETE FROM device
+        WHERE device_id = #{deviceId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.iel.endoscope.entity.Device">
+        INSERT INTO device ( hospital_id, 
+          station_id, device_address, device_type, 
+          device_number, device_name, remark, 
+          create_time, update_time )
+        VALUES ( #{hospitalId,jdbcType=BIGINT}, 
+          #{stationId,jdbcType=BIGINT}, #{deviceAddress,jdbcType=VARCHAR}, #{deviceType,jdbcType=VARCHAR}, 
+          #{deviceNumber,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+          #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE} )
+        <selectKey keyProperty="deviceId" resultType="long">
+            SELECT LAST_INSERT_ID() AS deviceId
+        </selectKey>
+    </insert>
+    <insert id="insertSelective" parameterType="com.iel.endoscope.entity.Device">
+        INSERT INTO device
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="hospitalId != null">
+                hospital_id,
+            </if>
+            <if test="stationId != null">
+                station_id,
+            </if>
+            <if test="deviceAddress != null">
+                device_address,
+            </if>
+            <if test="deviceType != null">
+                device_type,
+            </if>
+            <if test="deviceNumber != null">
+                device_number,
+            </if>
+            <if test="deviceName != null">
+                device_name,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="hospitalId != null">
+                #{hospitalId,jdbcType=BIGINT},
+            </if>
+            <if test="stationId != null">
+                #{stationId,jdbcType=BIGINT},
+            </if>
+            <if test="deviceAddress != null">
+                #{deviceAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceType != null">
+                #{deviceType,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceNumber != null">
+                #{deviceNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceName != null">
+                #{deviceName,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=DATE},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=DATE},
+            </if>
+        </trim>
+        <selectKey keyProperty="deviceId" resultType="long">
+            SELECT LAST_INSERT_ID() AS deviceId
+        </selectKey>
+    </insert>
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO device ( hospital_id, 
+          station_id, device_address, device_type, 
+          device_number, device_name, remark, 
+          create_time, update_time )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+            #{item.hospitalId,jdbcType=BIGINT}, 
+            #{item.stationId,jdbcType=BIGINT}, #{item.deviceAddress,jdbcType=VARCHAR}, #{item.deviceType,jdbcType=VARCHAR}, 
+            #{item.deviceNumber,jdbcType=VARCHAR}, #{item.deviceName,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, 
+            #{item.createTime,jdbcType=DATE}, #{item.updateTime,jdbcType=DATE}
+            )
+        </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.iel.endoscope.entity.Device">
+        UPDATE device
+        <set>
+            <if test="hospitalId != null">
+                hospital_id = #{hospitalId,jdbcType=BIGINT},
+            </if>
+            <if test="stationId != null">
+                station_id = #{stationId,jdbcType=BIGINT},
+            </if>
+            <if test="deviceAddress != null">
+                device_address = #{deviceAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceType != null">
+                device_type = #{deviceType,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceNumber != null">
+                device_number = #{deviceNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceName != null">
+                device_name = #{deviceName,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=DATE},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=DATE},
+            </if>
+        </set>
+        WHERE device_id = #{deviceId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.iel.endoscope.entity.Device">
+        UPDATE device
+        SET hospital_id = #{hospitalId,jdbcType=BIGINT},
+            station_id = #{stationId,jdbcType=BIGINT},
+            device_address = #{deviceAddress,jdbcType=VARCHAR},
+            device_type = #{deviceType,jdbcType=VARCHAR},
+            device_number = #{deviceNumber,jdbcType=VARCHAR},
+            device_name = #{deviceName,jdbcType=VARCHAR},
+            remark = #{remark,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=DATE},
+            update_time = #{updateTime,jdbcType=DATE}
+        WHERE device_id = #{deviceId,jdbcType=BIGINT}
+    </update>
+</mapper>

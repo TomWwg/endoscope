@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iel.endoscope.dao.PatientDAO">
+    <resultMap id="BaseResultMap" type="com.iel.endoscope.entity.Patient">
+        <id column="patient_id" property="patientId" jdbcType="BIGINT"/>
+        <result column="visit_number" property="visitNumber" jdbcType="VARCHAR"/>
+        <result column="patient_name" property="patientName" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="SELECT_All_Column">
+        SELECT patient_id, visit_number, patient_name, remark
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.iel.endoscope.entity.Patient">
+        SELECT *
+        FROM patient
+        WHERE patient_id = #{patientId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.iel.endoscope.entity.Patient">
+        DELETE FROM patient
+        WHERE patient_id = #{patientId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.iel.endoscope.entity.Patient">
+        INSERT INTO patient ( visit_number, 
+          patient_name, remark )
+        VALUES ( #{visitNumber,jdbcType=VARCHAR}, 
+          #{patientName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR} )
+        <selectKey keyProperty="patientId" resultType="long">
+            SELECT LAST_INSERT_ID() AS patientId
+        </selectKey>
+    </insert>
+    <insert id="insertSelective" parameterType="com.iel.endoscope.entity.Patient">
+        INSERT INTO patient
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="visitNumber != null">
+                visit_number,
+            </if>
+            <if test="patientName != null">
+                patient_name,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="visitNumber != null">
+                #{visitNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="patientName != null">
+                #{patientName,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+        <selectKey keyProperty="patientId" resultType="long">
+            SELECT LAST_INSERT_ID() AS patientId
+        </selectKey>
+    </insert>
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO patient ( visit_number, 
+          patient_name, remark )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+            #{item.visitNumber,jdbcType=VARCHAR}, 
+            #{item.patientName,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.iel.endoscope.entity.Patient">
+        UPDATE patient
+        <set>
+            <if test="visitNumber != null">
+                visit_number = #{visitNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="patientName != null">
+                patient_name = #{patientName,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE patient_id = #{patientId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.iel.endoscope.entity.Patient">
+        UPDATE patient
+        SET visit_number = #{visitNumber,jdbcType=VARCHAR},
+            patient_name = #{patientName,jdbcType=VARCHAR},
+            remark = #{remark,jdbcType=VARCHAR}
+        WHERE patient_id = #{patientId,jdbcType=BIGINT}
+    </update>
+</mapper>

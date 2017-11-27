@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iel.endoscope.dao.LoginLogDAO">
+    <resultMap id="BaseResultMap" type="com.iel.endoscope.entity.LoginLog">
+        <id column="login_log_id" property="loginLogId" jdbcType="BIGINT"/>
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="login_type" property="loginType" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+    </resultMap>
+    <sql id="SELECT_All_Column">
+        SELECT login_log_id, user_id, login_type, create_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.iel.endoscope.entity.LoginLog">
+        SELECT *
+        FROM login_log
+        WHERE login_log_id = #{loginLogId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.iel.endoscope.entity.LoginLog">
+        DELETE FROM login_log
+        WHERE login_log_id = #{loginLogId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.iel.endoscope.entity.LoginLog">
+        INSERT INTO login_log ( user_id, 
+          login_type, create_time )
+        VALUES ( #{userId,jdbcType=BIGINT}, 
+          #{loginType,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE} )
+        <selectKey keyProperty="loginLogId" resultType="long">
+            SELECT LAST_INSERT_ID() AS loginLogId
+        </selectKey>
+    </insert>
+    <insert id="insertSelective" parameterType="com.iel.endoscope.entity.LoginLog">
+        INSERT INTO login_log
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="loginType != null">
+                login_type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="userId != null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="loginType != null">
+                #{loginType,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=DATE},
+            </if>
+        </trim>
+        <selectKey keyProperty="loginLogId" resultType="long">
+            SELECT LAST_INSERT_ID() AS loginLogId
+        </selectKey>
+    </insert>
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO login_log ( user_id, 
+          login_type, create_time )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+            #{item.userId,jdbcType=BIGINT}, 
+            #{item.loginType,jdbcType=VARCHAR}, #{item.createTime,jdbcType=DATE}
+            )
+        </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.iel.endoscope.entity.LoginLog">
+        UPDATE login_log
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="loginType != null">
+                login_type = #{loginType,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=DATE},
+            </if>
+        </set>
+        WHERE login_log_id = #{loginLogId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.iel.endoscope.entity.LoginLog">
+        UPDATE login_log
+        SET user_id = #{userId,jdbcType=BIGINT},
+            login_type = #{loginType,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=DATE}
+        WHERE login_log_id = #{loginLogId,jdbcType=BIGINT}
+    </update>
+</mapper>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iel.endoscope.dao.HospitalDAO">
+    <resultMap id="BaseResultMap" type="com.iel.endoscope.entity.Hospital">
+        <id column="hospital_id" property="hospitalId" jdbcType="BIGINT"/>
+        <result column="hospital_name" property="hospitalName" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+    </resultMap>
+    <sql id="SELECT_All_Column">
+        SELECT hospital_id, hospital_name, address, remark, create_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.iel.endoscope.entity.Hospital">
+        SELECT *
+        FROM hospital
+        WHERE hospital_id = #{hospitalId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.iel.endoscope.entity.Hospital">
+        DELETE FROM hospital
+        WHERE hospital_id = #{hospitalId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.iel.endoscope.entity.Hospital">
+        INSERT INTO hospital ( hospital_name, 
+          address, remark, create_time )
+        VALUES ( #{hospitalName,jdbcType=VARCHAR}, 
+          #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE} )
+        <selectKey keyProperty="hospitalId" resultType="long">
+            SELECT LAST_INSERT_ID() AS hospitalId
+        </selectKey>
+    </insert>
+    <insert id="insertSelective" parameterType="com.iel.endoscope.entity.Hospital">
+        INSERT INTO hospital
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="hospitalName != null">
+                hospital_name,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="hospitalName != null">
+                #{hospitalName,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=DATE},
+            </if>
+        </trim>
+        <selectKey keyProperty="hospitalId" resultType="long">
+            SELECT LAST_INSERT_ID() AS hospitalId
+        </selectKey>
+    </insert>
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO hospital ( hospital_name, 
+          address, remark, create_time )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+            #{item.hospitalName,jdbcType=VARCHAR}, 
+            #{item.address,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, #{item.createTime,jdbcType=DATE}
+            )
+        </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.iel.endoscope.entity.Hospital">
+        UPDATE hospital
+        <set>
+            <if test="hospitalName != null">
+                hospital_name = #{hospitalName,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=DATE},
+            </if>
+        </set>
+        WHERE hospital_id = #{hospitalId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.iel.endoscope.entity.Hospital">
+        UPDATE hospital
+        SET hospital_name = #{hospitalName,jdbcType=VARCHAR},
+            address = #{address,jdbcType=VARCHAR},
+            remark = #{remark,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=DATE}
+        WHERE hospital_id = #{hospitalId,jdbcType=BIGINT}
+    </update>
+</mapper>

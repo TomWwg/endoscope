@@ -1,0 +1,210 @@
+<ehcache>
+		
+	<!-- Sets the path to the directory where cache .data files are created.
+
+         If the path is a Java System Property it is replaced by
+         its value in the running VM. The following properties are translated:
+
+            user.home - User's home directory
+            user.dir - User's current working directory
+            java.io.tmpdir - Default temp file path
+            jboss.server.temp.dir - tmp directory in jboss server, for example: /opt/jboss-eap-6.2/domain/servers/prod-01/tmp
+    -->
+    <diskStore path="ehcache.disk.store.dir/ehcache/"/>
+	
+	<!--Default Cache configuration. These will applied to caches programmatically created through
+    		the CacheManager.
+		
+		    The following attributes are required:
+		
+		    maxElementsInMemory            - Sets the maximum number of objects that will be created in memory
+		    eternal                        - Sets whether elements are eternal. If eternal,  timeouts are ignored and the
+		                                     element is never expired.
+		    overflowToDisk                 - Sets whether elements can overflow to disk when the in-memory cache
+		                                     has reached the maxInMemory limit.
+		
+		    The following attributes are optional:
+		    timeToIdleSeconds              - Sets the time to idle for an element before it expires.
+		                                     i.e. The maximum amount of time between accesses before an element expires
+		                                     Is only used if the element is not eternal.
+		                                     Optional attribute. A value of 0 means that an Element can idle for infinity.
+		                                     The default value is 0.
+		    timeToLiveSeconds              - Sets the time to live for an element before it expires.
+		                                     i.e. The maximum time between creation time and when an element expires.
+		                                     Is only used if the element is not eternal.
+		                                     Optional attribute. A value of 0 means that and Element can live for infinity.
+		                                     The default value is 0.
+		    diskPersistent                 - Whether the disk store persists between restarts of the Virtual Machine.
+		                                     The default value is false.
+		    diskExpiryThreadIntervalSeconds- The number of seconds between runs of the disk expiry thread. The default value
+		                                     is 120 seconds.
+		    memoryStoreEvictionPolicy      - Policy would be enforced upon reaching the maxElementsInMemory limit. Default
+		                                     policy is Least Recently Used (specified as LRU). Other policies available -
+		                                     First In First Out (specified as FIFO) and Less Frequently Used
+		                                     (specified as LFU)
+    -->
+	<defaultCache
+            maxElementsInMemory="1000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            overflowToDisk="false"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120" />
+    <!-- Caches in Content Service -->
+    <cache
+    	name="allTags"
+        maxElementsInMemory="1"
+        eternal="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        diskExpiryThreadIntervalSeconds="600"/>
+    <cache
+    	name="allCatalogInFlat"
+        maxElementsInMemory="1"
+        eternal="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        diskExpiryThreadIntervalSeconds="600"/>
+    <cache
+    	name="subCatalogs"
+        maxElementsInMemory="1000"
+        eternal="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        diskExpiryThreadIntervalSeconds="600"/>
+    <cache
+    	name="navCatalogs"
+        maxElementsInMemory="1"
+        eternal="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        diskExpiryThreadIntervalSeconds="600"/>
+    <cache
+    	name="articlesInAboutCatalog"
+        maxElementsInMemory="1000"
+        eternal="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        diskExpiryThreadIntervalSeconds="600"/>
+    <cache
+    	name="articles"
+        maxElementsInMemory="5000"
+        eternal="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        diskExpiryThreadIntervalSeconds="600"/>
+    <!-- Products in Content Service -->
+    <cache
+    	name="productByModelAndCategory"
+        maxElementsInMemory="5000"
+        eternal="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        diskExpiryThreadIntervalSeconds="600"/>
+    <cache
+    	name="checkProductByModelAndCategory"
+        maxElementsInMemory="5000"
+        eternal="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        diskExpiryThreadIntervalSeconds="600"/>
+    <cache
+    	name="allProductCategories"
+        maxElementsInMemory="1"
+        eternal="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        diskExpiryThreadIntervalSeconds="600"/>
+    <cache
+    	name="featuresByModel"
+        maxElementsInMemory="1000"
+        eternal="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        diskExpiryThreadIntervalSeconds="600"/>
+    <!-- Products in Content Service -->
+    <cache
+    	name="allVehicleBrandMap"
+        maxElementsInMemory="1"
+        eternal="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        diskExpiryThreadIntervalSeconds="600"/>
+    <cache
+    	name="vehicleBrandMapByCategoryCode"
+        maxElementsInMemory="20"
+        eternal="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        diskExpiryThreadIntervalSeconds="600"/>
+    <cache
+    	name="allVehicleLineMap"
+        maxElementsInMemory="1"
+        eternal="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        diskExpiryThreadIntervalSeconds="600"/>
+    <cache
+    	name="allVehicleModelMap"
+        maxElementsInMemory="1"
+        eternal="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        diskExpiryThreadIntervalSeconds="600"/>
+    <cache
+    	name="vehicleBreadCrumb"
+        maxElementsInMemory="1000"
+        eternal="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        diskExpiryThreadIntervalSeconds="600"/>
+    <cache
+    	name="modelFeatureMap"
+        maxElementsInMemory="1000"
+        eternal="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        diskExpiryThreadIntervalSeconds="600"/>
+    <cache
+    	name="defaultProductCategory"
+        maxElementsInMemory="1"
+        eternal="false"
+        overflowToDisk="true"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        diskExpiryThreadIntervalSeconds="600"/>
+</ehcache>

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iel.endoscope.dao.ProcessDAO">
+    <resultMap id="BaseResultMap" type="com.iel.endoscope.entity.Process">
+        <id column="process_id" property="processId" jdbcType="BIGINT"/>
+        <result column="station_id" property="stationId" jdbcType="BIGINT"/>
+        <result column="initial_normal" property="initialNormal" jdbcType="VARCHAR"/>
+        <result column="initial_longest" property="initialLongest" jdbcType="VARCHAR"/>
+        <result column="enzyme_normal" property="enzymeNormal" jdbcType="VARCHAR"/>
+        <result column="enzyme_longest" property="enzymeLongest" jdbcType="VARCHAR"/>
+        <result column="second_normal" property="secondNormal" jdbcType="VARCHAR"/>
+        <result column="second_longest" property="secondLongest" jdbcType="VARCHAR"/>
+        <result column="soak_normal" property="soakNormal" jdbcType="VARCHAR"/>
+        <result column="soak_longest" property="soakLongest" jdbcType="VARCHAR"/>
+        <result column="end_normal" property="endNormal" jdbcType="VARCHAR"/>
+        <result column="end_longest" property="endLongest" jdbcType="VARCHAR"/>
+        <result column="dry_normal" property="dryNormal" jdbcType="VARCHAR"/>
+        <result column="dry_longest" property="dryLongest" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="update_time" property="updateTime" jdbcType="DATE"/>
+    </resultMap>
+    <sql id="SELECT_All_Column">
+        SELECT process_id, station_id, initial_normal, initial_longest, enzyme_normal, 
+        enzyme_longest, second_normal, second_longest, soak_normal, soak_longest, 
+        end_normal, end_longest, dry_normal, dry_longest, remark, 
+        create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.iel.endoscope.entity.Process">
+        SELECT *
+        FROM process
+        WHERE process_id = #{processId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.iel.endoscope.entity.Process">
+        DELETE FROM process
+        WHERE process_id = #{processId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.iel.endoscope.entity.Process">
+        INSERT INTO process ( station_id, 
+          initial_normal, initial_longest, enzyme_normal, 
+          enzyme_longest, second_normal, second_longest, 
+          soak_normal, soak_longest, end_normal, 
+          end_longest, dry_normal, dry_longest, 
+          remark, create_time, update_time )
+        VALUES ( #{stationId,jdbcType=BIGINT}, 
+          #{initialNormal,jdbcType=VARCHAR}, #{initialLongest,jdbcType=VARCHAR}, #{enzymeNormal,jdbcType=VARCHAR}, 
+          #{enzymeLongest,jdbcType=VARCHAR}, #{secondNormal,jdbcType=VARCHAR}, #{secondLongest,jdbcType=VARCHAR}, 
+          #{soakNormal,jdbcType=VARCHAR}, #{soakLongest,jdbcType=VARCHAR}, #{endNormal,jdbcType=VARCHAR}, 
+          #{endLongest,jdbcType=VARCHAR}, #{dryNormal,jdbcType=VARCHAR}, #{dryLongest,jdbcType=VARCHAR}, 
+          #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE} )
+        <selectKey keyProperty="processId" resultType="long">
+            SELECT LAST_INSERT_ID() AS processId
+        </selectKey>
+    </insert>
+    <insert id="insertSelective" parameterType="com.iel.endoscope.entity.Process">
+        INSERT INTO process
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="stationId != null">
+                station_id,
+            </if>
+            <if test="initialNormal != null">
+                initial_normal,
+            </if>
+            <if test="initialLongest != null">
+                initial_longest,
+            </if>
+            <if test="enzymeNormal != null">
+                enzyme_normal,
+            </if>
+            <if test="enzymeLongest != null">
+                enzyme_longest,
+            </if>
+            <if test="secondNormal != null">
+                second_normal,
+            </if>
+            <if test="secondLongest != null">
+                second_longest,
+            </if>
+            <if test="soakNormal != null">
+                soak_normal,
+            </if>
+            <if test="soakLongest != null">
+                soak_longest,
+            </if>
+            <if test="endNormal != null">
+                end_normal,
+            </if>
+            <if test="endLongest != null">
+                end_longest,
+            </if>
+            <if test="dryNormal != null">
+                dry_normal,
+            </if>
+            <if test="dryLongest != null">
+                dry_longest,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="stationId != null">
+                #{stationId,jdbcType=BIGINT},
+            </if>
+            <if test="initialNormal != null">
+                #{initialNormal,jdbcType=VARCHAR},
+            </if>
+            <if test="initialLongest != null">
+                #{initialLongest,jdbcType=VARCHAR},
+            </if>
+            <if test="enzymeNormal != null">
+                #{enzymeNormal,jdbcType=VARCHAR},
+            </if>
+            <if test="enzymeLongest != null">
+                #{enzymeLongest,jdbcType=VARCHAR},
+            </if>
+            <if test="secondNormal != null">
+                #{secondNormal,jdbcType=VARCHAR},
+            </if>
+            <if test="secondLongest != null">
+                #{secondLongest,jdbcType=VARCHAR},
+            </if>
+            <if test="soakNormal != null">
+                #{soakNormal,jdbcType=VARCHAR},
+            </if>
+            <if test="soakLongest != null">
+                #{soakLongest,jdbcType=VARCHAR},
+            </if>
+            <if test="endNormal != null">
+                #{endNormal,jdbcType=VARCHAR},
+            </if>
+            <if test="endLongest != null">
+                #{endLongest,jdbcType=VARCHAR},
+            </if>
+            <if test="dryNormal != null">
+                #{dryNormal,jdbcType=VARCHAR},
+            </if>
+            <if test="dryLongest != null">
+                #{dryLongest,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=DATE},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=DATE},
+            </if>
+        </trim>
+        <selectKey keyProperty="processId" resultType="long">
+            SELECT LAST_INSERT_ID() AS processId
+        </selectKey>
+    </insert>
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO process ( station_id, 
+          initial_normal, initial_longest, enzyme_normal, 
+          enzyme_longest, second_normal, second_longest, 
+          soak_normal, soak_longest, end_normal, 
+          end_longest, dry_normal, dry_longest, 
+          remark, create_time, update_time )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+            #{item.stationId,jdbcType=BIGINT}, 
+            #{item.initialNormal,jdbcType=VARCHAR}, #{item.initialLongest,jdbcType=VARCHAR}, #{item.enzymeNormal,jdbcType=VARCHAR}, 
+            #{item.enzymeLongest,jdbcType=VARCHAR}, #{item.secondNormal,jdbcType=VARCHAR}, #{item.secondLongest,jdbcType=VARCHAR}, 
+            #{item.soakNormal,jdbcType=VARCHAR}, #{item.soakLongest,jdbcType=VARCHAR}, #{item.endNormal,jdbcType=VARCHAR}, 
+            #{item.endLongest,jdbcType=VARCHAR}, #{item.dryNormal,jdbcType=VARCHAR}, #{item.dryLongest,jdbcType=VARCHAR}, 
+            #{item.remark,jdbcType=VARCHAR}, #{item.createTime,jdbcType=DATE}, #{item.updateTime,jdbcType=DATE}
+            )
+        </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.iel.endoscope.entity.Process">
+        UPDATE process
+        <set>
+            <if test="stationId != null">
+                station_id = #{stationId,jdbcType=BIGINT},
+            </if>
+            <if test="initialNormal != null">
+                initial_normal = #{initialNormal,jdbcType=VARCHAR},
+            </if>
+            <if test="initialLongest != null">
+                initial_longest = #{initialLongest,jdbcType=VARCHAR},
+            </if>
+            <if test="enzymeNormal != null">
+                enzyme_normal = #{enzymeNormal,jdbcType=VARCHAR},
+            </if>
+            <if test="enzymeLongest != null">
+                enzyme_longest = #{enzymeLongest,jdbcType=VARCHAR},
+            </if>
+            <if test="secondNormal != null">
+                second_normal = #{secondNormal,jdbcType=VARCHAR},
+            </if>
+            <if test="secondLongest != null">
+                second_longest = #{secondLongest,jdbcType=VARCHAR},
+            </if>
+            <if test="soakNormal != null">
+                soak_normal = #{soakNormal,jdbcType=VARCHAR},
+            </if>
+            <if test="soakLongest != null">
+                soak_longest = #{soakLongest,jdbcType=VARCHAR},
+            </if>
+            <if test="endNormal != null">
+                end_normal = #{endNormal,jdbcType=VARCHAR},
+            </if>
+            <if test="endLongest != null">
+                end_longest = #{endLongest,jdbcType=VARCHAR},
+            </if>
+            <if test="dryNormal != null">
+                dry_normal = #{dryNormal,jdbcType=VARCHAR},
+            </if>
+            <if test="dryLongest != null">
+                dry_longest = #{dryLongest,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=DATE},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=DATE},
+            </if>
+        </set>
+        WHERE process_id = #{processId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.iel.endoscope.entity.Process">
+        UPDATE process
+        SET station_id = #{stationId,jdbcType=BIGINT},
+            initial_normal = #{initialNormal,jdbcType=VARCHAR},
+            initial_longest = #{initialLongest,jdbcType=VARCHAR},
+            enzyme_normal = #{enzymeNormal,jdbcType=VARCHAR},
+            enzyme_longest = #{enzymeLongest,jdbcType=VARCHAR},
+            second_normal = #{secondNormal,jdbcType=VARCHAR},
+            second_longest = #{secondLongest,jdbcType=VARCHAR},
+            soak_normal = #{soakNormal,jdbcType=VARCHAR},
+            soak_longest = #{soakLongest,jdbcType=VARCHAR},
+            end_normal = #{endNormal,jdbcType=VARCHAR},
+            end_longest = #{endLongest,jdbcType=VARCHAR},
+            dry_normal = #{dryNormal,jdbcType=VARCHAR},
+            dry_longest = #{dryLongest,jdbcType=VARCHAR},
+            remark = #{remark,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=DATE},
+            update_time = #{updateTime,jdbcType=DATE}
+        WHERE process_id = #{processId,jdbcType=BIGINT}
+    </update>
+</mapper>
