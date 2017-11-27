@@ -16,7 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @author wwg
  */
 
-/**
+/*
  * 重要！如果你的项目引入Junit测试，此处需要使用@WebAPPConfiguration，如果没有使用Junit使用@Configuration
  */
 @Configuration

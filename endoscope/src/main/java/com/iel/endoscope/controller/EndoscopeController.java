@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author wwg
  */
 @Controller
+@RequestMapping(value = "endoscope")
 public class EndoscopeController {
 
     @ResponseBody
