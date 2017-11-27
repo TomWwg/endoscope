@@ -6,6 +6,8 @@ import com.iel.endoscope.dto.UserDto;
 import com.iel.endoscope.entity.User;
 import com.iel.endoscope.service.IUserService;
 import com.iel.endoscope.util.EncryptUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("user")
+@Api(value = "/user", tags = "User接口")
 public class UserController {
 
     @Autowired
@@ -26,6 +29,7 @@ public class UserController {
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     @ResponseBody
+    @ApiOperation(value = "插入用户信息", notes = "插入时医院Id、用户名、密码不能为空", httpMethod = "POST", response = ResultDto.class)
     public ResultDto add(@RequestBody UserDto dto){
         User user = UserDto.form(dto);
         if(user != null) {
