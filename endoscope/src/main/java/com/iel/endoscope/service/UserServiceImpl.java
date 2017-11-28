@@ -39,7 +39,8 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User selectByPrimaryKey(Long userId) {
-        return null;
+        User user = userDAO.selectByPrimaryKey(userId);
+        return user;
     }
 
     @Override

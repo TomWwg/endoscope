@@ -40,4 +40,17 @@ public class UserController {
             return ResultDtoFactory.toUnknowError();
         }
     }
+
+    @RequestMapping(value = "findById", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "根据Id查询用户信息", notes = "查询时Id不能为空", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findById(@RequestBody UserDto dto){
+        User userRequest = UserDto.form(dto);
+        if(userRequest != null) {
+            User user = userService.selectByPrimaryKey(userRequest.getUserId());
+            return ResultDtoFactory.toSuccess(user);
+        } else {
+            return ResultDtoFactory.toUnknowError();
+        }
+    }
 }
