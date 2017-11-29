@@ -55,4 +55,11 @@ public interface IUserService {
      * @return
      */
     int updateByPrimaryKey(User record);
+
+    /**
+     * 通过username查询User对象
+     * @param username
+     * @return
+     */
+    User findByUsername(String username);
 }

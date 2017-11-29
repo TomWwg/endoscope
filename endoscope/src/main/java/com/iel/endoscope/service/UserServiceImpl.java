@@ -52,4 +52,10 @@ public class UserServiceImpl implements IUserService {
     public int updateByPrimaryKey(User record) {
         return 0;
     }
+
+    @Override
+    public User findByUsername(String username) {
+        User user = userDAO.findByUsername(username);
+        return user;
+    }
 }

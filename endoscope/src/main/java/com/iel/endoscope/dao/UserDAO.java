@@ -56,4 +56,11 @@ public interface UserDAO {
      * @return
      */
     int updateByPrimaryKey(User record);
+
+    /**
+     * 根据username查询用户
+     * @param username
+     * @return
+     */
+    User findByUsername(String username);
 }

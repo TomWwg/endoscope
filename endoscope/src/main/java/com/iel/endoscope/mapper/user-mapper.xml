@@ -128,4 +128,9 @@
             create_time = #{createTime,jdbcType=DATE}
         WHERE user_id = #{userId,jdbcType=BIGINT}
     </update>
+    <select id="findByUsername" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT *
+        FROM user
+        WHERE username = #{username,jdbcType=VARCHAR}
+    </select>
 </mapper>

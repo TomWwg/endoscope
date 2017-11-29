@@ -61,6 +61,11 @@ public class ResultCode {
      * 用户被限制登录
      */
     public static final ResultCode MEMBER_LIMIT_LOGIN = new ResultCode("10005");
+
+    /**
+     * 请求参数不正确
+     */
+    public static final ResultCode PARAMETER_ERROR = new ResultCode("10006");
     
     /**
      * 文章没有权限阅读
@@ -82,44 +87,4 @@ public class ResultCode {
      */
     public static final ResultCode TOPIC_NOT_EXIST = new ResultCode("40001");
     
-    /**
-     * IO异常
-     */
-    public static final ResultCode IO_EXCEPTION = new ResultCode("50000");
-    
-    /**
-     * 无效的key
-     */
-    public static final ResultCode INVALIA_KEY_ERROR = new ResultCode("50001");
-    
-    /**
-     * 算法错误
-     */
-    public static final ResultCode NO_SUCH_ALGORITHM_ERROR = new ResultCode("50002");
-    
-    /**
-     * 非法的状态
-     */
-    public static final ResultCode ILLEGAL_STATE_ERROR = new ResultCode("50003");
-    
-    /**
-     * 签名问题
-     */
-    public static final ResultCode SIGNATURE_ERROR = new ResultCode("50004");
-    
-    /**
-     * 等级不够，没有权限
-     */
-    public static final ResultCode NOACCESS_ERROR = new ResultCode("50005");
-    
-    /**
-     * 该数据已存在
-     */
-    public static final ResultCode EXISTED_ERROR = new ResultCode("60001");
-    
-    /**
-     * 该学号已存在
-     */
-    public static final ResultCode STUDENTNO_EXISTED_ERROR = new ResultCode("60002");
-
 }
