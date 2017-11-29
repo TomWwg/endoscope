@@ -1,5 +1,6 @@
 package com.iel.endoscope.controller;
 
+import com.iel.endoscope.constant.ResultCode;
 import com.iel.endoscope.dto.ResultDto;
 import com.iel.endoscope.dto.ResultDtoFactory;
 import com.iel.endoscope.dto.UserDto;
@@ -52,5 +53,38 @@ public class UserController {
         } else {
             return ResultDtoFactory.toUnknowError();
         }
+    }
+
+    @RequestMapping(value = "deleteById", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "根据Id删除用户", notes = "Id不能为空", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto deleteById(@RequestBody UserDto dto){
+        User userRequest = UserDto.form(dto);
+        if(userRequest == null) {
+            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
+        }
+        int status = userService.deleteByPrimaryKey(userRequest.getUserId());
+        if(status != 0){
+            return ResultDtoFactory.toUnknowError();
+        }
+        return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
+    }
+
+    @RequestMapping(value = "updateById", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "根据UserId选择性更新用户信息", notes = "Id不能为空", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto updateById(@RequestBody UserDto dto){
+        User userRequest = UserDto.form(dto);
+        if(userRequest == null) {
+            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
+        }
+        if(userRequest.getPassword() != null) {
+            userRequest.setPassword(EncryptUtil.getPWd(userRequest.getPassword()));
+        }
+        int status = userService.updateByPrimaryKeySelective(userRequest);
+        if(status != 0){
+            return ResultDtoFactory.toUnknowError();
+        }
+        return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
     }
 }

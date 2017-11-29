@@ -19,6 +19,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public int deleteByPrimaryKey(Long userId) {
+        userDAO.deleteByPrimaryKey(userId);
         return 0;
     }
 
@@ -45,6 +46,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public int updateByPrimaryKeySelective(User record) {
+        userDAO.updateByPrimaryKeySelective(record);
         return 0;
     }
 

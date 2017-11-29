@@ -43,6 +43,6 @@ public class LoginController {
         if (!password.equals(EncryptUtil.getPWd(userRequest.getPassword()))){
             return ResultDtoFactory.toError(ResultCode.PASSWORD_INCORRECT);
         }
-        return ResultDtoFactory.toSuccess("success");
+        return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
     }
 }
