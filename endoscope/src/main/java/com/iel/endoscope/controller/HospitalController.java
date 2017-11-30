@@ -48,4 +48,19 @@ public class HospitalController {
         Hospital hospital = hospitalService.selectByPrimaryKey(hospitalRequest.getHospitalId());
         return ResultDtoFactory.toSuccess(hospital);
     }
+
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "根据UserId选择性更新用户信息", notes = "hospitalId不能为空", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto update(@RequestBody HospitalDto dto){
+        Hospital hospitalRequest = HospitalDto.form(dto);
+        if(hospitalRequest == null){
+            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
+        }
+        int status = hospitalService.updateByPrimaryKeySelective(hospitalRequest);
+        if(status != 0){
+            return ResultDtoFactory.toUnknowError();
+        }
+        return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
+    }
 }

@@ -70,7 +70,7 @@ public class UserController {
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
     }
 
-    @RequestMapping(value = "updateById", method = RequestMethod.POST)
+    @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
     @ApiOperation(value = "根据UserId选择性更新用户信息", notes = "Id不能为空", httpMethod = "POST", response = ResultDto.class)
     public ResultDto updateById(@RequestBody UserDto dto){
