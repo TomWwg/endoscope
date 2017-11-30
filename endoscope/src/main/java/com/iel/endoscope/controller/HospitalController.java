@@ -51,13 +51,28 @@ public class HospitalController {
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
-    @ApiOperation(value = "根据UserId选择性更新用户信息", notes = "hospitalId不能为空", httpMethod = "POST", response = ResultDto.class)
-    public ResultDto update(@RequestBody HospitalDto dto){
+    @ApiOperation(value = "根据HospitalId选择性更新用户信息", notes = "hospitalId不能为空", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto updateByHospitalId(@RequestBody HospitalDto dto){
         Hospital hospitalRequest = HospitalDto.form(dto);
         if(hospitalRequest == null){
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         int status = hospitalService.updateByPrimaryKeySelective(hospitalRequest);
+        if(status != 0){
+            return ResultDtoFactory.toUnknowError();
+        }
+        return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
+    }
+
+    @RequestMapping(value = "deleteByHospitalId", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "根据HospitalId删除医院信息", notes = "hospitalId不能为空", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto deleteByHospitalId(@RequestBody HospitalDto dto){
+        Hospital hospitalRequest = HospitalDto.form(dto);
+        if(hospitalRequest == null){
+            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
+        }
+        int status = hospitalService.deleteByPrimaryKey(hospitalRequest.getHospitalId());
         if(status != 0){
             return ResultDtoFactory.toUnknowError();
         }
