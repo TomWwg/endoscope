@@ -12,7 +12,7 @@ import java.util.List;
  * @author wwg
  */
 @Service("userService")
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDAO userDAO;

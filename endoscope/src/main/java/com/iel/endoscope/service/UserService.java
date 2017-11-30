@@ -8,7 +8,7 @@ import java.util.List;
  * Created by wwg on 2017/11/13.
  * @author wwg
  */
-public interface IUserService {
+public interface UserService {
 
     /**
      * 通过userId删除User

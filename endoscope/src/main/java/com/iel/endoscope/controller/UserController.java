@@ -5,7 +5,7 @@ import com.iel.endoscope.dto.ResultDto;
 import com.iel.endoscope.dto.ResultDtoFactory;
 import com.iel.endoscope.dto.UserDto;
 import com.iel.endoscope.entity.User;
-import com.iel.endoscope.service.IUserService;
+import com.iel.endoscope.service.UserService;
 import com.iel.endoscope.util.EncryptUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserController {
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     @ResponseBody
