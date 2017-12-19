@@ -22,4 +22,6 @@ public interface EndoscopeDAO {
     int updateByPrimaryKeySelective(Endoscope record);
 
     int updateByPrimaryKey(Endoscope record);
+
+    List<Endoscope> findByEndoscopeType(Endoscope record);
 }

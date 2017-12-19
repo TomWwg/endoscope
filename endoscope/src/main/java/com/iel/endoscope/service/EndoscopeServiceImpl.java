@@ -56,4 +56,10 @@ public class EndoscopeServiceImpl implements EndoscopeService {
         endoscopeDAO.updateByPrimaryKey(record);
         return 0;
     }
+
+    @Override
+    public List<Endoscope> findByEndoscopeType(Endoscope record) {
+        List<Endoscope> endoscopeList = endoscopeDAO.findByEndoscopeType(record);
+        return endoscopeList;
+    }
 }

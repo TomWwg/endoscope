@@ -56,4 +56,11 @@ public interface EndoscopeService {
      * @return
      */
     int updateByPrimaryKey(Endoscope record);
+
+    /**
+     * 通过内镜类型查询内镜信息（可传可不传）
+     * @param record
+     * @return
+     */
+    List<Endoscope> findByEndoscopeType(Endoscope record);
 }

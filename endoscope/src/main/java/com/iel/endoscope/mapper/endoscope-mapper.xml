@@ -128,4 +128,13 @@
             create_time = #{createTime,jdbcType=DATE}
         WHERE endoscope_id = #{endoscopeId,jdbcType=BIGINT}
     </update>
+    <select id="findByEndoscopeType" resultMap="BaseResultMap" parameterType="com.iel.endoscope.entity.Endoscope">
+        SELECT *
+        FROM endoscope
+        <where>
+            <if test="endoscopeType != null">
+                endoscope_type = #{endoscopeType,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
 </mapper>

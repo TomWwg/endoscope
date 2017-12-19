@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * 内镜Controller
  * Created by wwg on 2017/11/1.
@@ -81,6 +83,18 @@ public class EndoscopeController {
             return ResultDtoFactory.toError(ResultCode.MEMBER_NOT_EXIST);
         }
         return ResultDtoFactory.toSuccess(endoscope);
+    }
+
+    @RequestMapping(value = "findByEndoscopeType", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "findByEndoscopeType", notes = "endoscopeType可传可不传", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findByEndoscopeType(@RequestBody EndoscopeDto dto){
+        Endoscope endoscopeRequest = EndoscopeDto.form(dto);
+        if(endoscopeRequest == null){
+            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
+        }
+        List<Endoscope> endoscopeList = endoscopeService.findByEndoscopeType(endoscopeRequest);
+        return ResultDtoFactory.toSuccess(endoscopeList);
     }
 
 }

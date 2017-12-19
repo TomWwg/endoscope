@@ -26,3 +26,5 @@ hs_err_pid*
 .settings
 *.iml
 .idea/*.xml
+endoscope/.idea/workspace.xml
+endoscope/target/*
