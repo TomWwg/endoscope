@@ -1,6 +1,6 @@
 package com.iel.endoscope.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by com.wwg.MybatisCodeGenerate on 2017-11-10
@@ -22,7 +22,7 @@ public class Endoscope implements java.io.Serializable {
     // 备注
     private String remark;
     // 创建时间
-    private Date createTime;
+    private Timestamp createTime;
 
     // Constructors
 
@@ -35,7 +35,7 @@ public class Endoscope implements java.io.Serializable {
     /**
      * full constructor
      */
-    public Endoscope(String endoscopeNumber, String endoscopeType, String endoscopeName, String rfid, String remark, Date createTime) {
+    public Endoscope(String endoscopeNumber, String endoscopeType, String endoscopeName, String rfid, String remark, Timestamp createTime) {
         this.endoscopeNumber = endoscopeNumber;
         this.endoscopeType = endoscopeType;
         this.endoscopeName = endoscopeName;
@@ -46,102 +46,59 @@ public class Endoscope implements java.io.Serializable {
 
     // Property accessors
 
-    /**
-     * 内镜ID
-     */
     public Long getEndoscopeId() {
-        return this.endoscopeId;
+        return endoscopeId;
     }
 
-    /**
-     * 内镜ID
-     */
     public void setEndoscopeId(Long endoscopeId) {
         this.endoscopeId = endoscopeId;
     }
 
-    /**
-     * 内镜编号
-     */
     public String getEndoscopeNumber() {
-        return this.endoscopeNumber;
+        return endoscopeNumber;
     }
 
-    /**
-     * 内镜编号
-     */
     public void setEndoscopeNumber(String endoscopeNumber) {
         this.endoscopeNumber = endoscopeNumber;
     }
 
-    /**
-     * 内镜类型
-     */
     public String getEndoscopeType() {
-        return this.endoscopeType;
+        return endoscopeType;
     }
 
-    /**
-     * 内镜类型
-     */
     public void setEndoscopeType(String endoscopeType) {
         this.endoscopeType = endoscopeType;
     }
 
-    /**
-     * 内镜名称
-     */
     public String getEndoscopeName() {
-        return this.endoscopeName;
+        return endoscopeName;
     }
 
-    /**
-     * 内镜名称
-     */
     public void setEndoscopeName(String endoscopeName) {
         this.endoscopeName = endoscopeName;
     }
 
-    /**
-     * RFID
-     */
     public String getRfid() {
-        return this.rfid;
+        return rfid;
     }
 
-    /**
-     * RFID
-     */
     public void setRfid(String rfid) {
         this.rfid = rfid;
     }
 
-    /**
-     * 备注
-     */
     public String getRemark() {
-        return this.remark;
+        return remark;
     }
 
-    /**
-     * 备注
-     */
     public void setRemark(String remark) {
         this.remark = remark;
     }
 
-    /**
-     * 创建时间
-     */
-    public Date getCreateTime() {
-        return this.createTime;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    /**
-     * 创建时间
-     */
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
-
 }

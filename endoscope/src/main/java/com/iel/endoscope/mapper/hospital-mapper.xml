@@ -6,7 +6,7 @@
         <result column="hospital_name" property="hospitalName" jdbcType="VARCHAR"/>
         <result column="address" property="address" jdbcType="VARCHAR"/>
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="create_time" property="createTime" jdbcType="Timestamp"/>
     </resultMap>
     <sql id="SELECT_All_Column">
         SELECT hospital_id, hospital_name, address, remark, create_time
@@ -24,7 +24,7 @@
         INSERT INTO hospital ( hospital_name, 
           address, remark, create_time )
         VALUES ( #{hospitalName,jdbcType=VARCHAR}, 
-          #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE} )
+          #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=Timestamp} )
         <selectKey keyProperty="hospitalId" resultType="long">
             SELECT LAST_INSERT_ID() AS hospitalId
         </selectKey>
@@ -57,7 +57,7 @@
                 #{remark,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
-                #{createTime,jdbcType=DATE},
+                #{createTime,jdbcType=Timestamp},
             </if>
         </trim>
         <selectKey keyProperty="hospitalId" resultType="long">
@@ -71,7 +71,7 @@
         <foreach collection="list" item="item" index="index" separator="," >
             (
             #{item.hospitalName,jdbcType=VARCHAR}, 
-            #{item.address,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, #{item.createTime,jdbcType=DATE}
+            #{item.address,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, #{item.createTime,jdbcType=Timestamp}
             )
         </foreach>
     </insert>
@@ -88,7 +88,7 @@
                 remark = #{remark,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
-                create_time = #{createTime,jdbcType=DATE},
+                create_time = #{createTime,jdbcType=Timestamp},
             </if>
         </set>
         WHERE hospital_id = #{hospitalId,jdbcType=BIGINT}
@@ -98,7 +98,7 @@
         SET hospital_name = #{hospitalName,jdbcType=VARCHAR},
             address = #{address,jdbcType=VARCHAR},
             remark = #{remark,jdbcType=VARCHAR},
-            create_time = #{createTime,jdbcType=DATE}
+            create_time = #{createTime,jdbcType=Timestamp}
         WHERE hospital_id = #{hospitalId,jdbcType=BIGINT}
     </update>
 </mapper>

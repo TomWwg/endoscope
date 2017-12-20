@@ -1,7 +1,7 @@
 package com.iel.endoscope.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by com.wwg.MybatisCodeGenerate on 2017-11-10
@@ -24,7 +24,7 @@ public class User implements Serializable {
     // 备注
     private String remark;
     // 创建时间
-    private Date createTime;
+    private Timestamp createTime;
 
     // Constructors
 
@@ -37,7 +37,7 @@ public class User implements Serializable {
     /**
      * full constructor
      */
-    public User(Long hospitalId, String username, String password, String phoneNumber, String remark, Date createTime) {
+    public User(Long hospitalId, String username, String password, String phoneNumber, String remark, Timestamp createTime) {
         this.hospitalId = hospitalId;
         this.username = username;
         this.password = password;
@@ -48,101 +48,59 @@ public class User implements Serializable {
 
     // Property accessors
 
-    /**
-     * 用户ID
-     */
     public Long getUserId() {
-        return this.userId;
+        return userId;
     }
 
-    /**
-     * 用户ID
-     */
     public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    /**
-     * 医院ID
-     */
     public Long getHospitalId() {
-        return this.hospitalId;
+        return hospitalId;
     }
 
-    /**
-     * 医院ID
-     */
     public void setHospitalId(Long hospitalId) {
         this.hospitalId = hospitalId;
     }
 
-    /**
-     * 用户名
-     */
     public String getUsername() {
-        return this.username;
+        return username;
     }
 
-    /**
-     * 用户名
-     */
     public void setUsername(String username) {
         this.username = username;
     }
 
-    /**
-     * 密码
-     */
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
-    /**
-     * 密码
-     */
     public void setPassword(String password) {
         this.password = password;
     }
 
-    /**
-     * 电话号码
-     */
     public String getPhoneNumber() {
-        return this.phoneNumber;
+        return phoneNumber;
     }
 
-    /**
-     * 电话号码
-     */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    /**
-     * 备注
-     */
     public String getRemark() {
-        return this.remark;
+        return remark;
     }
 
-    /**
-     * 备注
-     */
     public void setRemark(String remark) {
         this.remark = remark;
     }
 
-    /**
-     * 创建时间
-     */
-    public Date getCreateTime() {
-        return this.createTime;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    /**
-     * 创建时间
-     */
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 

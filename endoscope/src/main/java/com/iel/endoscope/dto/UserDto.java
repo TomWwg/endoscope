@@ -2,7 +2,7 @@ package com.iel.endoscope.dto;
 
 import com.iel.endoscope.entity.User;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by wwg on 2017/11/13.
@@ -43,7 +43,7 @@ public class UserDto extends PageDto {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Timestamp createTime;
 
     public Long getUserId() {
         return userId;
@@ -93,11 +93,11 @@ public class UserDto extends PageDto {
         this.remark = remark;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 

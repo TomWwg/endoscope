@@ -2,7 +2,7 @@ package com.iel.endoscope.dto;
 
 import com.iel.endoscope.entity.Endoscope;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * 内镜的传入参数转化
@@ -44,7 +44,7 @@ public class EndoscopeDto {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Timestamp createTime;
 
     public Long getEndoscopeId() {
         return endoscopeId;
@@ -94,11 +94,11 @@ public class EndoscopeDto {
         this.remark = remark;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 

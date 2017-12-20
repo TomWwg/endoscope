@@ -1,6 +1,6 @@
 package com.iel.endoscope.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by com.wwg.MybatisCodeGenerate on 2017-11-10
@@ -26,7 +26,7 @@ public class Employee implements java.io.Serializable {
     // 备注
     private String remark;
     // 创建时间
-    private Date createTime;
+    private Timestamp createTime;
 
     // Constructors
 
@@ -39,7 +39,7 @@ public class Employee implements java.io.Serializable {
     /**
      * full constructor
      */
-    public Employee(Long hospitalId, Long stationId, String employeeNumber, String employeeName, Long roleId, String rfid, String remark, Date createTime) {
+    public Employee(Long hospitalId, Long stationId, String employeeNumber, String employeeName, Long roleId, String rfid, String remark, Timestamp createTime) {
         this.hospitalId = hospitalId;
         this.stationId = stationId;
         this.employeeNumber = employeeNumber;
@@ -52,130 +52,75 @@ public class Employee implements java.io.Serializable {
 
     // Property accessors
 
-    /**
-     * 员工ID
-     */
     public Long getEmployeeId() {
-        return this.employeeId;
+        return employeeId;
     }
 
-    /**
-     * 员工ID
-     */
     public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
     }
 
-    /**
-     * 所属医院ID
-     */
     public Long getHospitalId() {
-        return this.hospitalId;
+        return hospitalId;
     }
 
-    /**
-     * 所属医院ID
-     */
     public void setHospitalId(Long hospitalId) {
         this.hospitalId = hospitalId;
     }
 
-    /**
-     * 所属工作站ID
-     */
     public Long getStationId() {
-        return this.stationId;
+        return stationId;
     }
 
-    /**
-     * 所属工作站ID
-     */
     public void setStationId(Long stationId) {
         this.stationId = stationId;
     }
 
-    /**
-     * 员工编号
-     */
     public String getEmployeeNumber() {
-        return this.employeeNumber;
+        return employeeNumber;
     }
 
-    /**
-     * 员工编号
-     */
     public void setEmployeeNumber(String employeeNumber) {
         this.employeeNumber = employeeNumber;
     }
 
-    /**
-     * 员工姓名
-     */
     public String getEmployeeName() {
-        return this.employeeName;
+        return employeeName;
     }
 
-    /**
-     * 员工姓名
-     */
     public void setEmployeeName(String employeeName) {
         this.employeeName = employeeName;
     }
 
-    /**
-     * 角色ID
-     */
     public Long getRoleId() {
-        return this.roleId;
+        return roleId;
     }
 
-    /**
-     * 角色ID
-     */
     public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
 
-    /**
-     * RFID
-     */
     public String getRfid() {
-        return this.rfid;
+        return rfid;
     }
 
-    /**
-     * RFID
-     */
     public void setRfid(String rfid) {
         this.rfid = rfid;
     }
 
-    /**
-     * 备注
-     */
     public String getRemark() {
-        return this.remark;
+        return remark;
     }
 
-    /**
-     * 备注
-     */
     public void setRemark(String remark) {
         this.remark = remark;
     }
 
-    /**
-     * 创建时间
-     */
-    public Date getCreateTime() {
-        return this.createTime;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    /**
-     * 创建时间
-     */
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
-
 }

@@ -2,7 +2,7 @@ package com.iel.endoscope.dto;
 
 import com.iel.endoscope.entity.Employee;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * 员工接口的传入参数转换
@@ -54,7 +54,7 @@ public class EmployeeDto {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Timestamp createTime;
 
     public Long getEmployeeId() {
         return employeeId;
@@ -120,11 +120,11 @@ public class EmployeeDto {
         this.remark = remark;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 

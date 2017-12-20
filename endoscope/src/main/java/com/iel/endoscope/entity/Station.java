@@ -1,6 +1,6 @@
 package com.iel.endoscope.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by com.wwg.MybatisCodeGenerate on 2017-11-10
@@ -24,7 +24,7 @@ public class Station implements java.io.Serializable {
     // 备注
     private String remark;
     // 创建时间
-    private Date createTime;
+    private Timestamp createTime;
 
     // Constructors
 
@@ -37,7 +37,7 @@ public class Station implements java.io.Serializable {
     /**
      * full constructor
      */
-    public Station(Long hospitalId, String stationName, Integer employeeAmount, Integer tankAmount, String rfid, String remark, Date createTime) {
+    public Station(Long hospitalId, String stationName, Integer employeeAmount, Integer tankAmount, String rfid, String remark, Timestamp createTime) {
         this.hospitalId = hospitalId;
         this.stationName = stationName;
         this.employeeAmount = employeeAmount;
@@ -49,116 +49,67 @@ public class Station implements java.io.Serializable {
 
     // Property accessors
 
-    /**
-     * 工作站ID
-     */
     public Long getStationId() {
-        return this.stationId;
+        return stationId;
     }
 
-    /**
-     * 工作站ID
-     */
     public void setStationId(Long stationId) {
         this.stationId = stationId;
     }
 
-    /**
-     * 所属医院ID
-     */
     public Long getHospitalId() {
-        return this.hospitalId;
+        return hospitalId;
     }
 
-    /**
-     * 所属医院ID
-     */
     public void setHospitalId(Long hospitalId) {
         this.hospitalId = hospitalId;
     }
 
-    /**
-     * 工作站名称
-     */
     public String getStationName() {
-        return this.stationName;
+        return stationName;
     }
 
-    /**
-     * 工作站名称
-     */
     public void setStationName(String stationName) {
         this.stationName = stationName;
     }
 
-    /**
-     * 该工作站员工数量
-     */
     public Integer getEmployeeAmount() {
-        return this.employeeAmount;
+        return employeeAmount;
     }
 
-    /**
-     * 该工作站员工数量
-     */
     public void setEmployeeAmount(Integer employeeAmount) {
         this.employeeAmount = employeeAmount;
     }
 
-    /**
-     * 清洗槽数量
-     */
     public Integer getTankAmount() {
-        return this.tankAmount;
+        return tankAmount;
     }
 
-    /**
-     * 清洗槽数量
-     */
     public void setTankAmount(Integer tankAmount) {
         this.tankAmount = tankAmount;
     }
 
-    /**
-     * RFID
-     */
     public String getRfid() {
-        return this.rfid;
+        return rfid;
     }
 
-    /**
-     * RFID
-     */
     public void setRfid(String rfid) {
         this.rfid = rfid;
     }
 
-    /**
-     * 备注
-     */
     public String getRemark() {
-        return this.remark;
+        return remark;
     }
 
-    /**
-     * 备注
-     */
     public void setRemark(String remark) {
         this.remark = remark;
     }
 
-    /**
-     * 创建时间
-     */
-    public Date getCreateTime() {
-        return this.createTime;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    /**
-     * 创建时间
-     */
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
-
 }

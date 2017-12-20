@@ -2,7 +2,7 @@ package com.iel.endoscope.dto;
 
 import com.iel.endoscope.entity.Station;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * 工作站传入参数所用Dto
@@ -49,7 +49,7 @@ public class StationDto {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Timestamp createTime;
 
     public Long getStationId() {
         return stationId;
@@ -107,11 +107,11 @@ public class StationDto {
         this.remark = remark;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 

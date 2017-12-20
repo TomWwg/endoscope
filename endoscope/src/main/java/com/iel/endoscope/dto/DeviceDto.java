@@ -2,7 +2,7 @@ package com.iel.endoscope.dto;
 
 import com.iel.endoscope.entity.Device;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * 设备信息的传入参数
@@ -54,12 +54,12 @@ public class DeviceDto {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Timestamp createTime;
 
     /**
      * 最后修改时间
      */
-    private Date updateTime;
+    private Timestamp updateTime;
 
     public Long getDeviceId() {
         return deviceId;
@@ -125,19 +125,19 @@ public class DeviceDto {
         this.remark = remark;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 

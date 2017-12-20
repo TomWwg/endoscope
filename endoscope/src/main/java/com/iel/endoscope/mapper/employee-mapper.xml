@@ -10,7 +10,7 @@
         <result column="role_id" property="roleId" jdbcType="BIGINT"/>
         <result column="rfid" property="rfid" jdbcType="VARCHAR"/>
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="create_time" property="createTime" jdbcType="Timestamp"/>
     </resultMap>
     <sql id="SELECT_All_Column">
         SELECT employee_id, hospital_id, station_id, employee_number, employee_name, 
@@ -33,7 +33,7 @@
         VALUES ( #{hospitalId,jdbcType=BIGINT}, 
           #{stationId,jdbcType=BIGINT}, #{employeeNumber,jdbcType=VARCHAR}, #{employeeName,jdbcType=VARCHAR}, 
           #{roleId,jdbcType=BIGINT}, #{rfid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-          #{createTime,jdbcType=DATE} )
+          #{createTime,jdbcType=Timestamp} )
         <selectKey keyProperty="employeeId" resultType="long">
             SELECT LAST_INSERT_ID() AS employeeId
         </selectKey>
@@ -90,7 +90,7 @@
                 #{remark,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
-                #{createTime,jdbcType=DATE},
+                #{createTime,jdbcType=Timestamp},
             </if>
         </trim>
         <selectKey keyProperty="employeeId" resultType="long">
@@ -108,7 +108,7 @@
             #{item.hospitalId,jdbcType=BIGINT}, 
             #{item.stationId,jdbcType=BIGINT}, #{item.employeeNumber,jdbcType=VARCHAR}, #{item.employeeName,jdbcType=VARCHAR}, 
             #{item.roleId,jdbcType=BIGINT}, #{item.rfid,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, 
-            #{item.createTime,jdbcType=DATE}
+            #{item.createTime,jdbcType=Timestamp}
             )
         </foreach>
     </insert>
@@ -137,7 +137,7 @@
                 remark = #{remark,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
-                create_time = #{createTime,jdbcType=DATE},
+                create_time = #{createTime,jdbcType=Timestamp},
             </if>
         </set>
         WHERE employee_id = #{employeeId,jdbcType=BIGINT}
@@ -151,7 +151,7 @@
             role_id = #{roleId,jdbcType=BIGINT},
             rfid = #{rfid,jdbcType=VARCHAR},
             remark = #{remark,jdbcType=VARCHAR},
-            create_time = #{createTime,jdbcType=DATE}
+            create_time = #{createTime,jdbcType=Timestamp}
         WHERE employee_id = #{employeeId,jdbcType=BIGINT}
     </update>
 </mapper>

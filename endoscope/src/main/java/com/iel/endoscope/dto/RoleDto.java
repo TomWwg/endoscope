@@ -2,7 +2,7 @@ package com.iel.endoscope.dto;
 
 import com.iel.endoscope.entity.Role;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * 角色的传入参数的转换
@@ -34,7 +34,7 @@ public class RoleDto {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Timestamp createTime;
 
     public Long getRoleId() {
         return roleId;
@@ -68,11 +68,11 @@ public class RoleDto {
         this.remark = remark;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 

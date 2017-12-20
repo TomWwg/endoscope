@@ -1,6 +1,6 @@
 package com.iel.endoscope.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by com.wwg.MybatisCodeGenerate on 2017-11-10
@@ -18,7 +18,7 @@ public class Role implements java.io.Serializable {
     // 备注
     private String remark;
     // 创建时间
-    private Date createTime;
+    private Timestamp createTime;
 
     // Constructors
 
@@ -31,7 +31,7 @@ public class Role implements java.io.Serializable {
     /**
      * full constructor
      */
-    public Role(Long hospitalId, String roleName, String remark, Date createTime) {
+    public Role(Long hospitalId, String roleName, String remark, Timestamp createTime) {
         this.hospitalId = hospitalId;
         this.roleName = roleName;
         this.remark = remark;
@@ -40,74 +40,43 @@ public class Role implements java.io.Serializable {
 
     // Property accessors
 
-    /**
-     * 角色ID
-     */
     public Long getRoleId() {
-        return this.roleId;
+        return roleId;
     }
 
-    /**
-     * 角色ID
-     */
     public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
 
-    /**
-     * 所属医院ID
-     */
     public Long getHospitalId() {
-        return this.hospitalId;
+        return hospitalId;
     }
 
-    /**
-     * 所属医院ID
-     */
     public void setHospitalId(Long hospitalId) {
         this.hospitalId = hospitalId;
     }
 
-    /**
-     * 角色名称
-     */
     public String getRoleName() {
-        return this.roleName;
+        return roleName;
     }
 
-    /**
-     * 角色名称
-     */
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
 
-    /**
-     * 备注
-     */
     public String getRemark() {
-        return this.remark;
+        return remark;
     }
 
-    /**
-     * 备注
-     */
     public void setRemark(String remark) {
         this.remark = remark;
     }
 
-    /**
-     * 创建时间
-     */
-    public Date getCreateTime() {
-        return this.createTime;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    /**
-     * 创建时间
-     */
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
-
 }

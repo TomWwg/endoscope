@@ -1,6 +1,6 @@
 package com.iel.endoscope.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by com.wwg.MybatisCodeGenerate on 2017-11-10
@@ -16,9 +16,11 @@ public class Step implements java.io.Serializable {
     // 洗消步骤
     private String stepType;
     // 开始时间
-    private Date startTime;
+    private Timestamp startTime;
     // 结束时间
-    private Date endTime;
+    private Timestamp endTime;
+    //耗时
+    private String costTime;
 
     // Constructors
 
@@ -31,83 +33,61 @@ public class Step implements java.io.Serializable {
     /**
      * full constructor
      */
-    public Step(Long decontaminationId, String stepType, Date startTime, Date endTime) {
+    public Step(Long decontaminationId, String stepType, Timestamp startTime, Timestamp endTime, String costTime) {
         this.decontaminationId = decontaminationId;
         this.stepType = stepType;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.costTime = costTime;
     }
 
     // Property accessors
 
-    /**
-     * 单步洗消ID
-     */
     public Long getStepId() {
-        return this.stepId;
+        return stepId;
     }
 
-    /**
-     * 单步洗消ID
-     */
     public void setStepId(Long stepId) {
         this.stepId = stepId;
     }
 
-    /**
-     * 手工洗消日志ID
-     */
     public Long getDecontaminationId() {
-        return this.decontaminationId;
+        return decontaminationId;
     }
 
-    /**
-     * 手工洗消日志ID
-     */
     public void setDecontaminationId(Long decontaminationId) {
         this.decontaminationId = decontaminationId;
     }
 
-    /**
-     * 洗消步骤
-     */
     public String getStepType() {
-        return this.stepType;
+        return stepType;
     }
 
-    /**
-     * 洗消步骤
-     */
     public void setStepType(String stepType) {
         this.stepType = stepType;
     }
 
-    /**
-     * 开始时间
-     */
-    public Date getStartTime() {
-        return this.startTime;
+    public Timestamp getStartTime() {
+        return startTime;
     }
 
-    /**
-     * 开始时间
-     */
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Timestamp startTime) {
         this.startTime = startTime;
     }
 
-    /**
-     * 结束时间
-     */
-    public Date getEndTime() {
-        return this.endTime;
+    public Timestamp getEndTime() {
+        return endTime;
     }
 
-    /**
-     * 结束时间
-     */
-    public void setEndTime(Date endTime) {
+    public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
     }
 
+    public String getCostTime() {
+        return costTime;
+    }
+
+    public void setCostTime(String costTime) {
+        this.costTime = costTime;
+    }
 }

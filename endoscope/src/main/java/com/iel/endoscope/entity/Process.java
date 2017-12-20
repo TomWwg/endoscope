@@ -1,6 +1,6 @@
 package com.iel.endoscope.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by com.wwg.MybatisCodeGenerate on 2017-11-10
@@ -40,9 +40,9 @@ public class Process implements java.io.Serializable {
     // 备注
     private String remark;
     // 创建时间
-    private Date createTime;
+    private Timestamp createTime;
     // 最后更新时间
-    private Date updateTime;
+    private Timestamp updateTime;
 
     // Constructors
 
@@ -55,7 +55,7 @@ public class Process implements java.io.Serializable {
     /**
      * full constructor
      */
-    public Process(Long stationId, String initialNormal, String initialLongest, String enzymeNormal, String enzymeLongest, String secondNormal, String secondLongest, String soakNormal, String soakLongest, String endNormal, String endLongest, String dryNormal, String dryLongest, String remark, Date createTime, Date updateTime) {
+    public Process(Long stationId, String initialNormal, String initialLongest, String enzymeNormal, String enzymeLongest, String secondNormal, String secondLongest, String soakNormal, String soakLongest, String endNormal, String endLongest, String dryNormal, String dryLongest, String remark, Timestamp createTime, Timestamp updateTime) {
         this.stationId = stationId;
         this.initialNormal = initialNormal;
         this.initialLongest = initialLongest;
@@ -76,242 +76,139 @@ public class Process implements java.io.Serializable {
 
     // Property accessors
 
-    /**
-     * 手工洗消流程ID
-     */
     public Long getProcessId() {
-        return this.processId;
+        return processId;
     }
 
-    /**
-     * 手工洗消流程ID
-     */
     public void setProcessId(Long processId) {
         this.processId = processId;
     }
 
-    /**
-     * 工作站ID
-     */
     public Long getStationId() {
-        return this.stationId;
+        return stationId;
     }
 
-    /**
-     * 工作站ID
-     */
     public void setStationId(Long stationId) {
         this.stationId = stationId;
     }
 
-    /**
-     * 初洗正常洗消时间
-     */
     public String getInitialNormal() {
-        return this.initialNormal;
+        return initialNormal;
     }
 
-    /**
-     * 初洗正常洗消时间
-     */
     public void setInitialNormal(String initialNormal) {
         this.initialNormal = initialNormal;
     }
 
-    /**
-     * 初洗最长洗消时间
-     */
     public String getInitialLongest() {
-        return this.initialLongest;
+        return initialLongest;
     }
 
-    /**
-     * 初洗最长洗消时间
-     */
     public void setInitialLongest(String initialLongest) {
         this.initialLongest = initialLongest;
     }
 
-    /**
-     * 酶洗正常洗消时间
-     */
     public String getEnzymeNormal() {
-        return this.enzymeNormal;
+        return enzymeNormal;
     }
 
-    /**
-     * 酶洗正常洗消时间
-     */
     public void setEnzymeNormal(String enzymeNormal) {
         this.enzymeNormal = enzymeNormal;
     }
 
-    /**
-     * 酶洗最长清洗时间
-     */
     public String getEnzymeLongest() {
-        return this.enzymeLongest;
+        return enzymeLongest;
     }
 
-    /**
-     * 酶洗最长清洗时间
-     */
     public void setEnzymeLongest(String enzymeLongest) {
         this.enzymeLongest = enzymeLongest;
     }
 
-    /**
-     * 次洗正常洗消时间
-     */
     public String getSecondNormal() {
-        return this.secondNormal;
+        return secondNormal;
     }
 
-    /**
-     * 次洗正常洗消时间
-     */
     public void setSecondNormal(String secondNormal) {
         this.secondNormal = secondNormal;
     }
 
-    /**
-     * 次洗最长清洗时间
-     */
     public String getSecondLongest() {
-        return this.secondLongest;
+        return secondLongest;
     }
 
-    /**
-     * 次洗最长清洗时间
-     */
     public void setSecondLongest(String secondLongest) {
         this.secondLongest = secondLongest;
     }
 
-    /**
-     * 浸泡正常洗消时间
-     */
     public String getSoakNormal() {
-        return this.soakNormal;
+        return soakNormal;
     }
 
-    /**
-     * 浸泡正常洗消时间
-     */
     public void setSoakNormal(String soakNormal) {
         this.soakNormal = soakNormal;
     }
 
-    /**
-     * 浸泡最长清洗时间
-     */
     public String getSoakLongest() {
-        return this.soakLongest;
+        return soakLongest;
     }
 
-    /**
-     * 浸泡最长清洗时间
-     */
     public void setSoakLongest(String soakLongest) {
         this.soakLongest = soakLongest;
     }
 
-    /**
-     * 末洗正常洗消时间
-     */
     public String getEndNormal() {
-        return this.endNormal;
+        return endNormal;
     }
 
-    /**
-     * 末洗正常洗消时间
-     */
     public void setEndNormal(String endNormal) {
         this.endNormal = endNormal;
     }
 
-    /**
-     * 末洗最长清洗时间
-     */
     public String getEndLongest() {
-        return this.endLongest;
+        return endLongest;
     }
 
-    /**
-     * 末洗最长清洗时间
-     */
     public void setEndLongest(String endLongest) {
         this.endLongest = endLongest;
     }
 
-    /**
-     * 干燥正常时间
-     */
     public String getDryNormal() {
-        return this.dryNormal;
+        return dryNormal;
     }
 
-    /**
-     * 干燥正常时间
-     */
     public void setDryNormal(String dryNormal) {
         this.dryNormal = dryNormal;
     }
 
-    /**
-     * 干燥最长时间
-     */
     public String getDryLongest() {
-        return this.dryLongest;
+        return dryLongest;
     }
 
-    /**
-     * 干燥最长时间
-     */
     public void setDryLongest(String dryLongest) {
         this.dryLongest = dryLongest;
     }
 
-    /**
-     * 备注
-     */
     public String getRemark() {
-        return this.remark;
+        return remark;
     }
 
-    /**
-     * 备注
-     */
     public void setRemark(String remark) {
         this.remark = remark;
     }
 
-    /**
-     * 创建时间
-     */
-    public Date getCreateTime() {
-        return this.createTime;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    /**
-     * 创建时间
-     */
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    /**
-     * 最后更新时间
-     */
-    public Date getUpdateTime() {
-        return this.updateTime;
+    public Timestamp getUpdateTime() {
+        return updateTime;
     }
 
-    /**
-     * 最后更新时间
-     */
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
-
 }

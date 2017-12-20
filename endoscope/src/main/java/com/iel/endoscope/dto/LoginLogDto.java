@@ -2,7 +2,7 @@ package com.iel.endoscope.dto;
 
 import com.iel.endoscope.entity.LoginLog;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * 登录日志参数转换
@@ -29,7 +29,7 @@ public class LoginLogDto {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Timestamp createTime;
 
     public Long getLoginLogId() {
         return loginLogId;
@@ -55,11 +55,11 @@ public class LoginLogDto {
         this.loginType = loginType;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 

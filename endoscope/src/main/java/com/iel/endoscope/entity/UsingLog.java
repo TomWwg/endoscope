@@ -1,6 +1,6 @@
 package com.iel.endoscope.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by com.wwg.MybatisCodeGenerate on 2017-11-10
@@ -18,11 +18,11 @@ public class UsingLog implements java.io.Serializable {
     // 患者ID
     private Long patientId;
     // 使用时间
-    private Date usingTime;
+    private Timestamp usingTime;
     // 医生
     private String doctor;
     // 创建时间
-    private Date createTime;
+    private Timestamp createTime;
 
     // Constructors
 
@@ -35,7 +35,7 @@ public class UsingLog implements java.io.Serializable {
     /**
      * full constructor
      */
-    public UsingLog(Long endoscopeId, Long employeeId, Long patientId, Date usingTime, String doctor, Date createTime) {
+    public UsingLog(Long endoscopeId, Long employeeId, Long patientId, Timestamp usingTime, String doctor, Timestamp createTime) {
         this.endoscopeId = endoscopeId;
         this.employeeId = employeeId;
         this.patientId = patientId;
@@ -46,102 +46,59 @@ public class UsingLog implements java.io.Serializable {
 
     // Property accessors
 
-    /**
-     * 使用记录ID
-     */
     public Long getUsingLogId() {
-        return this.usingLogId;
+        return usingLogId;
     }
 
-    /**
-     * 使用记录ID
-     */
     public void setUsingLogId(Long usingLogId) {
         this.usingLogId = usingLogId;
     }
 
-    /**
-     * 内镜ID
-     */
     public Long getEndoscopeId() {
-        return this.endoscopeId;
+        return endoscopeId;
     }
 
-    /**
-     * 内镜ID
-     */
     public void setEndoscopeId(Long endoscopeId) {
         this.endoscopeId = endoscopeId;
     }
 
-    /**
-     * 员工ID
-     */
     public Long getEmployeeId() {
-        return this.employeeId;
+        return employeeId;
     }
 
-    /**
-     * 员工ID
-     */
     public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
     }
 
-    /**
-     * 患者ID
-     */
     public Long getPatientId() {
-        return this.patientId;
+        return patientId;
     }
 
-    /**
-     * 患者ID
-     */
     public void setPatientId(Long patientId) {
         this.patientId = patientId;
     }
 
-    /**
-     * 使用时间
-     */
-    public Date getUsingTime() {
-        return this.usingTime;
+    public Timestamp getUsingTime() {
+        return usingTime;
     }
 
-    /**
-     * 使用时间
-     */
-    public void setUsingTime(Date usingTime) {
+    public void setUsingTime(Timestamp usingTime) {
         this.usingTime = usingTime;
     }
 
-    /**
-     * 医生
-     */
     public String getDoctor() {
-        return this.doctor;
+        return doctor;
     }
 
-    /**
-     * 医生
-     */
     public void setDoctor(String doctor) {
         this.doctor = doctor;
     }
 
-    /**
-     * 创建时间
-     */
-    public Date getCreateTime() {
-        return this.createTime;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    /**
-     * 创建时间
-     */
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
-
 }

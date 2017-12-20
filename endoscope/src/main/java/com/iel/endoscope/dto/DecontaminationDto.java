@@ -2,7 +2,7 @@ package com.iel.endoscope.dto;
 
 import com.iel.endoscope.entity.Decontamination;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * 洗消参数转换
@@ -38,12 +38,12 @@ public class DecontaminationDto {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Timestamp createTime;
 
     /**
      * 最后更新时间
      */
-    private Date updateTime;
+    private Timestamp updateTime;
 
     /**
      * 洗消耗时
@@ -95,19 +95,19 @@ public class DecontaminationDto {
         this.endoscopeId = endoscopeId;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 

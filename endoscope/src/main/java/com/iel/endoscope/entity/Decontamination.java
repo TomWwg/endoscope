@@ -1,6 +1,6 @@
 package com.iel.endoscope.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by com.wwg.MybatisCodeGenerate on 2017-11-10
@@ -20,9 +20,9 @@ public class Decontamination implements java.io.Serializable {
     // 内镜ID
     private Long endoscopeId;
     // 创建时间
-    private Date createTime;
+    private Timestamp createTime;
     // 最后更新时间
-    private Date updateTime;
+    private Timestamp updateTime;
     // 洗消耗时
     private String consumeTime;
     // 审核结果
@@ -39,7 +39,7 @@ public class Decontamination implements java.io.Serializable {
     /**
      * full constructor
      */
-    public Decontamination(Long hospitalId, Long stationId, Long employeeId, Long endoscopeId, Date createTime, Date updateTime, String consumeTime, String auditResult) {
+    public Decontamination(Long hospitalId, Long stationId, Long employeeId, Long endoscopeId, Timestamp createTime, Timestamp updateTime, String consumeTime, String auditResult) {
         this.hospitalId = hospitalId;
         this.stationId = stationId;
         this.employeeId = employeeId;
@@ -52,130 +52,76 @@ public class Decontamination implements java.io.Serializable {
 
     // Property accessors
 
-    /**
-     * 手工洗消日志ID
-     */
+
     public Long getDecontaminationId() {
-        return this.decontaminationId;
+        return decontaminationId;
     }
 
-    /**
-     * 手工洗消日志ID
-     */
     public void setDecontaminationId(Long decontaminationId) {
         this.decontaminationId = decontaminationId;
     }
 
-    /**
-     * 所属医院ID
-     */
     public Long getHospitalId() {
-        return this.hospitalId;
+        return hospitalId;
     }
 
-    /**
-     * 所属医院ID
-     */
     public void setHospitalId(Long hospitalId) {
         this.hospitalId = hospitalId;
     }
 
-    /**
-     * 工作站ID
-     */
     public Long getStationId() {
-        return this.stationId;
+        return stationId;
     }
 
-    /**
-     * 工作站ID
-     */
     public void setStationId(Long stationId) {
         this.stationId = stationId;
     }
 
-    /**
-     * 员工ID
-     */
     public Long getEmployeeId() {
-        return this.employeeId;
+        return employeeId;
     }
 
-    /**
-     * 员工ID
-     */
     public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
     }
 
-    /**
-     * 内镜ID
-     */
     public Long getEndoscopeId() {
-        return this.endoscopeId;
+        return endoscopeId;
     }
 
-    /**
-     * 内镜ID
-     */
     public void setEndoscopeId(Long endoscopeId) {
         this.endoscopeId = endoscopeId;
     }
 
-    /**
-     * 创建时间
-     */
-    public Date getCreateTime() {
-        return this.createTime;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    /**
-     * 创建时间
-     */
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    /**
-     * 最后更新时间
-     */
-    public Date getUpdateTime() {
-        return this.updateTime;
+    public Timestamp getUpdateTime() {
+        return updateTime;
     }
 
-    /**
-     * 最后更新时间
-     */
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 
-    /**
-     * 洗消耗时
-     */
     public String getConsumeTime() {
-        return this.consumeTime;
+        return consumeTime;
     }
 
-    /**
-     * 洗消耗时
-     */
     public void setConsumeTime(String consumeTime) {
         this.consumeTime = consumeTime;
     }
 
-    /**
-     * 审核结果
-     */
     public String getAuditResult() {
-        return this.auditResult;
+        return auditResult;
     }
 
-    /**
-     * 审核结果
-     */
     public void setAuditResult(String auditResult) {
         this.auditResult = auditResult;
     }
-
 }
