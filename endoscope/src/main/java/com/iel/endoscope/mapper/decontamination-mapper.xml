@@ -7,8 +7,8 @@
         <result column="station_id" property="stationId" jdbcType="BIGINT"/>
         <result column="employee_id" property="employeeId" jdbcType="BIGINT"/>
         <result column="endoscope_id" property="endoscopeId" jdbcType="BIGINT"/>
-        <result column="create_time" property="createTime" jdbcType="Timestamp"/>
-        <result column="update_time" property="updateTime" jdbcType="Timestamp"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="consume_time" property="consumeTime" jdbcType="VARCHAR"/>
         <result column="audit_result" property="auditResult" jdbcType="VARCHAR"/>
     </resultMap>
@@ -32,7 +32,7 @@
           audit_result )
         VALUES ( #{hospitalId,jdbcType=BIGINT}, 
           #{stationId,jdbcType=BIGINT}, #{employeeId,jdbcType=BIGINT}, #{endoscopeId,jdbcType=BIGINT}, 
-          #{createTime,jdbcType=Timestamp}, #{updateTime,jdbcType=Timestamp}, #{consumeTime,jdbcType=VARCHAR},
+          #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{consumeTime,jdbcType=VARCHAR},
           #{auditResult,jdbcType=VARCHAR} )
         <selectKey keyProperty="decontaminationId" resultType="long">
             SELECT LAST_INSERT_ID() AS decontaminationId
@@ -81,10 +81,10 @@
                 #{endoscopeId,jdbcType=BIGINT},
             </if>
             <if test="createTime != null">
-                #{createTime,jdbcType=Timestamp},
+                #{createTime,jdbcType=TIMESTAMP},
             </if>
             <if test="updateTime != null">
-                #{updateTime,jdbcType=Timestamp},
+                #{updateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="consumeTime != null">
                 #{consumeTime,jdbcType=VARCHAR},
@@ -107,7 +107,7 @@
             (
             #{item.hospitalId,jdbcType=BIGINT}, 
             #{item.stationId,jdbcType=BIGINT}, #{item.employeeId,jdbcType=BIGINT}, #{item.endoscopeId,jdbcType=BIGINT}, 
-            #{item.createTime,jdbcType=Timestamp}, #{item.updateTime,jdbcType=Timestamp}, #{item.consumeTime,jdbcType=VARCHAR},
+            #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}, #{item.consumeTime,jdbcType=VARCHAR},
             #{item.auditResult,jdbcType=VARCHAR}
             )
         </foreach>
@@ -128,10 +128,10 @@
                 endoscope_id = #{endoscopeId,jdbcType=BIGINT},
             </if>
             <if test="createTime != null">
-                create_time = #{createTime,jdbcType=Timestamp},
+                create_time = #{createTime,jdbcType=TIMESTAMP},
             </if>
             <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=Timestamp},
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="consumeTime != null">
                 consume_time = #{consumeTime,jdbcType=VARCHAR},
@@ -148,8 +148,8 @@
             station_id = #{stationId,jdbcType=BIGINT},
             employee_id = #{employeeId,jdbcType=BIGINT},
             endoscope_id = #{endoscopeId,jdbcType=BIGINT},
-            create_time = #{createTime,jdbcType=Timestamp},
-            update_time = #{updateTime,jdbcType=Timestamp},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
             consume_time = #{consumeTime,jdbcType=VARCHAR},
             audit_result = #{auditResult,jdbcType=VARCHAR}
         WHERE decontamination_id = #{decontaminationId,jdbcType=BIGINT}

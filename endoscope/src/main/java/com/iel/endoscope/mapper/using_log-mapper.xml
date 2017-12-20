@@ -6,9 +6,9 @@
         <result column="endoscope_id" property="endoscopeId" jdbcType="BIGINT"/>
         <result column="employee_id" property="employeeId" jdbcType="BIGINT"/>
         <result column="patient_id" property="patientId" jdbcType="BIGINT"/>
-        <result column="using_time" property="usingTime" jdbcType="Timestamp"/>
+        <result column="using_time" property="usingTime" jdbcType="TIMESTAMP"/>
         <result column="doctor" property="doctor" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="Timestamp"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="SELECT_All_Column">
         SELECT using_log_id, endoscope_id, employee_id, patient_id, using_time, 
@@ -28,8 +28,8 @@
           employee_id, patient_id, using_time, 
           doctor, create_time )
         VALUES ( #{endoscopeId,jdbcType=BIGINT}, 
-          #{employeeId,jdbcType=BIGINT}, #{patientId,jdbcType=BIGINT}, #{usingTime,jdbcType=Timestamp},
-          #{doctor,jdbcType=VARCHAR}, #{createTime,jdbcType=Timestamp} )
+          #{employeeId,jdbcType=BIGINT}, #{patientId,jdbcType=BIGINT}, #{usingTime,jdbcType=TIMESTAMP},
+          #{doctor,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP} )
         <selectKey keyProperty="usingLogId" resultType="long">
             SELECT LAST_INSERT_ID() AS usingLogId
         </selectKey>
@@ -68,13 +68,13 @@
                 #{patientId,jdbcType=BIGINT},
             </if>
             <if test="usingTime != null">
-                #{usingTime,jdbcType=Timestamp},
+                #{usingTime,jdbcType=TIMESTAMP},
             </if>
             <if test="doctor != null">
                 #{doctor,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
-                #{createTime,jdbcType=Timestamp},
+                #{createTime,jdbcType=TIMESTAMP},
             </if>
         </trim>
         <selectKey keyProperty="usingLogId" resultType="long">
@@ -89,8 +89,8 @@
         <foreach collection="list" item="item" index="index" separator="," >
             (
             #{item.endoscopeId,jdbcType=BIGINT}, 
-            #{item.employeeId,jdbcType=BIGINT}, #{item.patientId,jdbcType=BIGINT}, #{item.usingTime,jdbcType=Timestamp},
-            #{item.doctor,jdbcType=VARCHAR}, #{item.createTime,jdbcType=Timestamp}
+            #{item.employeeId,jdbcType=BIGINT}, #{item.patientId,jdbcType=BIGINT}, #{item.usingTime,jdbcType=TIMESTAMP},
+            #{item.doctor,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}
             )
         </foreach>
     </insert>
@@ -107,13 +107,13 @@
                 patient_id = #{patientId,jdbcType=BIGINT},
             </if>
             <if test="usingTime != null">
-                using_time = #{usingTime,jdbcType=Timestamp},
+                using_time = #{usingTime,jdbcType=TIMESTAMP},
             </if>
             <if test="doctor != null">
                 doctor = #{doctor,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
-                create_time = #{createTime,jdbcType=Timestamp},
+                create_time = #{createTime,jdbcType=TIMESTAMP},
             </if>
         </set>
         WHERE using_log_id = #{usingLogId,jdbcType=BIGINT}
@@ -123,9 +123,9 @@
         SET endoscope_id = #{endoscopeId,jdbcType=BIGINT},
             employee_id = #{employeeId,jdbcType=BIGINT},
             patient_id = #{patientId,jdbcType=BIGINT},
-            using_time = #{usingTime,jdbcType=Timestamp},
+            using_time = #{usingTime,jdbcType=TIMESTAMP},
             doctor = #{doctor,jdbcType=VARCHAR},
-            create_time = #{createTime,jdbcType=Timestamp}
+            create_time = #{createTime,jdbcType=TIMESTAMP}
         WHERE using_log_id = #{usingLogId,jdbcType=BIGINT}
     </update>
 </mapper>

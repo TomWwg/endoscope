@@ -11,11 +11,11 @@
         <result column="device_name" property="deviceName" jdbcType="VARCHAR"/>
         <result column="status" property="status" jdbcType="VARCHAR"/>
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="Timestamp"/>
-        <result column="update_time" property="updateTime" jdbcType="Timestamp"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="SELECT_All_Column">
-        SELECT device_id, hospital_id, station_id, device_address, device_type,
+        SELECT device_id, hospital_id, station_id, device_address, device_type, 
         device_number, device_name, status, remark, create_time, update_time
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.iel.endoscope.entity.Device">
@@ -28,14 +28,14 @@
         WHERE device_id = #{deviceId,jdbcType=BIGINT}
     </delete>
     <insert id="insert" parameterType="com.iel.endoscope.entity.Device">
-        INSERT INTO device ( hospital_id,
-        station_id, device_address, device_type,
-        device_number, device_name, status, remark,
-        create_time, update_time )
-        VALUES ( #{hospitalId,jdbcType=BIGINT},
-        #{stationId,jdbcType=BIGINT}, #{deviceAddress,jdbcType=VARCHAR}, #{deviceType,jdbcType=VARCHAR},
-        #{deviceNumber,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
-        #{createTime,jdbcType=Timestamp}, #{updateTime,jdbcType=Timestamp} )
+        INSERT INTO device ( hospital_id, 
+          station_id, device_address, device_type, 
+          device_number, device_name, status, remark,
+          create_time, update_time )
+        VALUES ( #{hospitalId,jdbcType=BIGINT}, 
+          #{stationId,jdbcType=BIGINT}, #{deviceAddress,jdbcType=VARCHAR}, #{deviceType,jdbcType=VARCHAR}, 
+          #{deviceNumber,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+          #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP} )
         <selectKey keyProperty="deviceId" resultType="long">
             SELECT LAST_INSERT_ID() AS deviceId
         </selectKey>
@@ -101,10 +101,10 @@
                 #{remark,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
-                #{createTime,jdbcType=Timestamp},
+                #{createTime,jdbcType=TIMESTAMP},
             </if>
             <if test="updateTime != null">
-                #{updateTime,jdbcType=Timestamp},
+                #{updateTime,jdbcType=TIMESTAMP},
             </if>
         </trim>
         <selectKey keyProperty="deviceId" resultType="long">
@@ -112,17 +112,17 @@
         </selectKey>
     </insert>
     <insert id="insertBatch" parameterType="java.util.List">
-        INSERT INTO device ( hospital_id,
-        station_id, device_address, device_type,
-        device_number, device_name, status, remark,
-        create_time, update_time )
+        INSERT INTO device ( hospital_id, 
+          station_id, device_address, device_type, 
+          device_number, device_name, status, remark,
+          create_time, update_time )
         VALUES
         <foreach collection="list" item="item" index="index" separator="," >
             (
-            #{item.hospitalId,jdbcType=BIGINT},
-            #{item.stationId,jdbcType=BIGINT}, #{item.deviceAddress,jdbcType=VARCHAR}, #{item.deviceType,jdbcType=VARCHAR},
+            #{item.hospitalId,jdbcType=BIGINT}, 
+            #{item.stationId,jdbcType=BIGINT}, #{item.deviceAddress,jdbcType=VARCHAR}, #{item.deviceType,jdbcType=VARCHAR}, 
             #{item.deviceNumber,jdbcType=VARCHAR}, #{item.deviceName,jdbcType=VARCHAR}, #{item.status,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR},
-            #{item.createTime,jdbcType=Timestamp}, #{item.updateTime,jdbcType=Timestamp}
+            #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}
             )
         </foreach>
     </insert>
@@ -154,10 +154,10 @@
                 remark = #{remark,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
-                create_time = #{createTime,jdbcType=Timestamp},
+                create_time = #{createTime,jdbcType=TIMESTAMP},
             </if>
             <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=Timestamp},
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
         WHERE device_id = #{deviceId,jdbcType=BIGINT}
@@ -172,8 +172,8 @@
             device_name = #{deviceName,jdbcType=VARCHAR},
             status = #{status,jdbcType=VARCHAR},
             remark = #{remark,jdbcType=VARCHAR},
-            create_time = #{createTime,jdbcType=Timestamp},
-            update_time = #{updateTime,jdbcType=Timestamp}
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP}
         WHERE device_id = #{deviceId,jdbcType=BIGINT}
     </update>
 </mapper>
