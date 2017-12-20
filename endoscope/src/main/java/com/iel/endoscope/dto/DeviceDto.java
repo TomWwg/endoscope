@@ -47,6 +47,11 @@ public class DeviceDto {
     private String deviceName;
 
     /**
+     * 设备状态
+     */
+    private String status;
+
+    /**
      * 备注
      */
     private String remark;
@@ -117,6 +122,14 @@ public class DeviceDto {
         this.deviceName = deviceName;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public String getRemark() {
         return remark;
     }
@@ -152,6 +165,7 @@ public class DeviceDto {
             device.setDeviceType(dto.getDeviceType());
             device.setDeviceNumber(dto.getDeviceNumber());
             device.setDeviceName(dto.getDeviceName());
+            device.setStatus(dto.getStatus());
             device.setRemark(dto.getRemark());
             device.setCreateTime(dto.getCreateTime());
             device.setUpdateTime(dto.getUpdateTime());

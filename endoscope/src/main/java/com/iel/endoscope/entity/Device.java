@@ -23,6 +23,8 @@ public class Device implements java.io.Serializable {
     private String deviceNumber;
     // 设备名称
     private String deviceName;
+    //设备状态
+    private String status;
     // 备注
     private String remark;
     // 创建时间
@@ -41,13 +43,14 @@ public class Device implements java.io.Serializable {
     /**
      * full constructor
      */
-    public Device(Long hospitalId, Long stationId, String deviceAddress, String deviceType, String deviceNumber, String deviceName, String remark, Timestamp createTime, Timestamp updateTime) {
+    public Device(Long hospitalId, Long stationId, String deviceAddress, String deviceType, String deviceNumber, String deviceName, String status, String remark, Timestamp createTime, Timestamp updateTime) {
         this.hospitalId = hospitalId;
         this.stationId = stationId;
         this.deviceAddress = deviceAddress;
         this.deviceType = deviceType;
         this.deviceNumber = deviceNumber;
         this.deviceName = deviceName;
+        this.status = status;
         this.remark = remark;
         this.createTime = createTime;
         this.updateTime = updateTime;
@@ -109,6 +112,14 @@ public class Device implements java.io.Serializable {
 
     public void setDeviceName(String deviceName) {
         this.deviceName = deviceName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getRemark() {
