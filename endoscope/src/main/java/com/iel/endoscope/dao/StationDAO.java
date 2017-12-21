@@ -22,4 +22,6 @@ public interface StationDAO {
     int updateByPrimaryKeySelective(Station record);
 
     int updateByPrimaryKey(Station record);
+
+    List<Station> findAll();
 }

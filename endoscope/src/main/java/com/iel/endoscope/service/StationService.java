@@ -55,4 +55,10 @@ public interface StationService {
      * @return
      */
     int updateByPrimaryKey(Station record);
+
+    /**
+     * 查询所有的工作站信息
+     * @return
+     */
+    List<Station> findAll();
 }

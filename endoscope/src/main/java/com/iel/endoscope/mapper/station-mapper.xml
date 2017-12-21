@@ -139,4 +139,8 @@
             create_time = #{createTime,jdbcType=TIMESTAMP}
         WHERE station_id = #{stationId,jdbcType=BIGINT}
     </update>
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT *
+        FROM station
+    </select>
 </mapper>

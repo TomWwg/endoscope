@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * 工作站接口
  * Created by wwg on 2017/11/30.
@@ -81,6 +83,14 @@ public class StationController {
             return ResultDtoFactory.toError(ResultCode.MEMBER_NOT_EXIST);
         }
         return ResultDtoFactory.toSuccess(station);
+    }
+
+    @RequestMapping(value = "findAll", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "查询所有工作站", notes = "不需要传入参数", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findAll(){
+        List<Station> stations = stationService.findAll();
+        return ResultDtoFactory.toSuccess(stations);
     }
 
 }

@@ -5,6 +5,7 @@ import com.iel.endoscope.entity.Station;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,5 +56,12 @@ public class StationServiceImpl implements StationService {
     public int updateByPrimaryKey(Station record) {
         stationDAO.updateByPrimaryKey(record);
         return 0;
+    }
+
+    @Override
+    public List<Station> findAll() {
+        List<Station> stations = new ArrayList<>();
+        stations = stationDAO.findAll();
+        return stations;
     }
 }
