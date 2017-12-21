@@ -1,7 +1,9 @@
 package com.iel.endoscope.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.constant.ResultCode;
 import com.iel.endoscope.dto.DeviceDto;
+import com.iel.endoscope.dto.PageRequest;
 import com.iel.endoscope.dto.ResultDto;
 import com.iel.endoscope.dto.ResultDtoFactory;
 import com.iel.endoscope.entity.Device;
@@ -81,5 +83,17 @@ public class DeviceController {
             return ResultDtoFactory.toError(ResultCode.MEMBER_NOT_EXIST);
         }
         return ResultDtoFactory.toSuccess(device);
+    }
+
+    @RequestMapping(value = "findDevicesByStationIdByPage", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "通过stationId查询该科室下面的设备信息（分页）", notes = "stationId不能为空，需要分页条件", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findDevicesByStationIdByPage(@RequestBody DeviceDto dto){
+        Device deviceRequest = DeviceDto.form(dto);
+        if(deviceRequest == null){
+            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
+        }
+        PageInfo<Device> devicePageInfo = deviceService.findDevicesByStationIdByPage(deviceRequest.getStationId(), dto.buildPage());
+        return ResultDtoFactory.toSuccess(new PageRequest<>(devicePageInfo));
     }
 }

@@ -1,6 +1,8 @@
 package com.iel.endoscope.service;
 
+import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.entity.Device;
+import com.iel.endoscope.util.Page;
 
 import java.util.List;
 
@@ -56,4 +58,12 @@ public interface DeviceService {
      * @return
      */
     int updateByPrimaryKey(Device record);
+
+    /**
+     * 通过stationId查找该科室下的设备信息并分页
+     * @param stationId
+     * @param page
+     * @return
+     */
+    PageInfo<Device> findDevicesByStationIdByPage(Long stationId, Page page);
 }

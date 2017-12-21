@@ -1,7 +1,10 @@
 package com.iel.endoscope.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.dao.DeviceDAO;
 import com.iel.endoscope.entity.Device;
+import com.iel.endoscope.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,5 +58,13 @@ public class DeviceServiceImpl implements DeviceService {
     public int updateByPrimaryKey(Device record) {
         deviceDAO.updateByPrimaryKey(record);
         return 0;
+    }
+
+    @Override
+    public PageInfo<Device> findDevicesByStationIdByPage(Long stationId, Page page) {
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<Device> devices = deviceDAO.findDevicesByStationId(stationId);
+        PageInfo<Device> pageInfo = new PageInfo<>(devices);
+        return pageInfo;
     }
 }

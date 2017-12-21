@@ -7,9 +7,9 @@ import java.sql.Timestamp;
 /**
  * 设备信息的传入参数
  * Created by wwg on 2017/11/30.
- * wwg
+ * @author wwg
  */
-public class DeviceDto {
+public class DeviceDto extends PageDto {
 
     /**
      * 设备ID
