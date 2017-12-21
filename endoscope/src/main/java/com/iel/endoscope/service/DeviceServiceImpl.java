@@ -67,4 +67,10 @@ public class DeviceServiceImpl implements DeviceService {
         PageInfo<Device> pageInfo = new PageInfo<>(devices);
         return pageInfo;
     }
+
+    @Override
+    public List<Device> findDevicesWithoutStationId() {
+        List<Device> devices = deviceDAO.findDevicesWithoutStationId();
+        return devices;
+    }
 }

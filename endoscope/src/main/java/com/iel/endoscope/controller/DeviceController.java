@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * 设备Controller类
  * Created by wwg on 2017/11/30.
@@ -95,5 +97,13 @@ public class DeviceController {
         }
         PageInfo<Device> devicePageInfo = deviceService.findDevicesByStationIdByPage(deviceRequest.getStationId(), dto.buildPage());
         return ResultDtoFactory.toSuccess(new PageRequest<>(devicePageInfo));
+    }
+
+    @RequestMapping(value = "findDevicesWithoutStationId", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "查询出没有和工作站关联的设备信息", notes = "stationId为null", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findDevicesWithoutStationId(){
+        List<Device> devices = deviceService.findDevicesWithoutStationId();
+        return ResultDtoFactory.toSuccess(devices);
     }
 }

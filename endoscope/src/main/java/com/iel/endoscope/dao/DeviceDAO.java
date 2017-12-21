@@ -24,4 +24,6 @@ public interface DeviceDAO {
     int updateByPrimaryKey(Device record);
 
     List<Device> findDevicesByStationId(Long stationId);
+
+    List<Device> findDevicesWithoutStationId();
 }

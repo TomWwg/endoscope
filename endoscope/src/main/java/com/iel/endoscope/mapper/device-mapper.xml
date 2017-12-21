@@ -181,4 +181,9 @@
         FROM device
         WHERE station_id = #{stationId,jdbcType=BIGINT}
     </select>
+    <select id="findDevicesWithoutStationId" resultMap="BaseResultMap">
+        SELECT *
+        FROM device
+        WHERE station_id IS NULL
+    </select>
 </mapper>

@@ -66,4 +66,10 @@ public interface DeviceService {
      * @return
      */
     PageInfo<Device> findDevicesByStationIdByPage(Long stationId, Page page);
+
+    /**
+     * 查找没有stationId为null的设备信息（没有与station关联的）
+     * @return
+     */
+    List<Device> findDevicesWithoutStationId();
 }
