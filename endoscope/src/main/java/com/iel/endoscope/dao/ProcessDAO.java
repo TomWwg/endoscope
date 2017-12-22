@@ -1,5 +1,7 @@
 package com.iel.endoscope.dao;
 
+import com.iel.endoscope.entity.Process;
+
 import java.util.List;
 
 /**
@@ -19,4 +21,6 @@ public interface ProcessDAO {
     int updateByPrimaryKeySelective(Process record);
 
     int updateByPrimaryKey(Process record);
+
+    List<Process> findAll();
 }

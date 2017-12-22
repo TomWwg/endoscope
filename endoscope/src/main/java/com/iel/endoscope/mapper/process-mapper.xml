@@ -252,4 +252,8 @@
             update_time = #{updateTime,jdbcType=TIMESTAMP}
         WHERE process_id = #{processId,jdbcType=BIGINT}
     </update>
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT *
+        FROM process
+    </select>
 </mapper>
