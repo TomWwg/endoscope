@@ -47,7 +47,7 @@ public class EmployeeController {
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         int status = employeeService.deleteByPrimaryKey(employeeRequest.getEmployeeId());
-        if(status != 0){
+        if(status != 1){
             return ResultDtoFactory.toUnknowError();
         }
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
@@ -62,7 +62,7 @@ public class EmployeeController {
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         int status = employeeService.updateByPrimaryKeySelective(employeeRequest);
-        if(status != 0){
+        if(status != 1){
             return ResultDtoFactory.toUnknowError();
         }
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);

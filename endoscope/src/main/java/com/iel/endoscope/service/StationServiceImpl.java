@@ -22,7 +22,7 @@ public class StationServiceImpl implements StationService {
     @Override
     public int deleteByPrimaryKey(Long stationId) {
         stationDAO.deleteByPrimaryKey(stationId);
-        return 0;
+        return 1;
     }
 
     @Override
@@ -49,13 +49,13 @@ public class StationServiceImpl implements StationService {
     @Override
     public int updateByPrimaryKeySelective(Station record) {
         stationDAO.updateByPrimaryKeySelective(record);
-        return 0;
+        return 1;
     }
 
     @Override
     public int updateByPrimaryKey(Station record) {
         stationDAO.updateByPrimaryKey(record);
-        return 0;
+        return 1;
     }
 
     @Override

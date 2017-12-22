@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public int deleteByPrimaryKey(Long userId) {
         userDAO.deleteByPrimaryKey(userId);
-        return 0;
+        return 1;
     }
 
     @Override
@@ -47,12 +47,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public int updateByPrimaryKeySelective(User record) {
         userDAO.updateByPrimaryKeySelective(record);
-        return 0;
+        return 1;
     }
 
     @Override
     public int updateByPrimaryKey(User record) {
-        return 0;
+        return 1;
     }
 
     @Override

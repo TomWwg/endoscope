@@ -21,7 +21,7 @@ public class LoginLogServiceImpl implements LoginLogService {
     @Override
     public int deleteByPrimaryKey(Long loginLogId) {
         loginLogDAO.deleteByPrimaryKey(loginLogId);
-        return 0;
+        return 1;
     }
 
     @Override
@@ -48,12 +48,12 @@ public class LoginLogServiceImpl implements LoginLogService {
     @Override
     public int updateByPrimaryKeySelective(LoginLog record) {
         loginLogDAO.updateByPrimaryKeySelective(record);
-        return 0;
+        return 1;
     }
 
     @Override
     public int updateByPrimaryKey(LoginLog record) {
         loginLogDAO.updateByPrimaryKey(record);
-        return 0;
+        return 1;
     }
 }

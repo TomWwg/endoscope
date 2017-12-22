@@ -49,7 +49,7 @@ public class StationController {
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         int status = stationService.deleteByPrimaryKey(stationRequest.getStationId());
-        if(status != 0){
+        if(status != 1){
             return ResultDtoFactory.toUnknowError();
         }
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
@@ -64,7 +64,7 @@ public class StationController {
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         int status = stationService.updateByPrimaryKeySelective(stationRequest);
-        if(status != 0){
+        if(status != 1){
             return ResultDtoFactory.toUnknowError();
         }
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);

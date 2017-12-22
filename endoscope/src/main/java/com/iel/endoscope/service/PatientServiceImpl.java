@@ -21,7 +21,7 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public int deleteByPrimaryKey(Long patientId) {
         patientDAO.deleteByPrimaryKey(patientId);
-        return 0;
+        return 1;
     }
 
     @Override
@@ -48,12 +48,12 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public int updateByPrimaryKeySelective(Patient record) {
         patientDAO.updateByPrimaryKeySelective(record);
-        return 0;
+        return 1;
     }
 
     @Override
     public int updateByPrimaryKey(Patient record) {
         patientDAO.updateByPrimaryKey(record);
-        return 0;
+        return 1;
     }
 }

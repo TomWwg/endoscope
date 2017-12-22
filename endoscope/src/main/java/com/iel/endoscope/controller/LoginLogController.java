@@ -47,7 +47,7 @@ public class LoginLogController {
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         int status = loginLogService.deleteByPrimaryKey(loginLogRequest.getLoginLogId());
-        if(status != 0){
+        if(status != 1){
             return ResultDtoFactory.toUnknowError();
         }
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
@@ -62,7 +62,7 @@ public class LoginLogController {
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         int status = loginLogService.updateByPrimaryKeySelective(loginLogRequest);
-        if(status != 0){
+        if(status != 1){
             return ResultDtoFactory.toUnknowError();
         }
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);

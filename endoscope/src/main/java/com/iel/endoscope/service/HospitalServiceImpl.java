@@ -20,7 +20,7 @@ public class HospitalServiceImpl implements HospitalService {
     @Override
     public int deleteByPrimaryKey(Long hospitalId) {
         hospitalDAO.deleteByPrimaryKey(hospitalId);
-        return 0;
+        return 1;
     }
 
     @Override
@@ -47,12 +47,12 @@ public class HospitalServiceImpl implements HospitalService {
     @Override
     public int updateByPrimaryKeySelective(Hospital record) {
         hospitalDAO.updateByPrimaryKeySelective(record);
-        return 0;
+        return 1;
     }
 
     @Override
     public int updateByPrimaryKey(Hospital record) {
         hospitalDAO.updateByPrimaryKey(record);
-        return 0;
+        return 1;
     }
 }

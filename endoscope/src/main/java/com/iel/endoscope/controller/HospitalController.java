@@ -58,7 +58,7 @@ public class HospitalController {
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         int status = hospitalService.updateByPrimaryKeySelective(hospitalRequest);
-        if(status != 0){
+        if(status != 1){
             return ResultDtoFactory.toUnknowError();
         }
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
@@ -73,7 +73,7 @@ public class HospitalController {
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         int status = hospitalService.deleteByPrimaryKey(hospitalRequest.getHospitalId());
-        if(status != 0){
+        if(status != 1){
             return ResultDtoFactory.toUnknowError();
         }
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);

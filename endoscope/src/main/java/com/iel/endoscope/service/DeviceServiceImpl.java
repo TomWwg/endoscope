@@ -24,7 +24,7 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     public int deleteByPrimaryKey(Long deviceId) {
         deviceDAO.deleteByPrimaryKey(deviceId);
-        return 0;
+        return 1;
     }
 
     @Override
@@ -51,13 +51,13 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     public int updateByPrimaryKeySelective(Device record) {
         deviceDAO.updateByPrimaryKeySelective(record);
-        return 0;
+        return 1;
     }
 
     @Override
     public int updateByPrimaryKey(Device record) {
         deviceDAO.updateByPrimaryKey(record);
-        return 0;
+        return 1;
     }
 
     @Override

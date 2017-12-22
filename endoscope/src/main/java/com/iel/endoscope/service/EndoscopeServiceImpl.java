@@ -21,7 +21,7 @@ public class EndoscopeServiceImpl implements EndoscopeService {
     @Override
     public int deleteByPrimaryKey(Long endoscopeId) {
         endoscopeDAO.deleteByPrimaryKey(endoscopeId);
-        return 0;
+        return 1;
     }
 
     @Override
@@ -48,13 +48,13 @@ public class EndoscopeServiceImpl implements EndoscopeService {
     @Override
     public int updateByPrimaryKeySelective(Endoscope record) {
         endoscopeDAO.updateByPrimaryKeySelective(record);
-        return 0;
+        return 1;
     }
 
     @Override
     public int updateByPrimaryKey(Endoscope record) {
         endoscopeDAO.updateByPrimaryKey(record);
-        return 0;
+        return 1;
     }
 
     @Override

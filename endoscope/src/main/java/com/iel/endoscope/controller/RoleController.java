@@ -47,7 +47,7 @@ public class RoleController {
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         int status = roleService.deleteByPrimaryKey(roleRequest.getRoleId());
-        if(status != 0){
+        if(status != 1){
             return ResultDtoFactory.toUnknowError();
         }
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
@@ -62,7 +62,7 @@ public class RoleController {
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         int status = roleService.updateByPrimaryKeySelective(roleRequest);
-        if(status != 0){
+        if(status != 1){
             return ResultDtoFactory.toUnknowError();
         }
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);

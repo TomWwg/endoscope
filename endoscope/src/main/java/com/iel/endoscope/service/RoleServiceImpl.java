@@ -21,7 +21,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public int deleteByPrimaryKey(Long roleId) {
         roleDAO.deleteByPrimaryKey(roleId);
-        return 0;
+        return 1;
     }
 
     @Override
@@ -48,12 +48,12 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public int updateByPrimaryKeySelective(Role record) {
         roleDAO.updateByPrimaryKeySelective(record);
-        return 0;
+        return 1;
     }
 
     @Override
     public int updateByPrimaryKey(Role record) {
         roleDAO.updateByPrimaryKey(record);
-        return 0;
+        return 1;
     }
 }

@@ -26,9 +26,5 @@ hs_err_pid*
 .settings
 *.iml
 .idea/*.xml
-endoscope/.idea/workspace.xml
 
-endoscope/target/endoscope/WEB-INF/classes/com/iel/endoscope/mapper/user-mapper.xml
-endoscope/target/*/*/*/*/*/*/*/*.xml
-endoscope/.idea/workspace.xml
 endoscope/.idea/workspace.xml

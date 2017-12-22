@@ -21,7 +21,7 @@ public class DecontaminationServiceImpl implements DecontaminationService {
     @Override
     public int deleteByPrimaryKey(Long decontaminationId) {
         decontaminationDAO.deleteByPrimaryKey(decontaminationId);
-        return 0;
+        return 1;
     }
 
     @Override
@@ -48,12 +48,12 @@ public class DecontaminationServiceImpl implements DecontaminationService {
     @Override
     public int updateByPrimaryKeySelective(Decontamination record) {
         decontaminationDAO.updateByPrimaryKeySelective(record);
-        return 0;
+        return 1;
     }
 
     @Override
     public int updateByPrimaryKey(Decontamination record) {
         decontaminationDAO.updateByPrimaryKey(record);
-        return 0;
+        return 1;
     }
 }

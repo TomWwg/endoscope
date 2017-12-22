@@ -21,7 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public int deleteByPrimaryKey(Long employeeId) {
         employeeDAO.deleteByPrimaryKey(employeeId);
-        return 0;
+        return 1;
     }
 
     @Override
@@ -48,12 +48,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public int updateByPrimaryKeySelective(Employee record) {
         employeeDAO.updateByPrimaryKeySelective(record);
-        return 0;
+        return 1;
     }
 
     @Override
     public int updateByPrimaryKey(Employee record) {
         employeeDAO.updateByPrimaryKey(record);
-        return 0;
+        return 1;
     }
 }

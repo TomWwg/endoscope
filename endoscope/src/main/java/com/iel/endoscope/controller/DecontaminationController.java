@@ -47,7 +47,7 @@ public class DecontaminationController {
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         int status = decontaminationService.deleteByPrimaryKey(decontaminationRequest.getDecontaminationId());
-        if (status != 0){
+        if (status != 1){
             return ResultDtoFactory.toUnknowError();
         }
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
@@ -62,7 +62,7 @@ public class DecontaminationController {
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         int status = decontaminationService.updateByPrimaryKeySelective(decontaminationRequest);
-        if(status != 0){
+        if(status != 1){
             return ResultDtoFactory.toUnknowError();
         }
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);

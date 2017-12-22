@@ -64,7 +64,7 @@ public class UserController {
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         int status = userService.deleteByPrimaryKey(userRequest.getUserId());
-        if(status != 0){
+        if(status != 1){
             return ResultDtoFactory.toUnknowError();
         }
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
@@ -82,7 +82,7 @@ public class UserController {
             userRequest.setPassword(EncryptUtil.getPWd(userRequest.getPassword()));
         }
         int status = userService.updateByPrimaryKeySelective(userRequest);
-        if(status != 0){
+        if(status != 1){
             return ResultDtoFactory.toUnknowError();
         }
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
