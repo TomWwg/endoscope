@@ -5,6 +5,7 @@ import com.iel.endoscope.dto.DecontaminationDto;
 import com.iel.endoscope.dto.ResultDto;
 import com.iel.endoscope.dto.ResultDtoFactory;
 import com.iel.endoscope.entity.Decontamination;
+import com.iel.endoscope.entity.DecontaminationRealTime;
 import com.iel.endoscope.service.DecontaminationService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * 洗消日志Controller
@@ -81,5 +84,13 @@ public class DecontaminationController {
             return ResultDtoFactory.toError(ResultCode.MEMBER_NOT_EXIST);
         }
         return ResultDtoFactory.toSuccess(decontamination);
+    }
+
+    @RequestMapping(value = "findDecontaminationRealTime", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "手工洗消实时显示", notes = "无", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findDecontaminationRealTime(){
+        List<DecontaminationRealTime> decontaminationRealTimes = decontaminationService.findDecontaminationRealTime();
+        return ResultDtoFactory.toSuccess(decontaminationRealTimes);
     }
 }

@@ -22,4 +22,6 @@ public interface StepDAO {
     int updateByPrimaryKeySelective(Step record);
 
     int updateByPrimaryKey(Step record);
+
+    List<Step> findByDecontaminationId(Long decontaminationId);
 }

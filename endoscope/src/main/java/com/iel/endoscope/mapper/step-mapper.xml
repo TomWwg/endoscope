@@ -112,4 +112,9 @@
             cost_time = #{costTime,jdbcType=VARCHAR}
         WHERE step_id = #{stepId,jdbcType=BIGINT}
     </update>
+    <select id="findByDecontaminationId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT *
+        FROM step
+        WHERE decontamination_id = #{decontaminationId,jdbcType=BIGINT}
+    </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.iel.endoscope.service;
 
 import com.iel.endoscope.entity.Decontamination;
+import com.iel.endoscope.entity.DecontaminationRealTime;
 
 import java.util.List;
 
@@ -56,4 +57,11 @@ public interface DecontaminationService {
      * @return
      */
     int updateByPrimaryKey(Decontamination record);
+
+    /**
+     * 手工洗消的实时监控接口
+     * 该接口的返回类型与之前不同
+     * @return
+     */
+    List<DecontaminationRealTime> findDecontaminationRealTime();
 }

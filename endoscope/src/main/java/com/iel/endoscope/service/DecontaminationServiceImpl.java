@@ -1,10 +1,11 @@
 package com.iel.endoscope.service;
 
-import com.iel.endoscope.dao.DecontaminationDAO;
-import com.iel.endoscope.entity.Decontamination;
+import com.iel.endoscope.dao.*;
+import com.iel.endoscope.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +18,18 @@ public class DecontaminationServiceImpl implements DecontaminationService {
 
     @Autowired
     private DecontaminationDAO decontaminationDAO;
+
+    @Autowired
+    private EndoscopeDAO endoscopeDAO;
+
+    @Autowired
+    private StepDAO stepDAO;
+
+    @Autowired
+    private EmployeeDAO employeeDAO;
+
+    @Autowired
+    private StationDAO stationDAO;
 
     @Override
     public int deleteByPrimaryKey(Long decontaminationId) {
@@ -55,5 +68,33 @@ public class DecontaminationServiceImpl implements DecontaminationService {
     public int updateByPrimaryKey(Decontamination record) {
         decontaminationDAO.updateByPrimaryKey(record);
         return 1;
+    }
+
+    @Override
+    public List<DecontaminationRealTime> findDecontaminationRealTime() {
+        List<DecontaminationRealTime> decontaminationRealTimes = new ArrayList<>();
+        List<Decontamination> decontaminations = decontaminationDAO.findDecontaminationsNoResult();
+        if(decontaminations != null && decontaminations.size() > 0){
+            DecontaminationRealTime decontaminationRealTime = new DecontaminationRealTime();
+            Decontamination decontamination = new Decontamination();
+            Endoscope endoscope = new Endoscope();
+            List<Step> steps = new ArrayList<>();
+            Employee employee = new Employee();
+            Station station = new Station();
+            for (int i = 0; i < decontaminations.size(); i++){
+                decontamination = decontaminations.get(i);
+                endoscope = endoscopeDAO.selectByPrimaryKey(decontamination.getEndoscopeId());
+                steps = stepDAO.findByDecontaminationId(decontamination.getDecontaminationId());
+                employee = employeeDAO.selectByPrimaryKey(decontamination.getEmployeeId());
+                station = stationDAO.selectByPrimaryKey(decontamination.getStationId());
+                decontaminationRealTime.setEndoscopeNumber(endoscope.getEndoscopeNumber());
+                decontaminationRealTime.setEndoscopeType(endoscope.getEndoscopeType());
+                decontaminationRealTime.setSteps(steps);
+                decontaminationRealTime.setEmployeeName(employee.getEmployeeName());
+                decontaminationRealTime.setStationName(station.getStationName());
+                decontaminationRealTimes.add(decontaminationRealTime);
+            }
+        }
+        return decontaminationRealTimes;
     }
 }

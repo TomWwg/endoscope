@@ -154,4 +154,9 @@
             audit_result = #{auditResult,jdbcType=VARCHAR}
         WHERE decontamination_id = #{decontaminationId,jdbcType=BIGINT}
     </update>
+    <select id="findDecontaminationsNoResult" resultMap="BaseResultMap">
+        SELECT *
+        FROM decontamination
+        WHERE audit_result IS NULL
+    </select>
 </mapper>

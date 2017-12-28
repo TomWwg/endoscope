@@ -21,4 +21,6 @@ public interface DecontaminationDAO {
     int updateByPrimaryKeySelective(Decontamination record);
 
     int updateByPrimaryKey(Decontamination record);
+
+    List<Decontamination> findDecontaminationsNoResult();
 }
