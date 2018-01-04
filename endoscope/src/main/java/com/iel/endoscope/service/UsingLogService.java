@@ -1,5 +1,4 @@
-package com.iel.endoscope.dao;
-
+package com.iel.endoscope.service;
 
 import com.iel.endoscope.entity.UsingLog;
 import com.iel.endoscope.entity.UsingLogReturn;
@@ -8,9 +7,10 @@ import java.sql.Timestamp;
 import java.util.List;
 
 /**
- * Created by com.wwg.MybatisCodeGenerate on 2017-11-10
+ * Created by wwg on 2018/1/3.
  */
-public interface UsingLogDAO {
+public interface UsingLogService {
+
     int deleteByPrimaryKey(Long usingLogId);
 
     void insert(UsingLog record);

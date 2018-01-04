@@ -128,4 +128,28 @@
             create_time = #{createTime,jdbcType=TIMESTAMP}
         WHERE using_log_id = #{usingLogId,jdbcType=BIGINT}
     </update>
+    <select id="findByENumberAndENameAndETypeAndTime" parameterType="com.iel.endoscope.entity.UsingLogReturn" resultType="com.iel.endoscope.entity.UsingLogReturn">
+        SELECT e.endoscope_number, e.endoscope_name, e.endoscope_type
+        FROM endoscope e, using_log u
+        <where>
+            <if test="endoscopeNumber != null">
+                e.endoscope_number LIKE CONCAT('%',#{endoscopeNumber,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="endoscopeName != null">
+                AND e.endoscope_name LIKE CONCAT('%',#{endoscopeName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="endoscopeType != null">
+                AND e.endoscope_type LIKE CONCAT('%',#{endoscopeType,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="startTime != null and endTime!= null">
+                AND u.create_time BETWEEN #{startTime,jdbcType=TIMESTAMP} AND #{endTime,jdbcType=TIMESTAMP}
+            </if>
+            AND e.endoscope_id = u.endoscope_id
+        </where>
+    </select>
+    <select id="findCountsUnderCertianTime" parameterType="java.sql.Timestamp" resultType="com.iel.endoscope.entity.UsingLogReturn">
+        SELECT COUNT(using_log_id)
+        FROM using_log
+        WHERE create_time BETWEEN #{startTime,jdbcType=TIMESTAMP} AND #{endTime,jdbcType=TIMESTAMP}
+    </select>
 </mapper>
