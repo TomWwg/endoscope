@@ -9,7 +9,7 @@
         <result column="tank_amount" property="tankAmount" jdbcType="INTEGER"/>
         <result column="rfid" property="rfid" jdbcType="VARCHAR"/>
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="SELECT_All_Column">
         SELECT station_id, hospital_id, station_name, employee_amount, tank_amount, 
@@ -30,7 +30,7 @@
           rfid, remark, create_time )
         VALUES ( #{hospitalId,jdbcType=BIGINT}, 
           #{stationName,jdbcType=VARCHAR}, #{employeeAmount,jdbcType=INTEGER}, #{tankAmount,jdbcType=INTEGER}, 
-          #{rfid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE} )
+          #{rfid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP} )
         <selectKey keyProperty="stationId" resultType="long">
             SELECT LAST_INSERT_ID() AS stationId
         </selectKey>
@@ -81,7 +81,7 @@
                 #{remark,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
-                #{createTime,jdbcType=DATE},
+                #{createTime,jdbcType=TIMESTAMP},
             </if>
         </trim>
         <selectKey keyProperty="stationId" resultType="long">
@@ -97,7 +97,7 @@
             (
             #{item.hospitalId,jdbcType=BIGINT}, 
             #{item.stationName,jdbcType=VARCHAR}, #{item.employeeAmount,jdbcType=INTEGER}, #{item.tankAmount,jdbcType=INTEGER}, 
-            #{item.rfid,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, #{item.createTime,jdbcType=DATE}
+            #{item.rfid,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}
             )
         </foreach>
     </insert>
@@ -123,7 +123,7 @@
                 remark = #{remark,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
-                create_time = #{createTime,jdbcType=DATE},
+                create_time = #{createTime,jdbcType=TIMESTAMP},
             </if>
         </set>
         WHERE station_id = #{stationId,jdbcType=BIGINT}
@@ -136,7 +136,11 @@
             tank_amount = #{tankAmount,jdbcType=INTEGER},
             rfid = #{rfid,jdbcType=VARCHAR},
             remark = #{remark,jdbcType=VARCHAR},
-            create_time = #{createTime,jdbcType=DATE}
+            create_time = #{createTime,jdbcType=TIMESTAMP}
         WHERE station_id = #{stationId,jdbcType=BIGINT}
     </update>
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT *
+        FROM station
+    </select>
 </mapper>

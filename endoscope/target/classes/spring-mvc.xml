@@ -15,6 +15,13 @@
     <!-- 自动扫描  @Controller-->
     <context:component-scan base-package="com.iel.endoscope"/>
 
+    <!--重要！将你的SwaggerConfig配置类注入-->
+    <bean class="com.iel.endoscope.swagger.SwaggerConfig"/>
+
+    <!--重要！配置swagger资源不被拦截-->
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
+
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <bean id="mappingJacksonHttpMessageConverter"
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">

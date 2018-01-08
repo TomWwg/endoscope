@@ -5,7 +5,7 @@
         <id column="login_log_id" property="loginLogId" jdbcType="BIGINT"/>
         <result column="user_id" property="userId" jdbcType="BIGINT"/>
         <result column="login_type" property="loginType" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="SELECT_All_Column">
         SELECT login_log_id, user_id, login_type, create_time
@@ -23,7 +23,7 @@
         INSERT INTO login_log ( user_id, 
           login_type, create_time )
         VALUES ( #{userId,jdbcType=BIGINT}, 
-          #{loginType,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE} )
+          #{loginType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP} )
         <selectKey keyProperty="loginLogId" resultType="long">
             SELECT LAST_INSERT_ID() AS loginLogId
         </selectKey>
@@ -50,7 +50,7 @@
                 #{loginType,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
-                #{createTime,jdbcType=DATE},
+                #{createTime,jdbcType=TIMESTAMP},
             </if>
         </trim>
         <selectKey keyProperty="loginLogId" resultType="long">
@@ -64,7 +64,7 @@
         <foreach collection="list" item="item" index="index" separator="," >
             (
             #{item.userId,jdbcType=BIGINT}, 
-            #{item.loginType,jdbcType=VARCHAR}, #{item.createTime,jdbcType=DATE}
+            #{item.loginType,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}
             )
         </foreach>
     </insert>
@@ -78,7 +78,7 @@
                 login_type = #{loginType,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
-                create_time = #{createTime,jdbcType=DATE},
+                create_time = #{createTime,jdbcType=TIMESTAMP},
             </if>
         </set>
         WHERE login_log_id = #{loginLogId,jdbcType=BIGINT}
@@ -87,7 +87,7 @@
         UPDATE login_log
         SET user_id = #{userId,jdbcType=BIGINT},
             login_type = #{loginType,jdbcType=VARCHAR},
-            create_time = #{createTime,jdbcType=DATE}
+            create_time = #{createTime,jdbcType=TIMESTAMP}
         WHERE login_log_id = #{loginLogId,jdbcType=BIGINT}
     </update>
 </mapper>
