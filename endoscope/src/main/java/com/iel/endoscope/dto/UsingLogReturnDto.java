@@ -9,6 +9,17 @@ import java.sql.Timestamp;
  */
 public class UsingLogReturnDto extends PageDto {
 
+    //内镜使用Id
+    private Long usingLogId;
+
+    public Long getUsingLogId() {
+        return usingLogId;
+    }
+
+    public void setUsingLogId(Long usingLogId) {
+        this.usingLogId = usingLogId;
+    }
+
     //内镜编号
     private String endoscopeNumber;
     //内镜名称

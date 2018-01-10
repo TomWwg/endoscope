@@ -87,7 +87,7 @@ public class EndoscopeController {
 
     @RequestMapping(value = "findByEndoscopeType", method = RequestMethod.POST)
     @ResponseBody
-    @ApiOperation(value = "findByEndoscopeType", notes = "endoscopeType可传可不传", httpMethod = "POST", response = ResultDto.class)
+    @ApiOperation(value = "通过内镜类型查找对应的内镜信息", notes = "endoscopeType可传可不传", httpMethod = "POST", response = ResultDto.class)
     public ResultDto findByEndoscopeType(@RequestBody EndoscopeDto dto){
         Endoscope endoscopeRequest = EndoscopeDto.form(dto);
         if(endoscopeRequest == null){
