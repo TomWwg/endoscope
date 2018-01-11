@@ -10,6 +10,16 @@
         <result column="doctor" property="doctor" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
     </resultMap>
+    <resultMap id="BaseResultMap2" type="com.iel.endoscope.entity.UsingLogReturn">
+        <id column="usingLogId" property="usingLogId" jdbcType="BIGINT"/>
+        <result column="endoscopeNumber" property="endoscopeNumber" jdbcType="VARCHAR"/>
+        <result column="endoscopeName" property="endoscopeName" jdbcType="VARCHAR"/>
+        <result column="endoscopeType" property="endoscopeType" jdbcType="VARCHAR"/>
+        <result column="usedTimes" property="usedTimes" jdbcType="INTEGER"/>
+        <result column="usedRate" property="usedRate" jdbcType="VARCHAR"/>
+        <result column="startTime" property="startTime" jdbcType="TIMESTAMP"/>
+        <result column="endTime" property="endTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
     <sql id="SELECT_All_Column">
         SELECT using_log_id, endoscope_id, employee_id, patient_id, using_time, 
         doctor, create_time
