@@ -4,8 +4,8 @@ package com.iel.endoscope.dao;
 import com.iel.endoscope.entity.UsingLog;
 import com.iel.endoscope.entity.UsingLogReturn;
 
-import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by com.wwg.MybatisCodeGenerate on 2017-11-10
@@ -27,5 +27,5 @@ public interface UsingLogDAO {
 
     List<UsingLogReturn> findByENumberAndENameAndETypeAndTime(UsingLogReturn record);
 
-    int findCountsUnderCertainTime(Timestamp startTime, Timestamp endTime);
+    int findCountsUnderCertainTime(Map<String, Object> map);
 }

@@ -147,9 +147,9 @@
             AND e.endoscope_id = u.endoscope_id
         </where>
     </select>
-    <select id="findCountsUnderCertianTime" parameterType="java.sql.Timestamp" resultType="com.iel.endoscope.entity.UsingLogReturn">
+    <select id="findCountsUnderCertainTime" parameterType="map" resultType="Integer">
         SELECT COUNT(using_log_id)
         FROM using_log
-        WHERE create_time BETWEEN #{startTime,jdbcType=TIMESTAMP} AND #{endTime,jdbcType=TIMESTAMP}
+        WHERE #{startTime,jdbcType=TIMESTAMP} &gt; create_time &lt; #{endTime,jdbcType=TIMESTAMP}
     </select>
 </mapper>
