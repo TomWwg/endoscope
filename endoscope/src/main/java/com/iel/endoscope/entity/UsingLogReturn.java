@@ -91,4 +91,15 @@ public class UsingLogReturn implements Serializable {
                 ", endTime=" + endTime +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object object){
+        UsingLogReturn usingLogReturn = (UsingLogReturn) object;
+        return this.getEndoscopeNumber().equals(usingLogReturn.getEndoscopeNumber());
+    }
+
+    @Override
+    public int hashCode(){
+        return this.getEndoscopeNumber().hashCode();
+    }
 }
