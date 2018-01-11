@@ -138,7 +138,7 @@
             create_time = #{createTime,jdbcType=TIMESTAMP}
         WHERE using_log_id = #{usingLogId,jdbcType=BIGINT}
     </update>
-    <select id="findByENumberAndENameAndETypeAndTime" parameterType="com.iel.endoscope.entity.UsingLogReturn" resultType="com.iel.endoscope.entity.UsingLogReturn">
+    <select id="findByENumberAndENameAndETypeAndTime" parameterType="com.iel.endoscope.entity.UsingLogReturn" resultMap="BaseResultMap2">
         SELECT e.endoscope_number, e.endoscope_name, e.endoscope_type
         FROM endoscope e, using_log u
         <where>
