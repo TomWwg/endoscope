@@ -139,7 +139,7 @@
         WHERE using_log_id = #{usingLogId,jdbcType=BIGINT}
     </update>
     <select id="findByENumberAndENameAndETypeAndTime" parameterType="com.iel.endoscope.entity.UsingLogReturn" resultMap="BaseResultMap2">
-        SELECT e.endoscope_number, e.endoscope_name, e.endoscope_type
+        SELECT e.endoscope_number endoscopeNumber, e.endoscope_name endoscopeName, e.endoscope_type endoscopeType
         FROM endoscope e, using_log u
         <where>
             <if test="endoscopeNumber != null">
@@ -152,7 +152,7 @@
                 AND e.endoscope_type LIKE CONCAT('%',#{endoscopeType,jdbcType=VARCHAR},'%')
             </if>
             <if test="startTime != null and endTime!= null">
-                AND u.create_time BETWEEN #{startTime,jdbcType=TIMESTAMP} AND #{endTime,jdbcType=TIMESTAMP}
+                AND #{startTime,jdbcType=TIMESTAMP} &gt; u.create_time &lt; #{endTime,jdbcType=TIMESTAMP}
             </if>
             AND e.endoscope_id = u.endoscope_id
         </where>

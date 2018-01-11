@@ -72,7 +72,6 @@ public class UsingLogController {
     @ResponseBody
     public ResultDto findByUsingLogId(@RequestBody UsingLogReturnDto dto){
         Date date = new Date();
-        System.out.println(new Timestamp(date.getTime()));
         UsingLog usingLog = usingLogService.selectByPrimaryKey(dto.getUsingLogId());
         return ResultDtoFactory.toSuccess(usingLog);
     }

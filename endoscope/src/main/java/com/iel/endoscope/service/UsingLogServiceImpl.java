@@ -4,13 +4,17 @@ import com.iel.endoscope.dao.UsingLogDAO;
 import com.iel.endoscope.entity.UsingLog;
 import com.iel.endoscope.entity.UsingLogReturn;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wwg on 2018/1/3.
  */
+@Service("usingLogServiceImpl")
 public class UsingLogServiceImpl implements UsingLogService {
 
     @Autowired
@@ -61,7 +65,10 @@ public class UsingLogServiceImpl implements UsingLogService {
 
     @Override
     public int findCountsUnderCertainTime(Timestamp startTime, Timestamp endTime) {
-        int counts = usingLogDAO.findCountsUnderCertainTime(startTime, endTime);
+        Map<String, Object> map = new HashMap<>();
+        map.put("startTime", startTime);
+        map.put("endTime", endTime);
+        int counts = usingLogDAO.findCountsUnderCertainTime(map);
         return counts;
     }
 }
