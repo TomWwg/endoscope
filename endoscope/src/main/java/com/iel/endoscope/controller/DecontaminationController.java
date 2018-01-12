@@ -93,4 +93,8 @@ public class DecontaminationController {
         List<DecontaminationRealTime> decontaminationRealTimes = decontaminationService.findDecontaminationRealTime();
         return ResultDtoFactory.toSuccess(decontaminationRealTimes);
     }
+
+    public ResultDto findWorkloadStatistics(@RequestBody){
+
+    }
 }

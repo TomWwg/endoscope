@@ -12,6 +12,11 @@
         <result column="consume_time" property="consumeTime" jdbcType="VARCHAR"/>
         <result column="audit_result" property="auditResult" jdbcType="VARCHAR"/>
     </resultMap>
+    <resultMap id="BaseResultMap2" type="com.iel.endoscope.entity.DecontaminationWork">
+        <result column="employeeNumber" property="employeeNumber" jdbcType="BIGINT"/>
+        <result column="employeeName" property="employeeName" jdbcType="BIGINT"/>
+        <result column="roleName" property="roleName" jdbcType="BIGINT"/>
+    </resultMap>
     <sql id="SELECT_All_Column">
         SELECT decontamination_id, hospital_id, station_id, employee_id, endoscope_id, 
         create_time, update_time, consume_time, audit_result
@@ -158,5 +163,14 @@
         SELECT *
         FROM decontamination
         WHERE audit_result IS NULL
+    </select>
+    <select id="findWorkloadStatistics" parameterType="map" resultMap="BaseResultMap2">
+        SELECT e.employee_number employeeNumber, e.employee_name employeeName, r.role_name roleName
+        FROM decontamination d, employee e, role r
+        <where>
+            <if test="">
+
+            </if>
+        </where>
     </select>
 </mapper>

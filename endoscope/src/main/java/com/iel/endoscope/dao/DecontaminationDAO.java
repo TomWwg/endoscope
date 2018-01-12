@@ -1,8 +1,10 @@
 package com.iel.endoscope.dao;
 
 import com.iel.endoscope.entity.Decontamination;
+import com.iel.endoscope.entity.DecontaminationWork;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by com.wwg.MybatisCodeGenerate on 2017-11-10
@@ -23,4 +25,6 @@ public interface DecontaminationDAO {
     int updateByPrimaryKey(Decontamination record);
 
     List<Decontamination> findDecontaminationsNoResult();
+
+    List<DecontaminationWork> findWorkloadStatistics(Map<String, Object> map);
 }
