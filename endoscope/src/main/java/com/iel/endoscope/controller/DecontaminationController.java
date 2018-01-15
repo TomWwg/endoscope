@@ -2,10 +2,12 @@ package com.iel.endoscope.controller;
 
 import com.iel.endoscope.constant.ResultCode;
 import com.iel.endoscope.dto.DecontaminationDto;
+import com.iel.endoscope.dto.DecontaminationWorkDto;
 import com.iel.endoscope.dto.ResultDto;
 import com.iel.endoscope.dto.ResultDtoFactory;
 import com.iel.endoscope.entity.Decontamination;
 import com.iel.endoscope.entity.DecontaminationRealTime;
+import com.iel.endoscope.entity.DecontaminationWork;
 import com.iel.endoscope.service.DecontaminationService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 洗消日志Controller
@@ -94,7 +98,21 @@ public class DecontaminationController {
         return ResultDtoFactory.toSuccess(decontaminationRealTimes);
     }
 
-    public ResultDto findWorkloadStatistics(@RequestBody){
-
+    @RequestMapping(value = "findWorkloadStatistics", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "工作量统计", notes = "通过工号/姓名/角色/起止时间查询对应的员工工作量统计信息", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findWorkloadStatistics(@RequestBody DecontaminationWorkDto dto){
+        DecontaminationWork decontaminationWork = DecontaminationWorkDto.form(dto);
+        if(decontaminationWork == null){
+            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("employeeNumber", decontaminationWork.getEmployeeNumber());
+        map.put("employeeName", decontaminationWork.getEmployeeName());
+        map.put("roleId", decontaminationWork.getRoleId());
+        map.put("startTime", dto.getStartTime());
+        map.put("endTime", dto.getEndTime());
+        List<DecontaminationWork> list = decontaminationService.findWorkloadStatistics(map);
+        return ResultDtoFactory.toSuccess(list);
     }
 }

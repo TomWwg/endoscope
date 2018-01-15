@@ -166,11 +166,21 @@
     </select>
     <select id="findWorkloadStatistics" parameterType="map" resultMap="BaseResultMap2">
         SELECT e.employee_number employeeNumber, e.employee_name employeeName, r.role_name roleName
-        FROM decontamination d, employee e, role r
+        FROM decontamination d, employee e, role r, using_log u
         <where>
-            <if test="">
-
+            <if test="employeeNumber != null">
+                e.employee_number LIKE CONCAT('%',#{employeeNumber,jdbcType=VARCHAR},'%')
             </if>
+            <if test="employeeName != null">
+                AND e.employee_name LIKE CONCAT('%',#{employeeName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="roleId != null">
+                AND e.employee_id = #{roleId,jdbcType=BIGINT}
+            </if>
+            <if test="startTime != null and endTime!= null">
+                AND #{startTime,jdbcType=TIMESTAMP} &gt; u.create_time &lt; #{endTime,jdbcType=TIMESTAMP}
+            </if>
+            AND d.employee_id = e.employee_id
         </where>
     </select>
 </mapper>

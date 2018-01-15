@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.*;
 
 /**
@@ -61,7 +60,7 @@ public class UsingLogController {
             for(UsingLogReturn val : list){
                 if(val.getEndoscopeNumber().equals(s)){
                     val.setUsedTimes(usedNumbersMap.get(s));
-                    val.setUsedRate(new BigDecimal((float)usedNumbersMap.get(s)/total*100).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue() + "");
+                    val.setUsedRate(new BigDecimal((float)usedNumbersMap.get(s)/total*100).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue() + "%");
                 }
             }
         }

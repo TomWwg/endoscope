@@ -2,8 +2,10 @@ package com.iel.endoscope.service;
 
 import com.iel.endoscope.entity.Decontamination;
 import com.iel.endoscope.entity.DecontaminationRealTime;
+import com.iel.endoscope.entity.DecontaminationWork;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 洗消日志接口类
@@ -64,4 +66,12 @@ public interface DecontaminationService {
      * @return
      */
     List<DecontaminationRealTime> findDecontaminationRealTime();
+
+    /**
+     * 工作量统计页面的查询接口
+     * 通过工号、姓名、角色、起止时间查询对应的员工工作量统计信息
+     * @param map
+     * @return
+     */
+    List<DecontaminationWork> findWorkloadStatistics(Map<String, Object> map);
 }

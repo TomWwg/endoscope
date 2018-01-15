@@ -1,13 +1,13 @@
-package com.iel.endoscope.entity;
+package com.iel.endoscope.dto;
 
-import java.io.Serializable;
+import com.iel.endoscope.entity.DecontaminationWork;
+
+import java.sql.Timestamp;
 
 /**
- * 工作量统计页面返回的类
- * @author wwg
- * @date 2018/1/12
+ * Created by wwg on 2018/1/15.
  */
-public class DecontaminationWork implements Serializable {
+public class DecontaminationWorkDto {
 
     //角色Id
     private Long roleId;
@@ -21,6 +21,26 @@ public class DecontaminationWork implements Serializable {
     private int cleaningNumber;
     //清洗百分比
     private String cleaningPercent;
+    //开始时间
+    private Timestamp startTime;
+    //结束时间
+    private Timestamp endTime;
+
+    public Timestamp getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Timestamp startTime) {
+        this.startTime = startTime;
+    }
+
+    public Timestamp getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Timestamp endTime) {
+        this.endTime = endTime;
+    }
 
     public Long getRoleId() {
         return roleId;
@@ -72,7 +92,7 @@ public class DecontaminationWork implements Serializable {
 
     @Override
     public String toString() {
-        return "DecontaminationWork{" +
+        return "DecontaminationWorkDto{" +
                 "roleId=" + roleId +
                 ", employeeNumber='" + employeeNumber + '\'' +
                 ", employeeName='" + employeeName + '\'' +
@@ -82,47 +102,17 @@ public class DecontaminationWork implements Serializable {
                 '}';
     }
 
-    public boolean equals(Object object){
-        DecontaminationWork decontaminationWork = (DecontaminationWork) object;
-        if(this == object){
-            return true;
+    public static DecontaminationWork form(DecontaminationWorkDto dto){
+        DecontaminationWork decontaminationWork = null;
+        if(dto != null){
+            decontaminationWork = new DecontaminationWork();
+            decontaminationWork.setEmployeeNumber(dto.getEmployeeNumber());
+            decontaminationWork.setEmployeeName(dto.getEmployeeName());
+            decontaminationWork.setRoleName(dto.getRoleName());
+            decontaminationWork.setRoleId(dto.getRoleId());
+            decontaminationWork.setCleaningNumber(dto.getCleaningNumber());
+            decontaminationWork.setCleaningPercent(dto.getCleaningPercent());
         }
-        if(object == null){
-            return false;
-        }
-        if(getClass() != object.getClass()){
-            return false;
-        }
-        if(employeeNumber == null){
-            if(decontaminationWork.getEmployeeNumber() != null){
-                return false;
-            }
-        } else if(!employeeNumber.equals(decontaminationWork.getEmployeeNumber())){
-            return false;
-        }
-        if(employeeName == null){
-            if(decontaminationWork.getEmployeeName() != null){
-                return false;
-            }
-        } else if(!employeeName.equals(decontaminationWork.getEmployeeName())){
-            return false;
-        }
-        if(roleName == null){
-            if(decontaminationWork.getRoleName() != null){
-                return false;
-            }
-        } else if(!roleName.equals(decontaminationWork.getRoleName())){
-            return false;
-        }
-        return true;
-    }
-
-    public int hashCode(){
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((employeeNumber == null) ? 0 : employeeNumber.hashCode());
-        result = prime * result + ((employeeName == null) ? 0 : employeeName.hashCode());
-        result = prime * result + ((roleName == null) ? 0 : roleName.hashCode());
-        return result;
+        return decontaminationWork;
     }
 }

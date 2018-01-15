@@ -5,8 +5,8 @@ import com.iel.endoscope.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.*;
 
 /**
  * 洗消日志的实现类
@@ -96,5 +96,28 @@ public class DecontaminationServiceImpl implements DecontaminationService {
             }
         }
         return decontaminationRealTimes;
+    }
+
+    @Override
+    public List<DecontaminationWork> findWorkloadStatistics(Map<String, Object> map) {
+        List<DecontaminationWork> decontaminationWorks = decontaminationDAO.findWorkloadStatistics(map);
+        System.out.println(decontaminationWorks);
+        int total = decontaminationWorks.size();
+        Set<DecontaminationWork> set = new HashSet<>();
+        set.addAll(decontaminationWorks);
+        System.out.println(set);
+        for(DecontaminationWork val : set){
+            int cleaningNumber = 0;
+            for(DecontaminationWork decontaminationWork : set){
+                if(val.equals(decontaminationWork)){
+                    cleaningNumber++;
+                }
+            }
+            val.setCleaningNumber(cleaningNumber);
+            val.setCleaningPercent(new BigDecimal((float)cleaningNumber*100/total).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue() + "%");
+        }
+        decontaminationWorks.clear();
+        decontaminationWorks.addAll(set);
+        return decontaminationWorks;
     }
 }
