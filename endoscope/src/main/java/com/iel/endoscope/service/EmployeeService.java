@@ -56,4 +56,10 @@ public interface EmployeeService {
      * @return
      */
     int updateByPrimaryKey(Employee record);
+
+    /**
+     * 查询所有员工信息
+     * @return
+     */
+    List<Employee> findAllEmployees();
 }

@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 员工的Controller
  * Created by wwg on 2017/12/1.
@@ -81,5 +84,14 @@ public class EmployeeController {
             return ResultDtoFactory.toError(ResultCode.MEMBER_NOT_EXIST);
         }
         return ResultDtoFactory.toSuccess(employee);
+    }
+
+    @RequestMapping(value = "findAllEmployees", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "查询所有的员工信息", notes = "暂无", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findALlEmployees(){
+        List<Employee> employees = new ArrayList<>();
+        employees = employeeService.findAllEmployees();
+        return ResultDtoFactory.toSuccess(employees);
     }
 }

@@ -22,4 +22,6 @@ public interface EmployeeDAO {
     int updateByPrimaryKeySelective(Employee record);
 
     int updateByPrimaryKey(Employee record);
+
+    List<Employee> findAllEmployees();
 }

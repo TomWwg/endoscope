@@ -56,4 +56,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeDAO.updateByPrimaryKey(record);
         return 1;
     }
+
+    @Override
+    public List<Employee> findAllEmployees() {
+        return employeeDAO.findAllEmployees();
+    }
 }

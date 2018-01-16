@@ -154,4 +154,8 @@
             create_time = #{createTime,jdbcType=TIMESTAMP}
         WHERE employee_id = #{employeeId,jdbcType=BIGINT}
     </update>
+    <select id="findAllEmployees" resultMap="BaseResultMap">
+        SELECT *
+        FROM employee
+    </select>
 </mapper>
