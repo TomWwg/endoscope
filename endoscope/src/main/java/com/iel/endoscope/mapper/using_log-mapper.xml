@@ -152,7 +152,7 @@
                 AND e.endoscope_type LIKE CONCAT('%',#{endoscopeType,jdbcType=VARCHAR},'%')
             </if>
             <if test="startTime != null and endTime!= null">
-                AND #{startTime,jdbcType=TIMESTAMP} &gt; u.create_time &lt; #{endTime,jdbcType=TIMESTAMP}
+                AND #{startTime,jdbcType=TIMESTAMP} &lt; u.create_time &lt; #{endTime,jdbcType=TIMESTAMP}
             </if>
             AND e.endoscope_id = u.endoscope_id
         </where>
@@ -160,6 +160,6 @@
     <select id="findCountsUnderCertainTime" parameterType="map" resultType="Integer">
         SELECT COUNT(using_log_id)
         FROM using_log
-        WHERE #{startTime,jdbcType=TIMESTAMP} &gt; create_time &lt; #{endTime,jdbcType=TIMESTAMP}
+        WHERE #{startTime,jdbcType=TIMESTAMP} &lt; create_time &lt; #{endTime,jdbcType=TIMESTAMP}
     </select>
 </mapper>

@@ -82,6 +82,7 @@ public class DecontaminationWork implements Serializable {
                 '}';
     }
 
+    @Override
     public boolean equals(Object object){
         DecontaminationWork decontaminationWork = (DecontaminationWork) object;
         if(this == object){
@@ -117,6 +118,7 @@ public class DecontaminationWork implements Serializable {
         return true;
     }
 
+    @Override
     public int hashCode(){
         final int prime = 31;
         int result = 1;

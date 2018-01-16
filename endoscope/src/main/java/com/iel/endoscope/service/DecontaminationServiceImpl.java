@@ -105,19 +105,19 @@ public class DecontaminationServiceImpl implements DecontaminationService {
         int total = decontaminationWorks.size();
         Set<DecontaminationWork> set = new HashSet<>();
         set.addAll(decontaminationWorks);
-        System.out.println(set);
-        for(DecontaminationWork val : set){
+        List<DecontaminationWork> list = new ArrayList<>();
+        list.addAll(set);
+        for(int i = 0; i < list.size(); i++) {
             int cleaningNumber = 0;
-            for(DecontaminationWork decontaminationWork : set){
-                if(val.equals(decontaminationWork)){
+            DecontaminationWork val = list.get(i);
+            for (int j = 0; j < decontaminationWorks.size(); j++) {
+                if (val.getEmployeeNumber().equals(decontaminationWorks.get(j).getEmployeeNumber())) {
                     cleaningNumber++;
                 }
             }
             val.setCleaningNumber(cleaningNumber);
-            val.setCleaningPercent(new BigDecimal((float)cleaningNumber*100/total).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue() + "%");
+            val.setCleaningPercent(new BigDecimal((float) cleaningNumber * 100 / total).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue() + "%");
         }
-        decontaminationWorks.clear();
-        decontaminationWorks.addAll(set);
-        return decontaminationWorks;
+        return list;
     }
 }
