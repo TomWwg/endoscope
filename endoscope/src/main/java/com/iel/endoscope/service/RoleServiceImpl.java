@@ -56,4 +56,9 @@ public class RoleServiceImpl implements RoleService {
         roleDAO.updateByPrimaryKey(record);
         return 1;
     }
+
+    @Override
+    public List<Role> findAllRoles() {
+        return roleDAO.findAllRoles();
+    }
 }

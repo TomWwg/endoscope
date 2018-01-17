@@ -56,4 +56,10 @@ public interface RoleService {
      * @return
      */
     int updateByPrimaryKey(Role record);
+
+    /**
+     * 查询所有的角色信息
+     * @return
+     */
+    List<Role> findAllRoles();
 }

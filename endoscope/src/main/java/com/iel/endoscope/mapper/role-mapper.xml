@@ -101,4 +101,8 @@
             create_time = #{createTime,jdbcType=TIMESTAMP}
         WHERE role_id = #{roleId,jdbcType=BIGINT}
     </update>
+    <select id="findAllRoles" resultMap="BaseResultMap">
+        SELECT *
+        FROM role
+    </select>
 </mapper>

@@ -166,7 +166,7 @@
     </select>
     <select id="findWorkloadStatistics" parameterType="map" resultMap="BaseResultMap2">
         SELECT e.employee_number employeeNumber, e.employee_name employeeName, r.role_name roleName
-        FROM decontamination d, employee e, role r, using_log u
+        FROM decontamination d, employee e, role r
         <where>
             d.employee_id = e.employee_id
             AND e.role_id = r.role_id

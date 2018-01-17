@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * 角色的Controller
  * Created by wwg on 2017/12/1.
@@ -81,5 +83,13 @@ public class RoleController {
             return ResultDtoFactory.toError(ResultCode.MEMBER_NOT_EXIST);
         }
         return ResultDtoFactory.toSuccess(role);
+    }
+
+    @RequestMapping(value = "findAllRoles", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "查询所有的角色信息", notes = "暂无", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findAllRoles(){
+        List<Role> roles = roleService.findAllRoles();
+        return ResultDtoFactory.toSuccess(roles);
     }
 }
