@@ -17,6 +17,17 @@
         <result column="employeeName" property="employeeName" jdbcType="BIGINT"/>
         <result column="roleName" property="roleName" jdbcType="BIGINT"/>
     </resultMap>
+    <resultMap id="BaseResultMap3" type="com.iel.endoscope.entity.DecontaminationLog">
+        <result column="decontaminationId" property="decontaminationId" jdbcType="BIGINT"/>
+        <result column="endoscopeName" property="endoscopeName" jdbcType="VARCHAR"/>
+        <result column="endoscopeNumber" property="endoscopeNumber" jdbcType="VARCHAR"/>
+        <result column="steps" property="steps"/>
+        <result column="employeeName" property="employeeName" jdbcType="VARCHAR"/>
+        <result column="createTime" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="consumeTime" property="consumeTime" jdbcType="VARCHAR"/>
+        <result column="auditResult" property="auditResult" jdbcType="VARCHAR"/>
+    </resultMap>
     <sql id="SELECT_All_Column">
         SELECT decontamination_id, hospital_id, station_id, employee_id, endoscope_id, 
         create_time, update_time, consume_time, audit_result
@@ -182,6 +193,39 @@
             <if test="startTime != null and endTime != null">
                 AND #{startTime,jdbcType=TIMESTAMP} &lt; d.create_time &lt; #{endTime,jdbcType=TIMESTAMP}
             </if>
+        </where>
+    </select>
+    <select id="findDecontaminationLog" resultMap="BaseResultMap3" parameterType="map">
+        SELECT d.decontamination_id decontaminationId,
+               en.endoscope_name endoscopeName,
+               en.endoscope_number endoscopeNumber,
+               em.employee_name employeeName,
+               d.create_time createTime,
+               d.update_time updateTime,
+               d.consume_time consumeTime,
+               d.audit_result auditResult
+        FROM decontamination d,
+             endoscope en,
+             employee em
+        <where>
+            d.endoscope_id = en.endoscope_id
+            AND d.employee_id = em.employee_id
+            <if test="endoscopeNumber != null">
+                AND en.endoscope_number LIKE CONCAT('%',#{endoscopeNumber,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="endoscopeName != null">
+                AND en.endoscope_name LIKE CONCAT('%', #{endoscopeName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="endoscopeType != null">
+                AND en.endoscope_type LIKE CONCAT('%', #{endoscopeType,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="employeeName != null">
+                AND em.employee_name LIKE CONCAT('%', #{employeeName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="auditResult != null">
+                AND d.audit_result = #{auditResult,jdbcType=VARCHAR}
+            </if>
+            AND #{startTime,jdbcType=TIMESTAMP} &lt; d.create_time &lt; #{endTime,jdbcType=TIMESTAMP}
         </where>
     </select>
 </mapper>

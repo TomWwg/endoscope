@@ -1,6 +1,7 @@
 package com.iel.endoscope.dao;
 
 import com.iel.endoscope.entity.Decontamination;
+import com.iel.endoscope.entity.DecontaminationLog;
 import com.iel.endoscope.entity.DecontaminationWork;
 
 import java.util.List;
@@ -27,4 +28,6 @@ public interface DecontaminationDAO {
     List<Decontamination> findDecontaminationsNoResult();
 
     List<DecontaminationWork> findWorkloadStatistics(Map<String, Object> map);
+
+    List<DecontaminationLog> findDecontaminationLog(Map<String, Object> map);
 }

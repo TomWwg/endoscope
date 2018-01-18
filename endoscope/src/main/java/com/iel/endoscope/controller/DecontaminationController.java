@@ -1,10 +1,7 @@
 package com.iel.endoscope.controller;
 
 import com.iel.endoscope.constant.ResultCode;
-import com.iel.endoscope.dto.DecontaminationDto;
-import com.iel.endoscope.dto.DecontaminationWorkDto;
-import com.iel.endoscope.dto.ResultDto;
-import com.iel.endoscope.dto.ResultDtoFactory;
+import com.iel.endoscope.dto.*;
 import com.iel.endoscope.entity.Decontamination;
 import com.iel.endoscope.entity.DecontaminationRealTime;
 import com.iel.endoscope.entity.DecontaminationWork;
@@ -115,4 +112,16 @@ public class DecontaminationController {
         List<DecontaminationWork> list = decontaminationService.findWorkloadStatistics(map);
         return ResultDtoFactory.toSuccess(list);
     }
+
+    @RequestMapping(value = "findDecontaminationLog", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "根据内镜编号/内镜名称/内镜类型/洗消人员/审核结果/开始时间、结束时间查询对应的手工洗消日志信息", notes = "除开始时间、结束时间意外其他条件可以为空", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findDecontaminationLog(@RequestBody DecontaminationLogDto dto){
+        Map<String, Object> map = DecontaminationLogDto.form(dto);
+        if(map.get("startTime") == null || map.get("endTime") == null){
+            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
+        }
+        
+    }
+
 }
