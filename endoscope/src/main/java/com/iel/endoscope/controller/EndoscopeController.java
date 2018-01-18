@@ -97,4 +97,12 @@ public class EndoscopeController {
         return ResultDtoFactory.toSuccess(endoscopeList);
     }
 
+    @RequestMapping(value = "findAll", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "查询所有内镜信息", notes = "暂无", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findAll(){
+        List<Endoscope> endoscopes = endoscopeService.findAll();
+        return ResultDtoFactory.toSuccess(endoscopes);
+    }
+
 }

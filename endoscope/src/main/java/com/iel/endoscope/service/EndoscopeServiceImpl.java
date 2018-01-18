@@ -62,4 +62,9 @@ public class EndoscopeServiceImpl implements EndoscopeService {
         List<Endoscope> endoscopeList = endoscopeDAO.findByEndoscopeType(record);
         return endoscopeList;
     }
+
+    @Override
+    public List<Endoscope> findAll() {
+        return endoscopeDAO.findAll();
+    }
 }

@@ -63,4 +63,10 @@ public interface EndoscopeService {
      * @return
      */
     List<Endoscope> findByEndoscopeType(Endoscope record);
+
+    /**
+     * 查询所有内镜信息
+     * @return
+     */
+    List<Endoscope> findAll();
 }
