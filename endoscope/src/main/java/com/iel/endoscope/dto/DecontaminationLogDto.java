@@ -1,7 +1,8 @@
 package com.iel.endoscope.dto;
 
+import com.iel.endoscope.entity.DecontaminationLog;
+
 import java.sql.Timestamp;
-import java.util.Map;
 
 /**
  * 手工洗消日志的DTO
@@ -93,25 +94,15 @@ public class DecontaminationLogDto extends PageDto {
                 '}';
     }
 
-    public static Map<String, Object> form(DecontaminationLogDto dto){
-        Map<String, Object> map = null;
+    public static DecontaminationLog form(DecontaminationLogDto dto){
+        DecontaminationLog decontaminationLog = null;
         if(dto != null){
-            if(dto.getEndoscopeNumber() != null){
-                map.put("endoscopeNumber", dto.getEndoscopeNumber());
-            }
-            if(dto.getEndoscopeName() != null){
-                map.put("endoscopeName", dto.getEndoscopeName());
-            }
-            if(dto.getEndoscopeNumber() != null){
-                map.put("endoscopeType", dto.getEndoscopeType());
-            }
-            if(dto.getEndoscopeNumber() != null){
-                map.put("employeeName", dto.getEmployeeName());
-            }
-            if(dto.getEndoscopeNumber() != null){
-                map.put("auditResult", dto.getAuditResult());
-            }
+            decontaminationLog = new DecontaminationLog();
+            decontaminationLog.setEndoscopeNumber(dto.getEndoscopeNumber());
+            decontaminationLog.setEndoscopeName(dto.getEndoscopeName());
+            decontaminationLog.setEmployeeName(dto.getEmployeeName());
+            decontaminationLog.setAuditResult(dto.getAuditResult());
         }
-        return map;
+        return decontaminationLog;
     }
 }

@@ -103,7 +103,6 @@ public class DecontaminationServiceImpl implements DecontaminationService {
     @Override
     public List<DecontaminationWork> findWorkloadStatistics(Map<String, Object> map) {
         List<DecontaminationWork> decontaminationWorks = decontaminationDAO.findWorkloadStatistics(map);
-        System.out.println(decontaminationWorks);
         int total = decontaminationWorks.size();
         Set<DecontaminationWork> set = new HashSet<>();
         set.addAll(decontaminationWorks);

@@ -194,7 +194,7 @@
             </if>
         </where>
     </select>
-    <select id="findDecontaminationLog" resultMap="BaseResultMap3" parameterType="map">
+    <select id="findDecontaminationLog" resultMap="BaseResultMap3" parameterType="java.util.Map">
         SELECT d.decontamination_id decontaminationId,
                en.endoscope_name endoscopeName,
                en.endoscope_number endoscopeNumber,

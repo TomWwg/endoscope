@@ -119,12 +119,28 @@ public class DecontaminationController {
     @ResponseBody
     @ApiOperation(value = "根据内镜编号/内镜名称/内镜类型/洗消人员/审核结果/开始时间、结束时间查询对应的手工洗消日志信息", notes = "除开始时间、结束时间意外其他条件可以为空", httpMethod = "POST", response = ResultDto.class)
     public ResultDto findDecontaminationLog(@RequestBody DecontaminationLogDto dto){
-        Map<String, Object> map = DecontaminationLogDto.form(dto);
+        DecontaminationLog decontaminationLog = DecontaminationLogDto.form(dto);
+        Map<String, Object> map = new HashMap<>();
         if(dto.getStartTime() == null || dto.getEndTime() == null){
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         map.put("startTime", dto.getStartTime());
         map.put("endTime", dto.getEndTime());
+        if(dto.getEndoscopeNumber() != null){
+            map.put("endoscopeNumber", dto.getEndoscopeNumber());
+        }
+        if(dto.getEndoscopeName() != null){
+            map.put("endoscopeName", dto.getEndoscopeName());
+        }
+        if(dto.getEndoscopeType() != null){
+            map.put("endoscopeType", dto.getEndoscopeType());
+        }
+        if(dto.getEmployeeName() != null){
+            map.put("employeeName", dto.getEmployeeName());
+        }
+        if(dto.getAuditResult() != null){
+            map.put("auditResult", dto.getAuditResult());
+        }
         PageInfo<DecontaminationLog> pageInfo = decontaminationService.findDecontaminationLog(map, dto.buildPage());
         return ResultDtoFactory.toSuccess(new PageRequest<>(pageInfo));
     }
