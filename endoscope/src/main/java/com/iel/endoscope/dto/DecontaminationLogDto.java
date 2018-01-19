@@ -96,13 +96,21 @@ public class DecontaminationLogDto extends PageDto {
     public static Map<String, Object> form(DecontaminationLogDto dto){
         Map<String, Object> map = null;
         if(dto != null){
-            map.put("endoscopeNumber", dto.getEndoscopeNumber());
-            map.put("endoscopeName", dto.getEmployeeName());
-            map.put("endoscopeType", dto.getEndoscopeType());
-            map.put("employeeName", dto.getEmployeeName());
-            map.put("auditResult", dto.getAuditResult());
-            map.put("startTime", dto.getStartTime());
-            map.put("endTime", dto.getEndTime());
+            if(dto.getEndoscopeNumber() != null){
+                map.put("endoscopeNumber", dto.getEndoscopeNumber());
+            }
+            if(dto.getEndoscopeName() != null){
+                map.put("endoscopeName", dto.getEndoscopeName());
+            }
+            if(dto.getEndoscopeNumber() != null){
+                map.put("endoscopeType", dto.getEndoscopeType());
+            }
+            if(dto.getEndoscopeNumber() != null){
+                map.put("employeeName", dto.getEmployeeName());
+            }
+            if(dto.getEndoscopeNumber() != null){
+                map.put("auditResult", dto.getAuditResult());
+            }
         }
         return map;
     }

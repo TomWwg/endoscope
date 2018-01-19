@@ -39,7 +39,10 @@ public class UsingLogController {
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         List<UsingLogReturn> usingLogReturns = usingLogService.findByENumberAndENameAndETypeAndTime(usingLogReturnRequest);
-        int total = usingLogService.findCountsUnderCertainTime(usingLogReturnRequest.getStartTime(), usingLogReturnRequest.getEndTime());
+        if(usingLogReturns == null || usingLogReturns.size() == 0){
+            return ResultDtoFactory.toSuccess("根据条件查询无数据");
+        }
+        int total = usingLogService.findCountsUnderCertainTime(usingLogReturnRequest);
         Set<String> endoscopeNumbers = new HashSet<>();
         for (int i = 0; i < usingLogReturns.size(); i++){
             endoscopeNumbers.add(usingLogReturns.get(i).getEndoscopeNumber());
@@ -83,7 +86,7 @@ public class UsingLogController {
         if(usingLogReturnRequest.getStartTime() == null || usingLogReturnRequest.getEndTime() == null){
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
-        int total = usingLogService.findCountsUnderCertainTime(usingLogReturnRequest.getStartTime(), usingLogReturnRequest.getEndTime());
+        int total = usingLogService.findCountsUnderCertainTime(usingLogReturnRequest);
         return ResultDtoFactory.toSuccess(total);
     }
 }

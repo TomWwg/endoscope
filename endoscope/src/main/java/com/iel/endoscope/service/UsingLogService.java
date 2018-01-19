@@ -3,7 +3,6 @@ package com.iel.endoscope.service;
 import com.iel.endoscope.entity.UsingLog;
 import com.iel.endoscope.entity.UsingLogReturn;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -27,5 +26,5 @@ public interface UsingLogService {
 
     List<UsingLogReturn> findByENumberAndENameAndETypeAndTime(UsingLogReturn record);
 
-    int findCountsUnderCertainTime(Timestamp startTime, Timestamp endTime);
+    int findCountsUnderCertainTime(UsingLogReturn record);
 }

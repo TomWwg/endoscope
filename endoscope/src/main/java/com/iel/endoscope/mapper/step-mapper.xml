@@ -117,4 +117,8 @@
         FROM step
         WHERE decontamination_id = #{decontaminationId,jdbcType=BIGINT}
     </select>
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT *
+        FROM step
+    </select>
 </mapper>

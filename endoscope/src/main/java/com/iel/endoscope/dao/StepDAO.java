@@ -24,4 +24,6 @@ public interface StepDAO {
     int updateByPrimaryKey(Step record);
 
     List<Step> findByDecontaminationId(Long decontaminationId);
+
+    List<Step> findAll();
 }

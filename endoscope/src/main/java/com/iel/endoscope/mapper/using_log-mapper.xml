@@ -152,7 +152,7 @@
                 AND e.endoscope_type LIKE CONCAT('%',#{endoscopeType,jdbcType=VARCHAR},'%')
             </if>
             <if test="startTime != null and endTime!= null">
-                AND #{startTime,jdbcType=TIMESTAMP} &lt; u.create_time &lt; #{endTime,jdbcType=TIMESTAMP}
+                AND #{startTime,jdbcType=TIMESTAMP} &gt; u.create_time &lt; #{endTime,jdbcType=TIMESTAMP}
             </if>
             AND e.endoscope_id = u.endoscope_id
         </where>

@@ -21,7 +21,6 @@
         <result column="decontaminationId" property="decontaminationId" jdbcType="BIGINT"/>
         <result column="endoscopeName" property="endoscopeName" jdbcType="VARCHAR"/>
         <result column="endoscopeNumber" property="endoscopeNumber" jdbcType="VARCHAR"/>
-        <result column="steps" property="steps"/>
         <result column="employeeName" property="employeeName" jdbcType="VARCHAR"/>
         <result column="createTime" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP"/>
