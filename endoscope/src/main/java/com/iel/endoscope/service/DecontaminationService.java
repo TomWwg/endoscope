@@ -1,8 +1,11 @@
 package com.iel.endoscope.service;
 
+import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.entity.Decontamination;
+import com.iel.endoscope.entity.DecontaminationLog;
 import com.iel.endoscope.entity.DecontaminationRealTime;
 import com.iel.endoscope.entity.DecontaminationWork;
+import com.iel.endoscope.util.Page;
 
 import java.util.List;
 import java.util.Map;
@@ -74,4 +77,12 @@ public interface DecontaminationService {
      * @return
      */
     List<DecontaminationWork> findWorkloadStatistics(Map<String, Object> map);
+
+    /**
+     * 手工洗消日志页面
+     * 根据内镜编号/内镜名称/内镜类型/洗消人员/审核结果/开始时间、结束时间查询对应的手工洗消日志信息
+     * @param map
+     * @return
+     */
+    PageInfo<DecontaminationLog> findDecontaminationLog(Map<String, Object> map, Page page);
 }
