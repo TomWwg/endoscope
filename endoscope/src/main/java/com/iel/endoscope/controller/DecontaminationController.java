@@ -2,9 +2,7 @@ package com.iel.endoscope.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.constant.ResultCode;
-import com.iel.endoscope.dto.DecontaminationDto;
-import com.iel.endoscope.dto.ResultDto;
-import com.iel.endoscope.dto.ResultDtoFactory;
+import com.iel.endoscope.dto.*;
 import com.iel.endoscope.entity.Decontamination;
 import com.iel.endoscope.entity.DecontaminationLog;
 import com.iel.endoscope.entity.DecontaminationRealTime;

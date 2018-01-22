@@ -19,6 +19,12 @@
         <result column="usedRate" property="usedRate" jdbcType="VARCHAR"/>
         <result column="startTime" property="startTime" jdbcType="TIMESTAMP"/>
         <result column="endTime" property="endTime" jdbcType="TIMESTAMP"/>
+        <result column="endoscopeId" property="endoscopeId" jdbcType="BIGINT"/>
+        <result column="employeeId" property="employeeId" jdbcType="BIGINT"/>
+        <result column="usingTime" property="usingTime" jdbcType="TIMESTAMP"/>
+        <result column="employeeName" property="employeeName" jdbcType="VARCHAR"/>
+        <result column="patientName" property="patientName" jdbcType="VARCHAR"/>
+        <result column="visitNumber" property="visitNumber" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="SELECT_All_Column">
         SELECT using_log_id, endoscope_id, employee_id, patient_id, using_time, 
@@ -152,7 +158,7 @@
                 AND e.endoscope_type LIKE CONCAT('%',#{endoscopeType,jdbcType=VARCHAR},'%')
             </if>
             <if test="startTime != null and endTime!= null">
-                AND #{startTime,jdbcType=TIMESTAMP} &gt; u.create_time &lt; #{endTime,jdbcType=TIMESTAMP}
+                AND #{startTime,jdbcType=TIMESTAMP} &lt; u.create_time &lt; #{endTime,jdbcType=TIMESTAMP}
             </if>
             AND e.endoscope_id = u.endoscope_id
         </where>

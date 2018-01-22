@@ -34,6 +34,77 @@ public class UsingLogReturn implements Serializable {
     //结束时间
     private Timestamp endTime;
 
+    /**
+     * add return property
+     * 在内镜使用日志页面需要
+     * update by wwg
+     */
+    //内镜Id
+    private Long endoscopeId;
+
+    //洗消人员Id（员工Id）
+    private Long employeeId;
+
+    //使用时间
+    private Timestamp usingTime;
+
+    //洗消人员姓名（员工姓名）
+    private String employeeName;
+
+    //患者姓名
+    private String patientName;
+
+    //患者就诊号
+    private String visitNumber;
+
+    public Long getEndoscopeId() {
+        return endoscopeId;
+    }
+
+    public void setEndoscopeId(Long endoscopeId) {
+        this.endoscopeId = endoscopeId;
+    }
+
+    public Long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public Timestamp getUsingTime() {
+        return usingTime;
+    }
+
+    public void setUsingTime(Timestamp usingTime) {
+        this.usingTime = usingTime;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
+    }
+
+    public String getVisitNumber() {
+        return visitNumber;
+    }
+
+    public void setVisitNumber(String visitNumber) {
+        this.visitNumber = visitNumber;
+    }
+
     public String getEndoscopeNumber() {
         return endoscopeNumber;
     }
@@ -93,13 +164,20 @@ public class UsingLogReturn implements Serializable {
     @Override
     public String toString() {
         return "UsingLogReturn{" +
-                "endoscopeNumber='" + endoscopeNumber + '\'' +
+                "usingLogId=" + usingLogId +
+                ", endoscopeNumber='" + endoscopeNumber + '\'' +
                 ", endoscopeName='" + endoscopeName + '\'' +
                 ", endoscopeType='" + endoscopeType + '\'' +
                 ", usedTimes=" + usedTimes +
                 ", usedRate='" + usedRate + '\'' +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
+                ", endoscopeId=" + endoscopeId +
+                ", employeeId=" + employeeId +
+                ", usingTime=" + usingTime +
+                ", employeeName='" + employeeName + '\'' +
+                ", patientName='" + patientName + '\'' +
+                ", visitNumber='" + visitNumber + '\'' +
                 '}';
     }
 
