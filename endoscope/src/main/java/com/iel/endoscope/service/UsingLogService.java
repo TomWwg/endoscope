@@ -1,7 +1,9 @@
 package com.iel.endoscope.service;
 
+import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.entity.UsingLog;
 import com.iel.endoscope.entity.UsingLogReturn;
+import com.iel.endoscope.util.Page;
 
 import java.util.List;
 
@@ -27,4 +29,6 @@ public interface UsingLogService {
     List<UsingLogReturn> findByENumberAndENameAndETypeAndTime(UsingLogReturn record);
 
     int findCountsUnderCertainTime(UsingLogReturn record);
+
+    PageInfo<UsingLogReturn> findUsingLogByManyParameters(UsingLogReturn record, Page page);
 }

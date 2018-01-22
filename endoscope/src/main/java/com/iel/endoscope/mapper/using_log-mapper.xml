@@ -168,4 +168,31 @@
         FROM using_log
         WHERE #{startTime,jdbcType=TIMESTAMP} &lt; create_time &lt; #{endTime,jdbcType=TIMESTAMP}
     </select>
+    <select id="findUsingLogByManyParameters" parameterType="java.util.Map" resultMap="BaseResultMap2">
+        SELECT en.endoscope_number endoscopeNumber,
+               en.endoscope_name endoscopeName,
+               u.using_time usingTime,
+               em.employee_name employeeName,
+               p.patient_name patientName,
+               p.visit_number visitNumber
+        FROM endoscope en, using_log u, employee em, patient p
+        <where>
+            u.endoscope_id = en.endoscope_id
+            AND u.employee_id = em.employee_id
+            AND u.patient_id = p.patient_id
+            AND #{startTime,jdbcType=TIMESTAMP} &lt; u.using_time &lt; #{endTime,jdbcType=TIMESTAMP}
+            <if test="endoscopeType != null">
+                AND en.endoscope_type = #{endoscopeType,jdbcType=VARCHAR}
+            </if>
+            <if test="endoscopeNumber != null">
+                AND en.endoscope_number LIKE CONCAT('%',#{endoscopeNumber,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="endoscopeName != null">
+                AND en.endoscope_name LIKE CONCAT('%',#{endoscopeName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="employeeId != null">
+                AND em.employee_id = #{employeeId,jdbcType=BIGINT}
+            </if>
+        </where>
+    </select>
 </mapper>

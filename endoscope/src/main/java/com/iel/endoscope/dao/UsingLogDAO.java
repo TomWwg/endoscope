@@ -28,4 +28,12 @@ public interface UsingLogDAO {
     List<UsingLogReturn> findByENumberAndENameAndETypeAndTime(UsingLogReturn record);
 
     int findCountsUnderCertainTime(Map<String, Object> map);
+
+    /**
+     * 根据内镜Id/内镜编号/内镜名称/洗消人员Id/起止时间查询对应的内镜使用日志信息
+     * （endoscopeId/endoscopeNumber/endoscopeName/employeeId/startTime、endTime）
+     * @param map
+     * @return
+     */
+    List<UsingLogReturn> findUsingLogByManyParameters(Map<String, Object> map);
 }

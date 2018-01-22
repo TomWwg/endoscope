@@ -1,5 +1,6 @@
 package com.iel.endoscope.service;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.dao.*;
 import com.iel.endoscope.entity.*;
@@ -124,6 +125,7 @@ public class DecontaminationServiceImpl implements DecontaminationService {
 
     @Override
     public PageInfo<DecontaminationLog> findDecontaminationLog(Map<String, Object> map, Page page) {
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
         List<DecontaminationLog> list = decontaminationDAO.findDecontaminationLog(map);
         List<Step> steps = stepDAO.findAll();
         for(int i = 0; i < list.size(); i++){

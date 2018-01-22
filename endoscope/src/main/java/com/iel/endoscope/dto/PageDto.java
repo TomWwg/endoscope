@@ -27,5 +27,9 @@ public class PageDto {
 	public Page buildPage() {
 		return new Page(pageNum, pageSize);
 	}
+
+	public static Page buildPage(int pageNum, int pageSize) {
+		return new Page(pageNum, pageSize);
+	}
 	
 }

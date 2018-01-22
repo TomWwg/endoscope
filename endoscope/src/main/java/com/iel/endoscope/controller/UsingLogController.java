@@ -1,12 +1,15 @@
 package com.iel.endoscope.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.constant.ResultCode;
+import com.iel.endoscope.dto.PageRequest;
 import com.iel.endoscope.dto.ResultDto;
 import com.iel.endoscope.dto.ResultDtoFactory;
 import com.iel.endoscope.dto.UsingLogReturnDto;
 import com.iel.endoscope.entity.UsingLog;
 import com.iel.endoscope.entity.UsingLogReturn;
 import com.iel.endoscope.service.UsingLogService;
+import com.iel.endoscope.util.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,7 +83,7 @@ public class UsingLogController {
 
     @RequestMapping(value = "findCountsUnderCertainTime", method = RequestMethod.POST)
     @ResponseBody
-    @ApiOperation(value = "查询对应的时间段内的内镜使用次数", notes = "", httpMethod = "", response = ResultDto.class)
+    @ApiOperation(value = "查询对应的时间段内的内镜使用次数", notes = "起始时间不能为空", httpMethod = "POST", response = ResultDto.class)
     public ResultDto findCountsUnderCertainTime(@RequestBody UsingLogReturnDto dto){
         UsingLogReturn usingLogReturnRequest = UsingLogReturnDto.form(dto);
         if(usingLogReturnRequest.getStartTime() == null || usingLogReturnRequest.getEndTime() == null){
@@ -88,5 +91,15 @@ public class UsingLogController {
         }
         int total = usingLogService.findCountsUnderCertainTime(usingLogReturnRequest);
         return ResultDtoFactory.toSuccess(total);
+    }
+
+    @RequestMapping(value = "findUsingLogByManyParameters", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "", notes = "", httpMethod = "", response = ResultDto.class)
+    public ResultDto findUsingLogByManyParameters(@RequestBody UsingLogReturnDto dto){
+        UsingLogReturn usingLogReturnRequest = UsingLogReturnDto.form(dto);
+        Page page = UsingLogReturnDto.buildPage(dto.getPageNum(), dto.getPageSize());
+        PageInfo pageInfo = usingLogService.findUsingLogByManyParameters(usingLogReturnRequest, page);
+        return ResultDtoFactory.toSuccess(new PageRequest<>(pageInfo));
     }
 }
