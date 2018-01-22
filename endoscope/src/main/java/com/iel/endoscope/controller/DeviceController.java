@@ -8,6 +8,7 @@ import com.iel.endoscope.dto.ResultDto;
 import com.iel.endoscope.dto.ResultDtoFactory;
 import com.iel.endoscope.entity.Device;
 import com.iel.endoscope.service.DeviceService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("endoscope/device")
+@Api(value = "device", tags = "device接口")
 public class DeviceController {
 
     @Autowired

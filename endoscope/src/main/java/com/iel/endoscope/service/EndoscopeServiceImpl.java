@@ -1,7 +1,10 @@
 package com.iel.endoscope.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.dao.EndoscopeDAO;
 import com.iel.endoscope.entity.Endoscope;
+import com.iel.endoscope.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,7 +67,10 @@ public class EndoscopeServiceImpl implements EndoscopeService {
     }
 
     @Override
-    public List<Endoscope> findAll() {
-        return endoscopeDAO.findAll();
+    public PageInfo<Endoscope> findAllByPage(Page page) {
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<Endoscope> endoscopeList = endoscopeDAO.findAll();
+        PageInfo<Endoscope> pageInfo = new PageInfo<>(endoscopeList);
+        return pageInfo;
     }
 }

@@ -44,14 +44,14 @@ public interface UserDAO {
     User selectByPrimaryKey(Long userId);
 
     /**
-     * 更新
+     * 选择性字段更新
      * @param record
      * @return
      */
     int updateByPrimaryKeySelective(User record);
 
     /**
-     * 更新
+     * 更新全部字段
      * @param record
      * @return
      */

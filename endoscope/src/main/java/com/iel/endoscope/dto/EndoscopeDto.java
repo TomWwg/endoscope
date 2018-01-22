@@ -9,7 +9,7 @@ import java.sql.Timestamp;
  * Created by wwg on 2017/12/4.
  * @author wwg
  */
-public class EndoscopeDto {
+public class EndoscopeDto extends PageDto {
 
     /**
      * 内镜ID

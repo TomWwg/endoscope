@@ -108,6 +108,7 @@ public class UsingLogReturnDto extends PageDto {
         UsingLogReturn usingLogReturn = null;
         if (dto != null){
             usingLogReturn = new UsingLogReturn();
+            usingLogReturn.setUsingLogId(dto.getUsingLogId());
             usingLogReturn.setEndoscopeNumber(dto.getEndoscopeNumber());
             usingLogReturn.setEndoscopeName(dto.getEndoscopeName());
             usingLogReturn.setEndoscopeType(dto.getEndoscopeType());

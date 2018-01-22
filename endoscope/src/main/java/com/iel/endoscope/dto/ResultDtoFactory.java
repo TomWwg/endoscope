@@ -14,7 +14,7 @@ public class ResultDtoFactory {
     }
 
     public static ResultDto toSuccess(Object data) {
-        return toSuccess(null, data);
+        return toSuccess("success", data);
     }
 
     public static ResultDto toSuccess(String reason, Object result) {

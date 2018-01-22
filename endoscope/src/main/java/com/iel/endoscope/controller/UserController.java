@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author wwg
  */
 @Controller
-@RequestMapping("user")
-@Api(value = "/user", tags = "User接口")
+@RequestMapping("endoscope/user")
+@Api(value = "user", tags = "User接口")
 public class UserController {
 
     @Autowired
@@ -36,7 +36,7 @@ public class UserController {
         if(user != null) {
             user.setPassword(EncryptUtil.getPWd(user.getPassword()));
             userService.insertSelective(user);
-            return ResultDtoFactory.toSuccess("success");
+            return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
         } else {
             return ResultDtoFactory.toUnknowError();
         }
@@ -51,7 +51,7 @@ public class UserController {
             User user = userService.selectByPrimaryKey(userRequest.getUserId());
             return ResultDtoFactory.toSuccess(user);
         } else {
-            return ResultDtoFactory.toUnknowError();
+            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
     }
 
@@ -70,7 +70,7 @@ public class UserController {
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
     }
 
-    @RequestMapping(value = "update", method = RequestMethod.POST)
+    @RequestMapping(value = "updateById", method = RequestMethod.POST)
     @ResponseBody
     @ApiOperation(value = "根据UserId选择性更新用户信息", notes = "Id不能为空", httpMethod = "POST", response = ResultDto.class)
     public ResultDto updateById(@RequestBody UserDto dto){

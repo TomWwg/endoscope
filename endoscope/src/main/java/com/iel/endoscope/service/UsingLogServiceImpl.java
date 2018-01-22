@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Created by wwg on 2018/1/3.
  */
-@Service("usingLogServiceImpl")
+@Service("usingLogService")
 public class UsingLogServiceImpl implements UsingLogService {
 
     @Autowired

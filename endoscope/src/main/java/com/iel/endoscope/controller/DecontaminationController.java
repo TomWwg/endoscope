@@ -2,12 +2,15 @@ package com.iel.endoscope.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.constant.ResultCode;
-import com.iel.endoscope.dto.*;
+import com.iel.endoscope.dto.DecontaminationDto;
+import com.iel.endoscope.dto.ResultDto;
+import com.iel.endoscope.dto.ResultDtoFactory;
 import com.iel.endoscope.entity.Decontamination;
 import com.iel.endoscope.entity.DecontaminationLog;
 import com.iel.endoscope.entity.DecontaminationRealTime;
 import com.iel.endoscope.entity.DecontaminationWork;
 import com.iel.endoscope.service.DecontaminationService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +30,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("endoscope/decontamination")
+@Api(value = "decontamination", tags = "decontamination接口")
 public class DecontaminationController {
 
     @Autowired

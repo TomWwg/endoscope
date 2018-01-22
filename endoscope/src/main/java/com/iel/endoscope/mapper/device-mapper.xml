@@ -181,7 +181,7 @@
         FROM device
         WHERE station_id = #{stationId,jdbcType=BIGINT}
     </select>
-    <select id="findDevicesWithoutStationId" resultMap="BaseResultMap">
+    <select id="findDevicesWithoutStationId" parameterType="com.iel.endoscope.entity.Device">
         SELECT *
         FROM device
         WHERE station_id IS NULL

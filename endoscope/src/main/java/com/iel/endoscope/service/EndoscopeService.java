@@ -1,6 +1,8 @@
 package com.iel.endoscope.service;
 
+import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.entity.Endoscope;
+import com.iel.endoscope.util.Page;
 
 import java.util.List;
 
@@ -65,8 +67,9 @@ public interface EndoscopeService {
     List<Endoscope> findByEndoscopeType(Endoscope record);
 
     /**
-     * 查询所有内镜信息
+     * 分页查询所有的内镜信息
+     * @param page
      * @return
      */
-    List<Endoscope> findAll();
+    PageInfo<Endoscope> findAllByPage(Page page);
 }

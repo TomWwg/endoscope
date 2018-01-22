@@ -1,7 +1,9 @@
 package com.iel.endoscope.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.constant.ResultCode;
 import com.iel.endoscope.dto.EndoscopeDto;
+import com.iel.endoscope.dto.PageRequest;
 import com.iel.endoscope.dto.ResultDto;
 import com.iel.endoscope.dto.ResultDtoFactory;
 import com.iel.endoscope.entity.Endoscope;
@@ -97,12 +99,15 @@ public class EndoscopeController {
         return ResultDtoFactory.toSuccess(endoscopeList);
     }
 
-    @RequestMapping(value = "findAll", method = RequestMethod.POST)
+    @RequestMapping(value = "findAllByPage", method = RequestMethod.POST)
     @ResponseBody
-    @ApiOperation(value = "查询所有内镜信息", notes = "暂无", httpMethod = "POST", response = ResultDto.class)
-    public ResultDto findAll(){
-        List<Endoscope> endoscopes = endoscopeService.findAll();
-        return ResultDtoFactory.toSuccess(endoscopes);
+    @ApiOperation(value = "查询所有的内镜信息并分页", notes = "传入分页信息", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findAllByPage(@RequestBody EndoscopeDto dto){
+        PageInfo<Endoscope> endoscopePageInfo = endoscopeService.findAllByPage(dto.buildPage());
+        if(endoscopePageInfo == null){
+            return ResultDtoFactory.toUnknowError();
+        }
+        return ResultDtoFactory.toSuccess(new PageRequest<>(endoscopePageInfo));
     }
 
 }

@@ -86,5 +86,14 @@ public class ResultCode {
      * 访问的专题资源不存在
      */
     public static final ResultCode TOPIC_NOT_EXIST = new ResultCode("40001");
-    
+
+    /**
+     * 请求参数不正确
+     */
+    public static final ResultCode PARAMETER_ERROR = new ResultCode("50001");
+
+    public ResultCode(String code) {
+        this.code = code;
+        this.message = rb.getString(code);
+    }
 }

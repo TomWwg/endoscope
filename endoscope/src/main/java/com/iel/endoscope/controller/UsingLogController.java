@@ -24,7 +24,7 @@ import java.util.*;
  */
 @Controller
 @RequestMapping("endoscope/usingLog")
-@Api(value = "UsingLog", tags = "UsingLog接口")
+@Api(value = "usingLog", tags = "UsingLog接口")
 public class UsingLogController {
 
     @Autowired

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * 医院Controller
  * Created by wwg on 2017/11/29.
+ * @author wwg
  */
 @Controller
 @RequestMapping("endoscope/hospital")
@@ -51,8 +52,8 @@ public class HospitalController {
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
-    @ApiOperation(value = "根据HospitalId选择性更新用户信息", notes = "hospitalId不能为空", httpMethod = "POST", response = ResultDto.class)
-    public ResultDto updateByHospitalId(@RequestBody HospitalDto dto){
+    @ApiOperation(value = "根据UserId选择性更新用户信息", notes = "hospitalId不能为空", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto update(@RequestBody HospitalDto dto){
         Hospital hospitalRequest = HospitalDto.form(dto);
         if(hospitalRequest == null){
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
