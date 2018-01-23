@@ -128,6 +128,38 @@ public class DecontaminationServiceImpl implements DecontaminationService {
         PageHelper.startPage(page.getPageNum(), page.getPageSize());
         List<DecontaminationLog> list = decontaminationDAO.findDecontaminationLog(map);
         List<Step> steps = stepDAO.findAll();
+        list = addStepsIntoDecontaminationLog(list, steps);
+        PageInfo<DecontaminationLog> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
+
+    @Override
+    public PageInfo<DecontaminationLog> findDecontaminationLogByEndoscopeId(Long endoscopeId, Page page) {
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<DecontaminationLog> list = decontaminationDAO.findDecontaminationLogByEndoscopeId(endoscopeId);
+        List<Step> steps = stepDAO.findAll();
+        list = addStepsIntoDecontaminationLog(list, steps);
+        PageInfo<DecontaminationLog> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
+
+    @Override
+    public PageInfo<DecontaminationLog> findDecontaminationLogByAuditResult(String auditResult, Page page) {
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<DecontaminationLog> list = decontaminationDAO.findDecontaminationLogByAuditResult(auditResult);
+        List<Step> steps = stepDAO.findAll();
+        list = addStepsIntoDecontaminationLog(list, steps);
+        PageInfo<DecontaminationLog> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
+
+    /**
+     * 本方法用于将详细洗消步骤添加到对应的洗消信息中
+     * @param list
+     * @param steps
+     * @return
+     */
+    private List<DecontaminationLog> addStepsIntoDecontaminationLog(List<DecontaminationLog> list, List<Step> steps){
         for(int i = 0; i < list.size(); i++){
             DecontaminationLog decontaminationLog = list.get(i);
             Map<String, String> stepMap = new HashMap<>();
@@ -139,7 +171,6 @@ public class DecontaminationServiceImpl implements DecontaminationService {
                 }
             }
         }
-        PageInfo<DecontaminationLog> pageInfo = new PageInfo<>(list);
-        return pageInfo;
+        return list;
     }
 }

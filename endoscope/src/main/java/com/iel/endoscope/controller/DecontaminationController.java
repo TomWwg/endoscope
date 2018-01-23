@@ -3,10 +3,7 @@ package com.iel.endoscope.controller;
 import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.constant.ResultCode;
 import com.iel.endoscope.dto.*;
-import com.iel.endoscope.entity.Decontamination;
-import com.iel.endoscope.entity.DecontaminationLog;
-import com.iel.endoscope.entity.DecontaminationRealTime;
-import com.iel.endoscope.entity.DecontaminationWork;
+import com.iel.endoscope.entity.*;
 import com.iel.endoscope.service.DecontaminationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -119,7 +116,7 @@ public class DecontaminationController {
 
     @RequestMapping(value = "findDecontaminationLog", method = RequestMethod.POST)
     @ResponseBody
-    @ApiOperation(value = "根据内镜编号/内镜名称/内镜类型/洗消人员/审核结果/开始时间、结束时间查询对应的手工洗消日志信息", notes = "除开始时间、结束时间意外其他条件可以为空", httpMethod = "POST", response = ResultDto.class)
+    @ApiOperation(value = "根据内镜编号/内镜名称/内镜类型/洗消人员/审核结果/开始时间、结束时间查询对应的手工洗消日志信息", notes = "除开始时间、结束时间以外其他条件可以为空", httpMethod = "POST", response = ResultDto.class)
     public ResultDto findDecontaminationLog(@RequestBody DecontaminationLogDto dto){
         DecontaminationLog decontaminationLog = DecontaminationLogDto.form(dto);
         Map<String, Object> map = new HashMap<>();
@@ -144,6 +141,30 @@ public class DecontaminationController {
             map.put("auditResult", dto.getAuditResult());
         }
         PageInfo<DecontaminationLog> pageInfo = decontaminationService.findDecontaminationLog(map, dto.buildPage());
+        return ResultDtoFactory.toSuccess(new PageRequest<>(pageInfo));
+    }
+
+    @RequestMapping(value = "findDecontaminationLogByEndoscopeId", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "通过内镜Id查找该内镜的洗消信息并分页", notes = "内镜Id不能为空", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findDecontaminationLogByEndoscopeId(@RequestBody EndoscopeDto dto){
+        Endoscope endoscopeResuest = EndoscopeDto.form(dto);
+        if(endoscopeResuest.getEndoscopeId() == null){
+            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
+        }
+        PageInfo<DecontaminationLog> pageInfo = decontaminationService.findDecontaminationLogByEndoscopeId(endoscopeResuest.getEndoscopeId(), dto.buildPage());
+        return ResultDtoFactory.toSuccess(new PageRequest<>(pageInfo));
+    }
+
+    @RequestMapping(value = "findDecontaminationLogByAuditResult", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "通过审核结果查找对应的洗消信息并分页", notes = "审核结果不能为空", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findDecontaminationLogByAuditResult(@RequestBody DecontaminationDto dto){
+        Decontamination request = DecontaminationDto.form(dto);
+        if(request.getAuditResult() == null){
+            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
+        }
+        PageInfo<DecontaminationLog> pageInfo = decontaminationService.findDecontaminationLogByAuditResult(request.getAuditResult(), dto.buildPage());
         return ResultDtoFactory.toSuccess(new PageRequest<>(pageInfo));
     }
 

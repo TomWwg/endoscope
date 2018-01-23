@@ -260,4 +260,24 @@
             AND #{startTime,jdbcType=TIMESTAMP} &lt; d.create_time &lt; #{endTime,jdbcType=TIMESTAMP}
         </where>
     </select>
+    <select id="findDecontaminationLogByEndoscopeId" resultMap="BaseResultMap3" parameterType="java.lang.Long">
+        SELECT d.decontamination_id decontaminationId,
+               d.create_time createTime,
+               d.update_time updateTime,
+               d.audit_result auditResult
+        FROM decontamination d,
+             endoscope en
+        WHERE d.endoscope_id = en.endoscope_id
+        AND en.endoscope_id = #{endoscopeId,jdbcType=BIGINT}
+    </select>
+    <select id="findDecontaminationLogByAuditResult" resultMap="BaseResultMap3" parameterType="java.lang.String">
+        SELECT d.decontamination_id decontaminationId,
+               d.create_time createTime,
+               d.update_time updateTime,
+               d.audit_result auditResult
+        FROM decontamination d,
+             endoscope en
+        WHERE d.endoscope_id = en.endoscope_id
+        AND d.audit_result = #{auditResult,jdbcType=VARCHAR}
+    </select>
 </mapper>

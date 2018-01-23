@@ -85,4 +85,15 @@ public interface DecontaminationService {
      * @return
      */
     PageInfo<DecontaminationLog> findDecontaminationLog(Map<String, Object> map, Page page);
+
+    /**
+     * 信息登记页面
+     * 根据内镜Id查找对应的该内镜的洗消信息
+     * @param endoscopeId
+     * @param page
+     * @return
+     */
+    PageInfo<DecontaminationLog> findDecontaminationLogByEndoscopeId(Long endoscopeId, Page page);
+
+    PageInfo<DecontaminationLog> findDecontaminationLogByAuditResult(String auditResult, Page page);
 }

@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * 洗消参数转换
  * Created by wwg on 2017/12/5.
  */
-public class DecontaminationDto {
+public class DecontaminationDto extends PageDto {
 
     /**
      * 手工洗消日志ID

@@ -30,4 +30,8 @@ public interface DecontaminationDAO {
     List<DecontaminationWork> findWorkloadStatistics(Map<String, Object> map);
 
     List<DecontaminationLog> findDecontaminationLog(Map<String, Object> map);
+
+    List<DecontaminationLog> findDecontaminationLogByEndoscopeId(Long endoscopeId);
+
+    List<DecontaminationLog> findDecontaminationLogByAuditResult(String auditResult);
 }
