@@ -24,6 +24,10 @@ public class ResultDtoFactory {
         dto.setResult(result);
         return dto;
     }
+
+    public static ResultDto toSuccess(ResultCode rc) {
+        return toSuccess("success");
+    }
     
     public static ResultDto toUnknowError(){
     	ResultDto dto = new ResultDto();

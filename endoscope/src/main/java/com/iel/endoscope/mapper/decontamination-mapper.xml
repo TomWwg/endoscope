@@ -194,39 +194,6 @@
             </if>
         </where>
     </select>
-    <!--<select id="findDecontaminationLog" resultMap="BaseResultMap3" parameterType="java.util.Map">-->
-        <!--SELECT d.decontamination_id decontaminationId,-->
-               <!--en.endoscope_name endoscopeName,-->
-               <!--en.endoscope_number endoscopeNumber,-->
-               <!--em.employee_name employeeName,-->
-               <!--d.create_time createTime,-->
-               <!--d.update_time updateTime,-->
-               <!--d.consume_time consumeTime,-->
-               <!--d.audit_result auditResult-->
-        <!--FROM decontamination d,-->
-             <!--endoscope en,-->
-             <!--employee em-->
-        <!--<where>-->
-            <!--d.endoscope_id = en.endoscope_id-->
-            <!--AND d.employee_id = em.employee_id-->
-            <!--<if test="endoscopeNumber != null">-->
-                <!--AND en.endoscope_number LIKE CONCAT('%',#{endoscopeNumber,jdbcType=VARCHAR},'%')-->
-            <!--</if>-->
-            <!--<if test="endoscopeName != null">-->
-                <!--AND en.endoscope_name LIKE CONCAT('%', #{endoscopeName,jdbcType=VARCHAR},'%')-->
-            <!--</if>-->
-            <!--<if test="endoscopeType != null">-->
-                <!--AND en.endoscope_type LIKE CONCAT('%', #{endoscopeType,jdbcType=VARCHAR},'%')-->
-            <!--</if>-->
-            <!--<if test="employeeName != null">-->
-                <!--AND em.employee_name LIKE CONCAT('%', #{employeeName,jdbcType=VARCHAR},'%')-->
-            <!--</if>-->
-            <!--<if test="auditResult != null">-->
-                <!--AND d.audit_result = #{auditResult,jdbcType=VARCHAR}-->
-            <!--</if>-->
-            <!--AND #{startTime,jdbcType=TIMESTAMP} &lt; d.create_time &lt; #{endTime,jdbcType=TIMESTAMP}-->
-        <!--</where>-->
-    <!--</select>-->
     <select id="findDecontaminationLog" resultMap="BaseResultMap3" parameterType="java.util.Map">
         SELECT d.decontamination_id decontaminationId,
         en.endoscope_name endoscopeName,
@@ -280,4 +247,63 @@
         WHERE d.endoscope_id = en.endoscope_id
         AND d.audit_result = #{auditResult,jdbcType=VARCHAR}
     </select>
+    <insert id="insertDecontaminationSelective" parameterType="com.iel.endoscope.entity.Decontamination">
+        INSERT INTO decontamination
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="hospitalId != null">
+                hospital_id,
+            </if>
+            <if test="stationId != null">
+                station_id,
+            </if>
+            <if test="employeeId != null">
+                employee_id,
+            </if>
+            <if test="endoscopeId != null">
+                endoscope_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="consumeTime != null">
+                consume_time,
+            </if>
+            <if test="auditResult != null">
+                audit_result,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="hospitalId != null">
+                #{hospitalId,jdbcType=BIGINT},
+            </if>
+            <if test="stationId != null">
+                #{stationId,jdbcType=BIGINT},
+            </if>
+            <if test="employeeId != null">
+                #{employeeId,jdbcType=BIGINT},
+            </if>
+            <if test="endoscopeId != null">
+                #{endoscopeId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="consumeTime != null">
+                #{consumeTime,jdbcType=VARCHAR},
+            </if>
+            <if test="auditResult != null">
+                #{auditResult,jdbcType=VARCHAR},
+            </if>
+        </trim>
+        <selectKey keyProperty="decontaminationId" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID() AS decontaminationId
+        </selectKey>
+    </insert>
 </mapper>

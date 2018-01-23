@@ -55,6 +55,19 @@ public class DecontaminationDto extends PageDto {
      */
     private String auditResult;
 
+    /**
+     * 为了信息登记页面加入的step的洗消步骤和对应的时间集合
+     */
+    private String steps;
+
+    public String getSteps() {
+        return steps;
+    }
+
+    public void setSteps(String steps) {
+        this.steps = steps;
+    }
+
     public Long getDecontaminationId() {
         return decontaminationId;
     }

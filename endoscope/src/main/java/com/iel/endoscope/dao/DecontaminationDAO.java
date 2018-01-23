@@ -34,4 +34,6 @@ public interface DecontaminationDAO {
     List<DecontaminationLog> findDecontaminationLogByEndoscopeId(Long endoscopeId);
 
     List<DecontaminationLog> findDecontaminationLogByAuditResult(String auditResult);
+
+    Long insertDecontaminationSelective(Decontamination record);
 }

@@ -95,5 +95,19 @@ public interface DecontaminationService {
      */
     PageInfo<DecontaminationLog> findDecontaminationLogByEndoscopeId(Long endoscopeId, Page page);
 
+    /**
+     * 信息登记页面
+     * 根据审核结果查找对应的内镜洗消信息
+     * @param auditResult
+     * @param page
+     * @return
+     */
     PageInfo<DecontaminationLog> findDecontaminationLogByAuditResult(String auditResult, Page page);
+
+    /**
+     * 信息登记页面，录入接口
+     * @param record
+     * @return
+     */
+    Long insertDecontaminationSelective(Decontamination record);
 }

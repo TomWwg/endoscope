@@ -5,6 +5,7 @@ import com.iel.endoscope.constant.ResultCode;
 import com.iel.endoscope.dto.*;
 import com.iel.endoscope.entity.*;
 import com.iel.endoscope.service.DecontaminationService;
+import com.iel.endoscope.service.StepService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class DecontaminationController {
 
     @Autowired
     private DecontaminationService decontaminationService;
+
+    @Autowired
+    private StepService stepService;
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     @ResponseBody
@@ -166,6 +170,31 @@ public class DecontaminationController {
         }
         PageInfo<DecontaminationLog> pageInfo = decontaminationService.findDecontaminationLogByAuditResult(request.getAuditResult(), dto.buildPage());
         return ResultDtoFactory.toSuccess(new PageRequest<>(pageInfo));
+    }
+
+    @RequestMapping(value = "addDecontaminationLog", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "录入内镜的洗消信息", notes = "暂无", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto addDecontaminationLog(@RequestBody DecontaminationDto dto){
+        Decontamination request = DecontaminationDto.form(dto);
+        //Long decontaminationId = decontaminationService.insertDecontaminationSelective(request);
+        System.out.println(dto.getSteps());
+        //Map<String, String> map = dto.getSteps();
+//        if(map == null){
+//            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
+//        }
+//        Iterator iterator = map.entrySet().iterator();
+//        while (iterator.hasNext()){
+//            Map.Entry entry = (Map.Entry) iterator.next();
+//            String stepType = (String) entry.getKey();
+//            String costTime = (String) entry.getValue();
+//            Step step = new Step();
+//            step.setDecontaminationId(decontaminationId);
+//            step.setStepType(stepType);
+//            step.setCostTime(costTime);
+//            stepService.insertSelective(step);
+//        }
+        return ResultDtoFactory.toSuccess("success");
     }
 
 }
