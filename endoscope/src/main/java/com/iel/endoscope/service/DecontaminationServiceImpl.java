@@ -155,7 +155,8 @@ public class DecontaminationServiceImpl implements DecontaminationService {
 
     @Override
     public Long insertDecontaminationSelective(Decontamination record) {
-        Long decontaminationId = decontaminationDAO.insertDecontaminationSelective(record);
+        decontaminationDAO.insertDecontaminationSelective(record);
+        Long decontaminationId = record.getDecontaminationId();
         return decontaminationId;
     }
 

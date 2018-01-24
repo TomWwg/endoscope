@@ -247,7 +247,7 @@
         WHERE d.endoscope_id = en.endoscope_id
         AND d.audit_result = #{auditResult,jdbcType=VARCHAR}
     </select>
-    <insert id="insertDecontaminationSelective" parameterType="com.iel.endoscope.entity.Decontamination">
+    <insert id="insertDecontaminationSelective" parameterType="com.iel.endoscope.entity.Decontamination" useGeneratedKeys="true" keyProperty="decontaminationId" keyColumn="decontamination_id">
         INSERT INTO decontamination
         <trim prefix="(" suffixOverrides="," suffix=")">
             <if test="hospitalId != null">
@@ -302,8 +302,8 @@
                 #{auditResult,jdbcType=VARCHAR},
             </if>
         </trim>
-        <selectKey keyProperty="decontaminationId" resultType="java.lang.Long">
-            SELECT LAST_INSERT_ID() AS decontaminationId
-        </selectKey>
+        <!--<selectKey keyProperty="decontaminationId" resultType="java.lang.Long">-->
+            <!--SELECT LAST_INSERT_ID() AS decontaminationId-->
+        <!--</selectKey>-->
     </insert>
 </mapper>

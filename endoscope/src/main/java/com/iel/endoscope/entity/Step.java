@@ -90,4 +90,16 @@ public class Step implements java.io.Serializable {
     public void setCostTime(String costTime) {
         this.costTime = costTime;
     }
+
+    @Override
+    public String toString() {
+        return "Step{" +
+                "stepId=" + stepId +
+                ", decontaminationId=" + decontaminationId +
+                ", stepType='" + stepType + '\'' +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", costTime='" + costTime + '\'' +
+                '}';
+    }
 }

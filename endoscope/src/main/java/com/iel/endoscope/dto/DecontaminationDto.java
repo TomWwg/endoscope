@@ -1,8 +1,10 @@
 package com.iel.endoscope.dto;
 
 import com.iel.endoscope.entity.Decontamination;
+import com.iel.endoscope.entity.Step;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * 洗消参数转换
@@ -58,13 +60,13 @@ public class DecontaminationDto extends PageDto {
     /**
      * 为了信息登记页面加入的step的洗消步骤和对应的时间集合
      */
-    private String steps;
+    private List<Step> steps;
 
-    public String getSteps() {
+    public List<Step> getSteps() {
         return steps;
     }
 
-    public void setSteps(String steps) {
+    public void setSteps(List<Step> steps) {
         this.steps = steps;
     }
 

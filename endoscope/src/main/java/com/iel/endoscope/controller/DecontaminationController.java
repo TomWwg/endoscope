@@ -177,23 +177,13 @@ public class DecontaminationController {
     @ApiOperation(value = "录入内镜的洗消信息", notes = "暂无", httpMethod = "POST", response = ResultDto.class)
     public ResultDto addDecontaminationLog(@RequestBody DecontaminationDto dto){
         Decontamination request = DecontaminationDto.form(dto);
-        //Long decontaminationId = decontaminationService.insertDecontaminationSelective(request);
-        System.out.println(dto.getSteps());
-        //Map<String, String> map = dto.getSteps();
-//        if(map == null){
-//            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
-//        }
-//        Iterator iterator = map.entrySet().iterator();
-//        while (iterator.hasNext()){
-//            Map.Entry entry = (Map.Entry) iterator.next();
-//            String stepType = (String) entry.getKey();
-//            String costTime = (String) entry.getValue();
-//            Step step = new Step();
-//            step.setDecontaminationId(decontaminationId);
-//            step.setStepType(stepType);
-//            step.setCostTime(costTime);
-//            stepService.insertSelective(step);
-//        }
+        Long decontaminationId = decontaminationService.insertDecontaminationSelective(request);
+        List<Step> steps = dto.getSteps();
+        for (int i = 0; i < steps.size(); i++){
+            Step step = steps.get(i);
+            step.setDecontaminationId(decontaminationId);
+            stepService.insertSelective(step);
+        }
         return ResultDtoFactory.toSuccess("success");
     }
 
