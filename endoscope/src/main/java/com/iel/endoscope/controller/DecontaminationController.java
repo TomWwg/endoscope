@@ -187,4 +187,23 @@ public class DecontaminationController {
         return ResultDtoFactory.toSuccess("success");
     }
 
+    @RequestMapping(value = "updateDecontaminationLog", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "更新内镜洗消记录信息", notes = "decontaminationId不能为空", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto updateDecontaminationLog(@RequestBody DecontaminationDto dto){
+        Decontamination request = DecontaminationDto.form(dto);
+        if(request.getDecontaminationId() == null){
+            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
+        }
+        decontaminationService.updateByPrimaryKeySelective(request);
+        List<Step> steps = dto.getSteps();
+        for(int i = 0; i < steps.size(); i++){
+            Step step = steps.get(i);
+            step.setDecontaminationId(request.getDecontaminationId());
+            System.out.println(step);
+            stepService.updateByPrimaryKeyAndStepTypeSelective(step);
+        }
+        return ResultDtoFactory.toSuccess("success");
+    }
+
 }

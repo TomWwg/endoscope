@@ -121,4 +121,20 @@
         SELECT *
         FROM step
     </select>
+    <update id="updateByPrimaryKeyAndStepTypeSelective" parameterType="com.iel.endoscope.entity.Step">
+        UPDATE step
+        <set>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="costTime != null">
+                cost_time = #{costTime,jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE decontamination_id = #{decontaminationId,jdbcType=BIGINT}
+          AND step_type = #{stepType,jdbcType=VARCHAR}
+    </update>
 </mapper>

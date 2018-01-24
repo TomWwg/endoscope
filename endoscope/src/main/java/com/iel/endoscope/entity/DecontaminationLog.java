@@ -1,7 +1,5 @@
 package com.iel.endoscope.entity;
 
-import com.iel.endoscope.dto.PageDto;
-
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Map;
@@ -11,7 +9,7 @@ import java.util.Map;
  * @author wwg
  * @date 2018/1/18
  */
-public class DecontaminationLog extends PageDto implements Serializable {
+public class DecontaminationLog implements Serializable {
 
     private Long decontaminationId;
 

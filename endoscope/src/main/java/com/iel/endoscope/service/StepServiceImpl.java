@@ -66,4 +66,9 @@ public class StepServiceImpl implements StepService {
         List<Step> steps = stepDAO.findAll();
         return steps;
     }
+
+    @Override
+    public int updateByPrimaryKeyAndStepTypeSelective(Step record) {
+        return stepDAO.updateByPrimaryKeyAndStepTypeSelective(record);
+    }
 }

@@ -26,4 +26,6 @@ public interface StepService {
 
     List<Step> findAll();
 
+    int updateByPrimaryKeyAndStepTypeSelective(Step record);
+
 }

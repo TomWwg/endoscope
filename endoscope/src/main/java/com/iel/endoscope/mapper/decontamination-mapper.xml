@@ -302,8 +302,5 @@
                 #{auditResult,jdbcType=VARCHAR},
             </if>
         </trim>
-        <!--<selectKey keyProperty="decontaminationId" resultType="java.lang.Long">-->
-            <!--SELECT LAST_INSERT_ID() AS decontaminationId-->
-        <!--</selectKey>-->
     </insert>
 </mapper>
