@@ -6,6 +6,7 @@ import com.iel.endoscope.dto.ResultDto;
 import com.iel.endoscope.dto.ResultDtoFactory;
 import com.iel.endoscope.entity.Employee;
 import com.iel.endoscope.service.EmployeeService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("endoscope/employee")
+@Api(value = "employee", tags = "employee接口")
 public class EmployeeController {
 
     @Autowired

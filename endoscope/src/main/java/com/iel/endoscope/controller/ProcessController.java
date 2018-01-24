@@ -6,6 +6,7 @@ import com.iel.endoscope.dto.ResultDto;
 import com.iel.endoscope.dto.ResultDtoFactory;
 import com.iel.endoscope.entity.Process;
 import com.iel.endoscope.service.ProcessService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("endoscope/process")
+@Api(value = "process", tags = "process接口")
 public class ProcessController {
 
     @Autowired
