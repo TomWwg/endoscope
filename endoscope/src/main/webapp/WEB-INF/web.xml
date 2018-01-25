@@ -32,6 +32,14 @@
     <filter-name>encodingFilter</filter-name> <!-- 制定对应filter的名字 -->
     <url-pattern>/*</url-pattern>             <!-- 制定filter所对应的URL -->
   </filter-mapping>
+  <filter><!-- 解决跨域访问问题 -->
+    <filter-name>cors</filter-name>
+    <filter-class>com.iel.endoscope.filter.CorsFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>cors</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 
   <!-- 监听器配置 -->
   <!-- spring监听器 -->
