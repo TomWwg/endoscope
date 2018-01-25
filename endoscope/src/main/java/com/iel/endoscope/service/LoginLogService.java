@@ -1,8 +1,13 @@
 package com.iel.endoscope.service;
 
+import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.entity.LoginLog;
+import com.iel.endoscope.entity.LoginLogReturn;
+import com.iel.endoscope.util.Page;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * 登陆日志的参数转换
@@ -56,4 +61,12 @@ public interface LoginLogService {
      * @return
      */
     int updateByPrimaryKey(LoginLog record);
+
+    /**
+     * 登陆日志（传入参数中起始时间一定不能为空）
+     * @param map
+     * @param page
+     * @return
+     */
+    PageInfo<LoginLogReturn> findLoginLogReturn(Map<String, Object> map, Page page);
 }

@@ -1,11 +1,16 @@
 package com.iel.endoscope.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.dao.LoginLogDAO;
 import com.iel.endoscope.entity.LoginLog;
+import com.iel.endoscope.entity.LoginLogReturn;
+import com.iel.endoscope.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 登陆日志接口的实现类
@@ -56,4 +61,13 @@ public class LoginLogServiceImpl implements LoginLogService {
         loginLogDAO.updateByPrimaryKey(record);
         return 1;
     }
+
+    @Override
+    public PageInfo<LoginLogReturn> findLoginLogReturn(Map<String, Object> map, Page page) {
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<LoginLogReturn> list = loginLogDAO.findLoginLogReturn(map);
+        PageInfo<LoginLogReturn> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
+
 }
