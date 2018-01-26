@@ -200,7 +200,6 @@ public class DecontaminationController {
         for(int i = 0; i < steps.size(); i++){
             Step step = steps.get(i);
             step.setDecontaminationId(request.getDecontaminationId());
-            System.out.println(step);
             stepService.updateByPrimaryKeyAndStepTypeSelective(step);
         }
         return ResultDtoFactory.toSuccess("success");
