@@ -57,6 +57,26 @@ public class UsingLogReturn implements Serializable {
     //患者就诊号
     private String visitNumber;
 
+    private String lastPatient;
+
+    private Timestamp lastUsingTime;
+
+    public String getLastPatient() {
+        return lastPatient;
+    }
+
+    public void setLastPatient(String lastPatient) {
+        this.lastPatient = lastPatient;
+    }
+
+    public Timestamp getLastUsingTime() {
+        return lastUsingTime;
+    }
+
+    public void setLastUsingTime(Timestamp lastUsingTime) {
+        this.lastUsingTime = lastUsingTime;
+    }
+
     public Long getEndoscopeId() {
         return endoscopeId;
     }
@@ -178,6 +198,8 @@ public class UsingLogReturn implements Serializable {
                 ", employeeName='" + employeeName + '\'' +
                 ", patientName='" + patientName + '\'' +
                 ", visitNumber='" + visitNumber + '\'' +
+                ", lastPatient='" + lastPatient + '\'' +
+                ", lastUsingTime=" + lastUsingTime +
                 '}';
     }
 

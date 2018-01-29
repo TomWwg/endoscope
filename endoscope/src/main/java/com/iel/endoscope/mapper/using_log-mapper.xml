@@ -195,4 +195,12 @@
             </if>
         </where>
     </select>
+    <select id="findLatestUsingLogByEndoscopeId" parameterType="java.lang.Long" resultMap="BaseResultMap2">
+        SELECT p.patient_name patientName, u.doctor doctor, p.visit_number visitNumber, u.using_time usingTime
+        FROM using_log u, patient p
+        WHERE u.patient_id = p.patient_id
+          AND u.endoscope_id = #{endoscopeId,jdbcType=VARCHAR}
+          ORDER BY u.using_time DESC
+          LIMIT 2
+    </select>
 </mapper>

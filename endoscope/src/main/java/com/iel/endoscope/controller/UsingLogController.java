@@ -3,7 +3,7 @@ package com.iel.endoscope.controller;
 import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.constant.ResultCode;
 import com.iel.endoscope.dto.*;
-import com.iel.endoscope.entity.LoginLogReturn;
+import com.iel.endoscope.entity.Endoscope;
 import com.iel.endoscope.entity.UsingLog;
 import com.iel.endoscope.entity.UsingLogReturn;
 import com.iel.endoscope.service.LoginLogService;
@@ -97,7 +97,7 @@ public class UsingLogController {
 
     @RequestMapping(value = "findUsingLogByManyParameters", method = RequestMethod.POST)
     @ResponseBody
-    @ApiOperation(value = "", notes = "", httpMethod = "", response = ResultDto.class)
+    @ApiOperation(value = "通过内镜编号/内镜名称/洗消人员/起止时间查询该内镜的使用信息", notes = "暂时未使用", httpMethod = "POST", response = ResultDto.class)
     public ResultDto findUsingLogByManyParameters(@RequestBody UsingLogReturnDto dto){
         UsingLogReturn usingLogReturnRequest = UsingLogReturnDto.form(dto);
         Page page = UsingLogReturnDto.buildPage(dto.getPageNum(), dto.getPageSize());
@@ -105,24 +105,16 @@ public class UsingLogController {
         return ResultDtoFactory.toSuccess(new PageRequest<>(pageInfo));
     }
 
-    @RequestMapping(value = "findLoginLogReturn", method = RequestMethod.POST)
+    @RequestMapping(value = "findLatestUsingLogByEndoscopeId", method = RequestMethod.POST)
     @ResponseBody
-    @ApiOperation(value = "登录日志查询接口", notes = "起始时间不能为空", httpMethod = "POST", response = ResultDto.class)
-    public ResultDto findLoginLogReturn(@RequestBody LoginLogReturnDto dto){
-        if(dto.getStartTime() == null || dto.getEndTime() == null){
+    @ApiOperation(value = "通过内镜Id查找该内镜的使用信息（距离当前时间最近的使用信息）", notes = "", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findLatestUsingLogByEndoscopeId(@RequestBody EndoscopeDto dto){
+        Endoscope request = EndoscopeDto.form(dto);
+        if(request.getEndoscopeId() == null){
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
-        LoginLogReturn logReturn = LoginLogReturnDto.form(dto);
-        Map<String, Object> map = new HashMap<>();
-        map.put("startTime", dto.getStartTime());
-        map.put("endTime", dto.getEndTime());
-        if(logReturn.getLoginType() != null){
-            map.put("loginType", logReturn.getLoginType());
-        }
-        if(logReturn.getUserName() != null){
-            map.put("userName", logReturn.getUserName());
-        }
-        PageInfo<LoginLogReturn> pageInfo = loginLogService.findLoginLogReturn(map, dto.buildPage());
-        return ResultDtoFactory.toSuccess(new PageRequest<>(pageInfo));
+        UsingLogReturn usingLogReturn = usingLogService.findLatestUsingLogByEndoscopeId(request.getEndoscopeId());
+        return  ResultDtoFactory.toSuccess(usingLogReturn);
     }
+
 }

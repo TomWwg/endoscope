@@ -96,4 +96,15 @@ public class UsingLogServiceImpl implements UsingLogService {
         PageInfo<UsingLogReturn> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
+
+    @Override
+    public UsingLogReturn findLatestUsingLogByEndoscopeId(Long endoscopeId) {
+        List<UsingLogReturn> list = usingLogDAO.findLatestUsingLogByEndoscopeId(endoscopeId);
+        UsingLogReturn usingLogReturn = list.get(0);
+        if(list.size() == 2){
+            usingLogReturn.setLastPatient(list.get(1).getPatientName());
+            usingLogReturn.setLastUsingTime(list.get(1).getUsingTime());
+        }
+        return usingLogReturn;
+    }
 }

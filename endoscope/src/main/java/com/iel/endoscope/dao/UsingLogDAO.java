@@ -36,4 +36,11 @@ public interface UsingLogDAO {
      * @return
      */
     List<UsingLogReturn> findUsingLogByManyParameters(Map<String, Object> map);
+
+    /**
+     * 通过内镜Id查找给内镜的使用信息（距离当前时间最近的内镜使用信息）
+     * @param endoscopeId
+     * @return
+     */
+    List<UsingLogReturn> findLatestUsingLogByEndoscopeId(Long endoscopeId);
 }

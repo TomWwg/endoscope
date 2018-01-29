@@ -31,4 +31,6 @@ public interface UsingLogService {
     int findCountsUnderCertainTime(UsingLogReturn record);
 
     PageInfo<UsingLogReturn> findUsingLogByManyParameters(UsingLogReturn record, Page page);
+
+    UsingLogReturn findLatestUsingLogByEndoscopeId(Long endoscopeId);
 }
