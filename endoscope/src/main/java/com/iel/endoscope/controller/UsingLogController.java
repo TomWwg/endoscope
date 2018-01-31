@@ -6,6 +6,7 @@ import com.iel.endoscope.dto.*;
 import com.iel.endoscope.entity.Endoscope;
 import com.iel.endoscope.entity.UsingLog;
 import com.iel.endoscope.entity.UsingLogReturn;
+import com.iel.endoscope.service.DecontaminationService;
 import com.iel.endoscope.service.LoginLogService;
 import com.iel.endoscope.service.UsingLogService;
 import com.iel.endoscope.util.Page;
@@ -34,6 +35,9 @@ public class UsingLogController {
 
     @Autowired
     private LoginLogService loginLogService;
+
+    @Autowired
+    private DecontaminationService decontaminationService;
 
     @RequestMapping(value = "findUsingPercent", method = RequestMethod.POST)
     @ResponseBody
@@ -114,6 +118,19 @@ public class UsingLogController {
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         UsingLogReturn usingLogReturn = usingLogService.findLatestUsingLogByEndoscopeId(request.getEndoscopeId());
+        return  ResultDtoFactory.toSuccess(usingLogReturn);
+    }
+
+    @RequestMapping(value = "findLatestUsingLogByEndoscopeIdByDecontaminationId", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "通过洗消日志Id查找对应的使用信息（人员详细信息页面）", notes = "消息日志Id不能为空", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findLatestUsingLogByEndoscopeIdByDecontaminationId(@RequestBody DecontaminationDto dto){
+        Long decontaminationId = dto.getDecontaminationId();
+        if(decontaminationId == null){
+            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
+        }
+        Long endoscopeId = decontaminationService.selectByPrimaryKey(decontaminationId).getEndoscopeId();
+        UsingLogReturn usingLogReturn = usingLogService.findLatestUsingLogByEndoscopeId(endoscopeId);
         return  ResultDtoFactory.toSuccess(usingLogReturn);
     }
 
