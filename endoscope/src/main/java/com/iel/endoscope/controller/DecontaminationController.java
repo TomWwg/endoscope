@@ -6,6 +6,7 @@ import com.iel.endoscope.dto.*;
 import com.iel.endoscope.entity.*;
 import com.iel.endoscope.service.DecontaminationService;
 import com.iel.endoscope.service.StepService;
+import com.iel.endoscope.service.UsingLogService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public class DecontaminationController {
 
     @Autowired
     private StepService stepService;
+
+    @Autowired
+    private UsingLogService usingLogService;
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     @ResponseBody
@@ -211,6 +215,14 @@ public class DecontaminationController {
             stepService.updateByPrimaryKeyAndStepTypeSelective(step);
         }
         return ResultDtoFactory.toSuccess("success");
+    }
+
+    public ResultDto findDecontaminationLogByPatientId(@RequestBody PatientDto dto){
+        Patient patient = PatientDto.form(dto);
+        if(patient.getPatientId() == null){
+            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
+        }
+        List<Endoscope> endoscopes = usingLogService.findBy
     }
 
 }
