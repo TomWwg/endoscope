@@ -109,11 +109,19 @@ public class DecontaminationController {
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         Map<String, Object> map = new HashMap<>();
-        map.put("employeeNumber", decontaminationWork.getEmployeeNumber());
-        map.put("employeeName", decontaminationWork.getEmployeeName());
-        map.put("roleId", decontaminationWork.getRoleId());
-        map.put("startTime", dto.getStartTime());
-        map.put("endTime", dto.getEndTime());
+        if(decontaminationWork.getEmployeeNumber() != null){
+            map.put("employeeNumber", decontaminationWork.getEmployeeNumber());
+        }
+        if(decontaminationWork.getEmployeeName() != null){
+            map.put("employeeName", decontaminationWork.getEmployeeName());
+        }
+        if(decontaminationWork.getRoleId() != null){
+            map.put("roleId", decontaminationWork.getRoleId());
+        }
+        if(dto.getStartTime() != null && dto.getEndTime() != null){
+            map.put("startTime", dto.getStartTime());
+            map.put("endTime", dto.getEndTime());
+        }
         List<DecontaminationWork> list = decontaminationService.findWorkloadStatistics(map);
         return ResultDtoFactory.toSuccess(list);
     }
