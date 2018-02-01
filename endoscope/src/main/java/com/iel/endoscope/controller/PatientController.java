@@ -1,9 +1,8 @@
 package com.iel.endoscope.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.constant.ResultCode;
-import com.iel.endoscope.dto.PatientDto;
-import com.iel.endoscope.dto.ResultDto;
-import com.iel.endoscope.dto.ResultDtoFactory;
+import com.iel.endoscope.dto.*;
 import com.iel.endoscope.entity.Patient;
 import com.iel.endoscope.service.PatientService;
 import io.swagger.annotations.Api;
@@ -83,5 +82,28 @@ public class PatientController {
             return ResultDtoFactory.toUnknowError();
         }
         return ResultDtoFactory.toSuccess(patient);
+    }
+
+    @RequestMapping(value = "findAllPatientsByPage", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "查找所有的患者信息并分页", notes = "分页信息不能为空", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findAllPatientsByPage(@RequestBody PageDto dto){
+        if(dto.getPageNum() == 0 || dto.getPageSize() == 0){
+            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
+        }
+        PageInfo<Patient> pageInfo = patientService.findAllByPage(dto.buildPage());
+        return ResultDtoFactory.toSuccess(new PageRequest<>(pageInfo));
+    }
+
+    @RequestMapping(value = "findByPatientNameByPage", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "通过患者姓名模糊查询对应的患者信息并分页", notes = "暂无", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto findByPatientNameByPage(@RequestBody PatientDto dto){
+        String patientName = dto.getPatientName();
+        if(patientName == null){
+            return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
+        }
+        PageInfo<Patient> pageInfo = patientService.findByPatientNameByPage(patientName, dto.buildPage());
+        return ResultDtoFactory.toSuccess(new PageRequest<>(pageInfo));
     }
 }

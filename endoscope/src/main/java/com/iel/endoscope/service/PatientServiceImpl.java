@@ -1,7 +1,10 @@
 package com.iel.endoscope.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.dao.PatientDAO;
 import com.iel.endoscope.entity.Patient;
+import com.iel.endoscope.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,5 +58,21 @@ public class PatientServiceImpl implements PatientService {
     public int updateByPrimaryKey(Patient record) {
         patientDAO.updateByPrimaryKey(record);
         return 1;
+    }
+
+    @Override
+    public PageInfo<Patient> findAllByPage(Page page) {
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<Patient> list = patientDAO.findAll();
+        PageInfo<Patient> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
+
+    @Override
+    public PageInfo<Patient> findByPatientNameByPage(String patientName, Page page) {
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<Patient> list = patientDAO.findByPatientName(patientName);
+        PageInfo<Patient> pageInfo = new PageInfo<>(list);
+        return pageInfo;
     }
 }

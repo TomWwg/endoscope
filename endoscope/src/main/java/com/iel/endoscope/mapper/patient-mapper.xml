@@ -90,4 +90,13 @@
             remark = #{remark,jdbcType=VARCHAR}
         WHERE patient_id = #{patientId,jdbcType=BIGINT}
     </update>
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT *
+        FROM patient
+    </select>
+    <select id="findByPatientName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT *
+        FROM patient
+        WHERE patient_name LIKE CONCAT('%', #{patientName,jdbcType=VARCHAR},'%')
+    </select>
 </mapper>

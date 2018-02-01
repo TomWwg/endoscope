@@ -22,4 +22,8 @@ public interface PatientDAO {
     int updateByPrimaryKeySelective(Patient record);
 
     int updateByPrimaryKey(Patient record);
+
+    List<Patient> findAll();
+
+    List<Patient> findByPatientName(String patientName);
 }

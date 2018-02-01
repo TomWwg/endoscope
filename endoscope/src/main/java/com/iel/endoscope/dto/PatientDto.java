@@ -7,7 +7,7 @@ import com.iel.endoscope.entity.Patient;
  * Created by wwg on 2017/12/1.
  * @author wwg
  */
-public class PatientDto {
+public class PatientDto extends PageDto {
 
     /**
      * 患者ID

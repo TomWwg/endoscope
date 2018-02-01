@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -76,8 +75,7 @@ public class ProcessController {
     @ResponseBody
     @ApiOperation(value = "查询所有的流程信息", notes = "无特殊要求", httpMethod = "POST", response = ResultDto.class)
     public ResultDto findAll(){
-        List<Process> processes = new ArrayList<>();
-        processes = processService.findAll();
+        List<Process> processes = processService.findAll();
         return ResultDtoFactory.toSuccess(processes);
     }
 }

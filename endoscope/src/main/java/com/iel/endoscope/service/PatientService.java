@@ -1,6 +1,8 @@
 package com.iel.endoscope.service;
 
+import com.github.pagehelper.PageInfo;
 import com.iel.endoscope.entity.Patient;
+import com.iel.endoscope.util.Page;
 
 import java.util.List;
 
@@ -52,8 +54,23 @@ public interface PatientService {
 
     /**
      * 更新
-     * @param record
+     * @param record 患者信息
      * @return
      */
     int updateByPrimaryKey(Patient record);
+
+    /**
+     * 查找所有的患者信息并分页
+     * @param page 分页信息
+     * @return
+     */
+    PageInfo<Patient> findAllByPage(Page page);
+
+    /**
+     * 通过患者名称模糊查询对应的患者信息并分页
+     * @param patientName 患者姓名
+     * @param page 分页信息
+     * @return
+     */
+    PageInfo<Patient> findByPatientNameByPage(String patientName, Page page);
 }
