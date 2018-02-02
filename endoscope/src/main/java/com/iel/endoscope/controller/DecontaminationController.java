@@ -222,7 +222,8 @@ public class DecontaminationController {
         if(patient.getPatientId() == null){
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
-        List<Endoscope> endoscopes = usingLogService.findBy
+        List<Long> endoscopeIds = usingLogService.findEndoscopeIdByPatientId(patient.getPatientId());
+
     }
 
 }

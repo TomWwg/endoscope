@@ -33,4 +33,6 @@ public interface UsingLogService {
     PageInfo<UsingLogReturn> findUsingLogByManyParameters(UsingLogReturn record, Page page);
 
     UsingLogReturn findLatestUsingLogByEndoscopeId(Long endoscopeId);
+
+    List<Long> findEndoscopeIdByPatientId(Long patientId);
 }

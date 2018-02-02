@@ -107,4 +107,10 @@ public class UsingLogServiceImpl implements UsingLogService {
         }
         return usingLogReturn;
     }
+
+    @Override
+    public List<Long> findEndoscopeIdByPatientId(Long patientId) {
+        List<Long> endoscopeIds = usingLogDAO.findEndoscopeIdByPatientId(patientId);
+        return endoscopeIds;
+    }
 }

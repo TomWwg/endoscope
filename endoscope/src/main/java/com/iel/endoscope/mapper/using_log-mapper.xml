@@ -203,4 +203,9 @@
           ORDER BY u.using_time DESC
           LIMIT 2
     </select>
+    <select id="findEndoscopeIdByPatientId" resultMap="java.lang.Long" parameterType="java.lang.Long">
+        SELECT endoscope_id
+        FROM using_log
+        WHERE patient_id = #{patientId,jdbcType=BIGINT}
+    </select>
 </mapper>

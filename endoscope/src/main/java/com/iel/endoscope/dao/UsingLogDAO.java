@@ -43,4 +43,11 @@ public interface UsingLogDAO {
      * @return
      */
     List<UsingLogReturn> findLatestUsingLogByEndoscopeId(Long endoscopeId);
+
+    /**
+     * 通过患者Id查询该患者对应的使用过的内镜Id
+     * @param patientId 患者Id
+     * @return 内镜Id
+     */
+    List<Long> findEndoscopeIdByPatientId(Long patientId);
 }
