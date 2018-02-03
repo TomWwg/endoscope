@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 洗消日志Controller
@@ -164,11 +162,11 @@ public class DecontaminationController {
     @ResponseBody
     @ApiOperation(value = "通过内镜Id查找该内镜的洗消信息并分页", notes = "内镜Id不能为空", httpMethod = "POST", response = ResultDto.class)
     public ResultDto findDecontaminationLogByEndoscopeId(@RequestBody EndoscopeDto dto){
-        Endoscope endoscopeResuest = EndoscopeDto.form(dto);
-        if(endoscopeResuest.getEndoscopeId() == null){
+        Endoscope endoscopeRequest = EndoscopeDto.form(dto);
+        if(endoscopeRequest.getEndoscopeId() == null){
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
-        PageInfo<DecontaminationLog> pageInfo = decontaminationService.findDecontaminationLogByEndoscopeId(endoscopeResuest.getEndoscopeId(), dto.buildPage());
+        PageInfo<DecontaminationLog> pageInfo = decontaminationService.findDecontaminationLogByEndoscopeId(endoscopeRequest.getEndoscopeId(), dto.buildPage());
         return ResultDtoFactory.toSuccess(new PageRequest<>(pageInfo));
     }
 
@@ -217,13 +215,23 @@ public class DecontaminationController {
         return ResultDtoFactory.toSuccess("success");
     }
 
+    @RequestMapping(value = "findDecontaminationLogByPatientId", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "通过患者Id查询该患者对应的消息日志信息", notes = "", httpMethod = "POST", response = ResultDto.class)
     public ResultDto findDecontaminationLogByPatientId(@RequestBody PatientDto dto){
         Patient patient = PatientDto.form(dto);
         if(patient.getPatientId() == null){
             return ResultDtoFactory.toError(ResultCode.PARAMETER_ERROR);
         }
         List<Long> endoscopeIds = usingLogService.findEndoscopeIdByPatientId(patient.getPatientId());
-
+        List<DecontaminationLog> list = new ArrayList<>();
+        for (int i = 0; i < endoscopeIds.size(); i++){
+            Long endoscopeId = endoscopeIds.get(i);
+            list.addAll(decontaminationService.findDecontaminationLogByEndoscopeId(endoscopeId));
+        }
+        Set<DecontaminationLog> set = new HashSet<>();
+        set.addAll(list);
+        return ResultDtoFactory.toSuccess(set);
     }
 
 }

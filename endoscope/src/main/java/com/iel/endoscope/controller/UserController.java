@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * Created by wwg on 2017/11/13.
  * @author wwg
@@ -86,5 +88,12 @@ public class UserController {
             return ResultDtoFactory.toUnknowError();
         }
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
+    }
+
+    @RequestMapping(value = "findAll", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultDto findAll(){
+        List<User> list = userService.findAll();
+        return ResultDtoFactory.toSuccess(list);
     }
 }

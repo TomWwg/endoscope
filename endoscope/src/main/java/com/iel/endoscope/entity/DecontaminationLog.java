@@ -115,4 +115,34 @@ public class DecontaminationLog implements Serializable {
                 ", auditResult='" + auditResult + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object object){
+        DecontaminationLog decontaminationlog = (DecontaminationLog) object;
+        if(this == object){
+            return true;
+        }
+        if(object == null){
+            return false;
+        }
+        if(getClass() != object.getClass()){
+            return false;
+        }
+        if(decontaminationId == null){
+            if(decontaminationlog.getDecontaminationId() != null){
+                return false;
+            }
+        } else if(!decontaminationId.equals(decontaminationlog.getDecontaminationId())){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode(){
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((decontaminationId == null) ? 0 : decontaminationId.hashCode());
+        return result;
+    }
 }

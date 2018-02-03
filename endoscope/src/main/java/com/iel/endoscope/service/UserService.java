@@ -62,4 +62,10 @@ public interface UserService {
      * @return
      */
     User findByUsername(String username);
+
+    /**
+     * 查询所有用户信息
+     * @return
+     */
+    List<User> findAll();
 }

@@ -110,4 +110,11 @@ public interface DecontaminationService {
      * @return
      */
     Long insertDecontaminationSelective(Decontamination record);
+
+    /**
+     * 根据内镜Id查找对应的该内镜的洗消信息,不分页
+     * @param endoscopeId
+     * @return
+     */
+    List<DecontaminationLog> findDecontaminationLogByEndoscopeId(Long endoscopeId);
 }

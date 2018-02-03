@@ -63,4 +63,10 @@ public interface UserDAO {
      * @return
      */
     User findByUsername(String username);
+
+    /**
+     * 插叙所有用户信息
+     * @return
+     */
+    List<User> findAll();
 }

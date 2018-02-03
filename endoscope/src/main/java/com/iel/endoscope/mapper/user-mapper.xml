@@ -133,4 +133,8 @@
         FROM user
         WHERE username = #{username,jdbcType=VARCHAR}
     </select>
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT *
+        FROM USER
+    </select>
 </mapper>

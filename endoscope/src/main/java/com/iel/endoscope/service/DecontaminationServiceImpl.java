@@ -160,6 +160,12 @@ public class DecontaminationServiceImpl implements DecontaminationService {
         return decontaminationId;
     }
 
+    @Override
+    public List<DecontaminationLog> findDecontaminationLogByEndoscopeId(Long endoscopeId) {
+        List<DecontaminationLog> decontaminationLogs = decontaminationDAO.findDecontaminationLogByEndoscopeId(endoscopeId);
+        return decontaminationLogs;
+    }
+
     /**
      * 本方法用于将详细洗消步骤添加到对应的洗消信息中
      * @param list
