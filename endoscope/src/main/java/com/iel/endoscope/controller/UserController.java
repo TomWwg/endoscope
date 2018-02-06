@@ -92,6 +92,7 @@ public class UserController {
 
     @RequestMapping(value = "findAll", method = RequestMethod.POST)
     @ResponseBody
+    @ApiOperation(value = "查找所有用户信息", notes = "无", httpMethod = "POST", response = ResultDto.class)
     public ResultDto findAll(){
         List<User> list = userService.findAll();
         return ResultDtoFactory.toSuccess(list);
