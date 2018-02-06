@@ -8,6 +8,7 @@ import com.iel.endoscope.entity.User;
 import com.iel.endoscope.service.UserService;
 import com.iel.endoscope.util.EncryptUtil;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,6 +61,7 @@ public class UserController {
     @RequestMapping(value = "deleteById", method = RequestMethod.POST)
     @ResponseBody
     @ApiOperation(value = "根据Id删除用户", notes = "Id不能为空", httpMethod = "POST", response = ResultDto.class)
+    @ApiImplicitParam(name = "userId", value = "用户Id", dataType = "Long")
     public ResultDto deleteById(@RequestBody UserDto dto){
         User userRequest = UserDto.form(dto);
         if(userRequest == null) {

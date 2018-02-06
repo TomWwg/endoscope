@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Created by com.wwg.MybatisCodeGenerate on 2017-11-10
+ * @author wwg
  */
 public interface EndoscopeDAO {
     int deleteByPrimaryKey(Long endoscopeId);

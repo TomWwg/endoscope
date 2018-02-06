@@ -196,16 +196,16 @@
     </select>
     <select id="findDecontaminationLog" resultMap="BaseResultMap3" parameterType="java.util.Map">
         SELECT d.decontamination_id decontaminationId,
-        en.endoscope_name endoscopeName,
-        en.endoscope_number endoscopeNumber,
-        em.employee_name employeeName,
-        d.create_time createTime,
-        d.update_time updateTime,
-        d.consume_time consumeTime,
-        d.audit_result auditResult
+               en.endoscope_name endoscopeName,
+               en.endoscope_number endoscopeNumber,
+               em.employee_name employeeName,
+               d.create_time createTime,
+               d.update_time updateTime,
+               d.consume_time consumeTime,
+               d.audit_result auditResult
         FROM decontamination d,
-        endoscope en,
-        employee em
+             endoscope en,
+             employee em
         <where>
             d.endoscope_id = en.endoscope_id
             AND d.employee_id = em.employee_id
