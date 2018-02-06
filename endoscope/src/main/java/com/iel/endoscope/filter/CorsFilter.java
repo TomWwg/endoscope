@@ -5,6 +5,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
+/**
+ * 解决跨域访问问题
+ * @author wwg
+ */
 public class CorsFilter implements Filter {
 
     @Override
