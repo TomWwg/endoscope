@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -92,8 +91,7 @@ public class EmployeeController {
     @ResponseBody
     @ApiOperation(value = "查询所有的员工信息", notes = "暂无", httpMethod = "POST", response = ResultDto.class)
     public ResultDto findALlEmployees(){
-        List<Employee> employees = new ArrayList<>();
-        employees = employeeService.findAllEmployees();
+        List<Employee> employees = employeeService.findAllEmployees();
         return ResultDtoFactory.toSuccess(employees);
     }
 }
