@@ -22,6 +22,14 @@
     <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
 
+    <mvc:interceptors>
+        <!-- 权限验证拦截器 -->
+        <mvc:interceptor>
+            <mvc:mapping path="com/iel/endoscope/controller/*"/>
+            <bean class="com.iel.endoscope.util.AuthorityAnnotationInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <bean id="mappingJacksonHttpMessageConverter"
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
