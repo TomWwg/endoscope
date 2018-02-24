@@ -6,6 +6,8 @@ import com.iel.endoscope.dto.ResultDtoFactory;
 import com.iel.endoscope.dto.UserDto;
 import com.iel.endoscope.entity.User;
 import com.iel.endoscope.service.UserService;
+import com.iel.endoscope.util.Authority;
+import com.iel.endoscope.util.AuthorityType;
 import com.iel.endoscope.util.EncryptUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -92,6 +94,7 @@ public class UserController {
         return ResultDtoFactory.toSuccess(ResultCode.SUCCESS);
     }
 
+    @Authority(AuthorityType.Validate)
     @RequestMapping(value = "findAll", method = RequestMethod.POST)
     @ResponseBody
     @ApiOperation(value = "查找所有用户信息", notes = "无", httpMethod = "POST", response = ResultDto.class)

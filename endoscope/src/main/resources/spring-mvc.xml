@@ -2,15 +2,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/aop
+                        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
                         http://www.springframework.org/schema/context
                         http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
     <!-- 配置映射器与适配器 -->
     <mvc:annotation-driven></mvc:annotation-driven>
+
+    <aop:aspectj-autoproxy/>
 
     <!-- 自动扫描  @Controller-->
     <context:component-scan base-package="com.iel.endoscope"/>
@@ -25,7 +30,7 @@
     <mvc:interceptors>
         <!-- 权限验证拦截器 -->
         <mvc:interceptor>
-            <mvc:mapping path="com/iel/endoscope/controller/*"/>
+            <mvc:mapping path="/**" />
             <bean class="com.iel.endoscope.util.AuthorityAnnotationInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
