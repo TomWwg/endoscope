@@ -30,5 +30,5 @@ endoscope/target/*
 endoscope/.idea/workspace.xml
 /endoscope/target/
 endoscope/.idea/*.xml
-endoscope/.idea/artifacts/web_endoscope_war_exploded.xml
+endoscope/.idea/artifacts/*.xml
 endoscope/web-endoscope.iml
