@@ -1,5 +1,6 @@
 package com.iel.endoscope.util;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -13,6 +14,9 @@ import java.lang.reflect.Method;
  * @date 2018/2/24
  */
 public class AuthorityAnnotationInterceptor extends HandlerInterceptorAdapter {
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -32,8 +36,6 @@ public class AuthorityAnnotationInterceptor extends HandlerInterceptorAdapter {
                     } else if (isClazAnnotation){
                         authority = clazz.getAnnotation(Authority.class);
                     }
-                    int code = -1;
-                    String msg = "";
                     if (authority != null){
                         if (AuthorityType.NoValidate == authority.value()){
                             //标记为不验证，放行
@@ -45,10 +47,8 @@ public class AuthorityAnnotationInterceptor extends HandlerInterceptorAdapter {
                         } else {
                             //验证登录及权限
                             //TODO;
+                            redisUtil.set("wwg", "qweuyh", 10);
                             System.out.println("我已经开启权限验证了，你还没有设置过权限哦------------------------------");
-
-                            code = 1;
-                            msg = "验证成功";
                             return true;
                         }
                     }

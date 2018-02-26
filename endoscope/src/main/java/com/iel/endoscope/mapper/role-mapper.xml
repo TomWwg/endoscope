@@ -102,7 +102,6 @@
         WHERE role_id = #{roleId,jdbcType=BIGINT}
     </update>
     <select id="findAllRoles" resultMap="BaseResultMap">
-        SELECT *
-        FROM role
+        SELECT * FROM role
     </select>
 </mapper>

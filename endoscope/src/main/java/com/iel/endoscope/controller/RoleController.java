@@ -6,6 +6,8 @@ import com.iel.endoscope.dto.ResultDtoFactory;
 import com.iel.endoscope.dto.RoleDto;
 import com.iel.endoscope.entity.Role;
 import com.iel.endoscope.service.RoleService;
+import com.iel.endoscope.util.Authority;
+import com.iel.endoscope.util.AuthorityType;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +89,7 @@ public class RoleController {
         return ResultDtoFactory.toSuccess(role);
     }
 
+    @Authority(AuthorityType.Validate)
     @RequestMapping(value = "findAllRoles", method = RequestMethod.POST)
     @ResponseBody
     @ApiOperation(value = "查询所有的角色信息", notes = "暂无", httpMethod = "POST", response = ResultDto.class)

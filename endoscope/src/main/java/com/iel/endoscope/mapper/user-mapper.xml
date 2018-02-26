@@ -134,7 +134,6 @@
         WHERE username = #{username,jdbcType=VARCHAR}
     </select>
     <select id="findAll" resultMap="BaseResultMap">
-        SELECT *
-        FROM USER
+        SELECT * FROM user
     </select>
 </mapper>
