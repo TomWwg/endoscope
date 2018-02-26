@@ -29,6 +29,6 @@ hs_err_pid*
 endoscope/target/*
 endoscope/.idea/workspace.xml
 /endoscope/target/
-endoscope/.idea/workspace.xml
+endoscope/.idea/*.xml
 endoscope/.idea/artifacts/web_endoscope_war_exploded.xml
 endoscope/web-endoscope.iml
