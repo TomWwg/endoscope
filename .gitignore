@@ -3,6 +3,10 @@
 /target/ 
 # Log file
 *.log
+/endoscope/target/
+endoscope/.idea/*.xml
+endoscope/.idea/artifacts/*.xml
+endoscope/web-endoscope.iml
 
 # BlueJ files
 *.ctxt
