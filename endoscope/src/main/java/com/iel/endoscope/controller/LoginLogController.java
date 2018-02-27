@@ -20,8 +20,8 @@ import java.util.Map;
 
 /**
  * 登陆日志Controller
- * Created by wwg on 2017/12/6.
  * @author wwg
+ * @date 2017/12/6
  */
 @Controller
 @RequestMapping("endoscope/loginLog")

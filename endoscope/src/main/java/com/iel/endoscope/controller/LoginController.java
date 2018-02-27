@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Created by wwg on 2017/11/29.
+ * 登录Controller
+ * @author wwg
+ * @date 2017/11/29
  */
 @Controller
 @RequestMapping(value = "login")
